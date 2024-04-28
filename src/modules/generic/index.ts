@@ -1,1 +1,1 @@
-export const Test = 'true';
+export * from './views';
