@@ -20,7 +20,9 @@
     ],
     "baseUrl": "./src",
     "paths": {
-      "Generic": ["./modules/generic/index.ts"]
+      "Generic": ["./modules/generic/index.ts"],
+      "Common": ["./modules/common/index.ts"],
+      "Auth": ["./authentication/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
