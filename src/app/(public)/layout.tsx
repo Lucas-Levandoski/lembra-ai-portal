@@ -1,3 +1,4 @@
+import { PublicHeaderView } from 'Generic';
 
 export default function PublicLayout({
   children,
@@ -6,13 +7,7 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-      <header className="border-b h-20 px-[12vw] flex justify-center items-center">
-        <nav className="flex gap-6">
-          <a href="/landing">Product</a>
-          <a href="/about-us">About Us</a>
-        </nav>
-      </header>
-
+      <PublicHeaderView />
       <main className="px-[12vw]">{children}</main>
     </>
   );

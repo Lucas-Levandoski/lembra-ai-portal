@@ -3,8 +3,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { MsalProvider } from '@azure/msal-react';
-import { PublicClientApplication } from '@azure/msal-browser';
-import { msalConfig } from 'Auth';
+import { msalInstance } from 'Common';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,8 +12,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const msalInstance = new PublicClientApplication(msalConfig);
-
   return (
     <html lang="en">
       <MsalProvider instance={msalInstance}>
