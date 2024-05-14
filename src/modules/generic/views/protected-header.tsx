@@ -1,15 +1,24 @@
-import { getAccessToken, logout } from 'Common';
+import { Link } from 'Common';
+import Image from 'next/image';
+import { CiCalendar, CiClock2 } from 'react-icons/ci';
+import { PiClockCounterClockwiseLight, PiStackSimpleLight } from 'react-icons/pi';
+import { UserInfo } from '../components';
 
-export async function ProtectedHeaderView() {
-  console.log(await getAccessToken());
-
+export function ProtectedHeaderView() {
   return (
-    <header className="border-b h-20 px-[12vw] flex justify-center items-center">
-      <nav className="flex gap-6">
-        <a href="/portal">Portal</a>
-        <a href="/portal">Portal</a>
-        <button onClick={() => logout()}> Logout </button>
+    <header className="border-b h-20 px-[12vw] mx-0 my-auto flex items-center justify-between bg-white">
+      <Image
+        alt='logo' 
+        src='/assets/images/lembra-ai-logo.png' 
+        width={140} 
+        height={20} />
+      <nav className="flex gap-8">
+        <Link route='dashboard'><PiStackSimpleLight strokeWidth={5} className='size-6 font-bold'/> Dashboard</Link>
+        <Link route='calendar'><CiCalendar strokeWidth={0.5} className='size-6' /> Calendário</Link>
+        <Link route='availability'><CiClock2 strokeWidth={0.3} className='size-6' />Disponibilidade</Link>
+        <Link route='reminders'><PiClockCounterClockwiseLight  strokeWidth={5} className='size-6'/> Lembretes</Link>
       </nav>
+      <UserInfo />
     </header>
   )
 }

@@ -8,6 +8,11 @@ const nextConfig = {
         destination: '/landing',
         permanent: false,
       },
+      {
+        source: '/portal',
+        destination: '/portal/dashboard',
+        permanent: false,
+      }
     ]
   },
   output: 'standalone',

@@ -1,9 +1,11 @@
 'use client';
 
 import { AuthenticatedTemplate } from '@azure/msal-react';
-import { login } from 'Common';
+import { useAuth } from 'Common';
 
 export function PublicHeaderView() {
+  const { login } = useAuth();
+
   return (
     <header className="border-b h-20 px-[12vw] flex justify-center items-center">
       <div className="flex justify-between">
