@@ -16,7 +16,7 @@ export default function ProtectedLayout({
       authenticationRequest={loginRequest} 
     >
       <ProtectedHeaderView />
-      <main className="px-[12vw]">{children}</main>
+      <main className="px-[12vw] pt-16">{children}</main>
     </MsalAuthenticationTemplate>
   )
 }
