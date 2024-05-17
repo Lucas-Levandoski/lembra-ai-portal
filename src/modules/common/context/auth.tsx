@@ -5,6 +5,7 @@ import { useMsal } from '@azure/msal-react';
 import { jwtDecode } from 'jwt-decode';
 
 import { loginRequest, b2cPolicies } from 'Auth';
+import { privateClient } from 'Common';
 
 type User = {
   name: string;
@@ -52,6 +53,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       if (accessToken) {
         defineUserInfo(accessToken);
         saveInfoInLocalStorage(accessToken);
+        setHeaderBearerToken(accessToken);
       }
     }
   };
@@ -78,8 +80,11 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       surname: decodedToken?.name.split(' ')[1] || '',
       accountProvider: decodedToken?.idp || '',
     }));
-
   };
+
+  const setHeaderBearerToken = (accessToken: string) => {
+    privateClient.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
+  }
 
   const saveInfoInLocalStorage = (accessToken: string) => {
     localStorage.setItem(`REACT_TOKEN_AUTH_PORTAL_${process.env.NEXT_PUBLIC_MSAL_CLIENT_ID}`, accessToken);

@@ -1,5 +1,9 @@
 
 export const envVars = {
+  get schedulerUrl() {
+    return checkVariable('NEXT_PUBLIC_SCHEDULER_URL', 'http://localhost:3000/api');
+  },
+
   get tenantName() {
     return checkVariable('NEXT_PUBLIC_B2C_TENANT_NAME', 'lembraaidev');
   },

@@ -19,10 +19,10 @@ export function AvailabilityItem({ content, id, label }: props) {
       <div className='flex flex-row gap-4 overflow-hidden flex-wrap'>
         {content.times.map((time, i) => (
           <div
-            className='flex flex-row items-center gap-2 w-44 justify-center text-nowrap rounded-full px-3 py-1 text-blue-700 bg-blue-100'
+            className='flex flex-row items-center gap-2 w-[150px] justify-center text-nowrap rounded-full px-3 py-1 text-blue-700 bg-blue-100'
             key={id + i}>
             {getTime(time.startTime)} às {getTime(time.endTime)}
-            <Button className='p-0' variant='icon'>
+            <Button className='p-0 -mr-2' variant='icon'>
               <IoClose className='size-6' />
             </Button>
           </div>

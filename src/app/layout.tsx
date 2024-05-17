@@ -13,6 +13,7 @@ type props = Readonly<{children: React.ReactNode;}>
 
 export default function RootLayout({children}: props) {
   const msalInstance = new PublicClientApplication(msalConfig);
+  msalInstance.initialize();
   
   return (
     <html lang="en">
