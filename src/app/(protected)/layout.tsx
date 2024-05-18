@@ -12,6 +12,7 @@ export default function ProtectedLayout({
 }>) {
   return (
     <MsalAuthenticationTemplate 
+      loadingComponent={() => (<div>Authenticating User</div>)}
       interactionType={InteractionType.Redirect} 
       authenticationRequest={loginRequest} 
     >

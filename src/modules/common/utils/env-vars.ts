@@ -1,7 +1,7 @@
 
 export const envVars = {
   get schedulerUrl() {
-    return checkVariable('NEXT_PUBLIC_SCHEDULER_URL', 'http://localhost:3000/api');
+    return checkVariable('NEXT_PUBLIC_SCHEDULER_URL', 'http://localhost:7071/api');
   },
 
   get tenantName() {
@@ -17,7 +17,7 @@ export const envVars = {
   },
 
   get msalLogoutRedirectURI() {
-    return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', 'http://localhost:3000');
+    return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', 'http://localhost:3000/portal');
   },
 };
 

@@ -8,7 +8,7 @@ export default function PublicLayout({
   return (
     <>
       <PublicHeaderView />
-      <main className="px-[12vw]">{children}</main>
+      <main className="px-[12vw] pt-16">{children}</main>
     </>
   );
 }

@@ -1,4 +1,9 @@
 import { envVars, privateClient } from 'Common';
 import { AvailabilitiesByDay } from '../models';
+import { toast } from 'react-toastify';
 
-export const getSchedules = async () => await privateClient.get<AvailabilitiesByDay>(envVars.schedulerUrl).then(res => res.data);
+export const getAvailabilities = async () => await privateClient.get<AvailabilitiesByDay>(`${envVars.schedulerUrl}/my-availability`)
+  .then(res => res.data)
+  .catch(() => toast('failure')) as AvailabilitiesByDay;
+
+

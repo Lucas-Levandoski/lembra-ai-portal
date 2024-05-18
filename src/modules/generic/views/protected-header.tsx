@@ -1,5 +1,6 @@
 import { Link } from 'Common';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { CiCalendar, CiClock2 } from 'react-icons/ci';
 import { PiClockCounterClockwiseLight, PiStackSimpleLight } from 'react-icons/pi';
 import { UserInfo } from '../components';
@@ -7,11 +8,13 @@ import { UserInfo } from '../components';
 export function ProtectedHeaderView() {
   return (
     <header className="border-b h-20 px-[12vw] mx-0 my-auto flex items-center justify-between bg-white">
-      <Image
-        alt='logo' 
-        src='/assets/images/lembra-ai-logo.png' 
-        width={140} 
-        height={20} />
+      <NextLink href='/portal'>
+        <Image
+          alt='logo'
+          src='/assets/images/lembra-ai-logo.png'
+          width={140}
+          height={20} />
+      </NextLink>
       <nav className="flex gap-8">
         <Link route='dashboard'><PiStackSimpleLight strokeWidth={5} className='size-6 font-bold'/> Dashboard</Link>
         <Link route='calendar'><CiCalendar strokeWidth={0.5} className='size-6' /> Calendário</Link>

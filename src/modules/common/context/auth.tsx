@@ -45,15 +45,16 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
   useEffect(() => {
     saveInfoAfterLogin();
-  }, [accounts]);
+  }, [accounts, instance]);
 
   const saveInfoAfterLogin = async () => {
     if (accounts.length > 0) {
       const accessToken = await getAccessToken();
+
       if (accessToken) {
-        defineUserInfo(accessToken);
-        saveInfoInLocalStorage(accessToken);
         setHeaderBearerToken(accessToken);
+        saveInfoInLocalStorage(accessToken);
+        defineUserInfo(accessToken);
       }
     }
   };
