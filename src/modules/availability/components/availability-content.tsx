@@ -1,39 +1,40 @@
 'use client';
 
-import { Button, DaysOfWeek, useAuth } from 'Common'
-import { AvailabilitiesByDay, DayOfWeek } from '../models'
+import { BouncingDotsLoading, Button, DaysOfWeek } from 'Common'
+import { DayOfWeek } from '../models'
 import { AvailabilityItem } from './availability-item'
 import { getAvailabilities } from '../services/scheduler'
-import { useEffect, useState } from 'react';
+import { useStore } from 'Store';
+import { useEffect } from 'react';
 
 export function AvailabilityContent() {
-
-  const [availabilities, setAvailabilities] = useState<AvailabilitiesByDay>();
-  const { isAuthenticated } = useAuth();
-
-  useEffect(() => {
-
-    if(isAuthenticated) 
-      getAvailabilities().then(res => {
-        setAvailabilities(res)
-      });
-    
-  },[ isAuthenticated ])
+  const { getAvailability, currentAvailability, isAvailabilityEdited } = useStore();
 
   const order: DaysOfWeek[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']; 
+
+  useEffect(() => {
+    getAvailability();
+  }, [])
 
   return (
     <div className='flex flex-col gap-4'>
       {
-        availabilities &&
-        order.map(day => (
-          availabilities[day] &&
-          <AvailabilityItem key={`availability-${day}`} content={availabilities[day]} label={DayOfWeek[day]} id={day} /> 
-        ))
+        currentAvailability
+          ? (
+            order.map(day => (
+              currentAvailability[day] &&
+              <AvailabilityItem key={`availability-${day}`} content={currentAvailability[day]} label={DayOfWeek[day]} day={day} /> 
+            ))
+          )  
+          : (
+            <div className='m-auto'>
+              <BouncingDotsLoading />
+            </div>
+          )
       }
       <div className='flex flex-row justify-end gap-4'>
-        <Button variant='secondary'>Cancelar</Button>
-        <Button onClick={() => getAvailabilities()} >Salvar</Button>
+        <Button disabled={!isAvailabilityEdited} variant='secondary'>Cancelar</Button>
+        <Button disabled={!isAvailabilityEdited} onClick={() => getAvailabilities()} >Salvar</Button>
       </div>
     </div>
   )

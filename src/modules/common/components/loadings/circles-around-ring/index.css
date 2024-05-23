@@ -1,0 +1,194 @@
+laoding-container,
+laoding-container::after,
+laoding-container::before {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: auto;
+
+  position: relative;
+  animation: container-turn 15000ms linear infinite;
+
+  .ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid rgb(37 99 235);
+    position: relative;
+    z-index: 5;
+    box-shadow: inset 0px 0px 0px 2px rgb(239 246 255), 0px 0px 0px 2px rgb(239 246 255);
+  }
+  .ball-context-layer {
+    position: absolute;
+    inset: 0;
+    animation: ball-layer-change 1500ms ease-in-out infinite;
+  }
+  .ball-container {
+    position: absolute;
+    inset: 0;
+    animation: container-turn 15000ms linear infinite;
+
+    .ball {
+      position: absolute;
+      top: 50%;
+      left: -2px;
+      width: 15px;
+      height: 15px;
+
+      &::after {
+        content: "";
+        background-color: rgb(37 99 235);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 2px solid rgb(239 246 255);
+        opacity: 0;
+        animation: ball-move 1500ms ease-in-out infinite, fade-in 300ms forwards;
+      }
+    }
+  }
+}
+
+.ball-context-layer--1 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(1 * 0.25s) !important;
+  }
+}
+
+.ball-context-layer--2 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(2 * 0.25s) !important;
+  }
+}
+
+.ball-context-layer--3 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(3 * 0.25s) !important;
+  }
+}
+.ball-context-layer--4 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(4 * 0.25s) !important;
+  }
+}
+.ball-context-layer--5 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(5 * 0.25s) !important;
+  }
+}
+.ball-context-layer--6 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(6 * 0.25s) !important;
+  }
+}
+.ball-context-layer--7 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(7 * 0.25s) !important;
+  }
+}
+
+.ball-context-layer--8 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(8 * 0.25s) !important;
+  }
+}
+
+.ball-context-layer--9 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(9 * 0.25s) !important;
+  }
+}
+
+.ball-context-layer--10 {
+  &,
+  & .ball-container,
+  & .ball,
+  & .ball::after {
+    animation-delay: calc(10 * 0.25s) !important;
+  }
+}
+
+@keyframes ball-turn {
+  from {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+
+@keyframes container-turn {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes ball-move {
+  0% {
+    transform: translateX(-100%);
+    scale: 0.9;
+  }
+  50% {
+    transform: translateX(100%);
+    scale: 0.9;
+    
+  }
+  75% {
+    scale: 1.1;
+  }
+  100% {
+    transform: translateX(-100%);
+    scale: 0.9;
+    
+  }
+}
+@keyframes ball-layer-change {
+  from {
+    z-index: 0;
+  }
+  to {
+    z-index: 10;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

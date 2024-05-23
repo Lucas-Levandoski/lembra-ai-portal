@@ -11,13 +11,13 @@ export const envVars = {
   get msalClientID() {
     return checkVariable('NEXT_PUBLIC_MSAL_CLIENT_ID', '8ab93fbe-25de-4662-b372-b2896c9688f1');
   },
-  
+
   get msalRedirectURI() {
-    return checkVariable('NEXT_PUBLIC_MSAL_REDIRECT_URI', 'http://localhost:3000');
+    return checkVariable('NEXT_PUBLIC_MSAL_REDIRECT_URI', 'http://localhost:3000/portal');
   },
 
   get msalLogoutRedirectURI() {
-    return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', 'http://localhost:3000/portal');
+    return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', 'http://localhost:3000');
   },
 };
 

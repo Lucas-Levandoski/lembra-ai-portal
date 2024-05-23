@@ -3,21 +3,30 @@
 import { InteractionType } from '@azure/msal-browser';
 import { MsalAuthenticationTemplate } from '@azure/msal-react';
 import { loginRequest } from 'Auth';
-import { ProtectedHeaderView } from 'Generic';
+import { useAuth } from 'Common';
+import { LoadingUserView, ProtectedHeaderView } from 'Generic';
 
-export default function ProtectedLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+type props = Readonly<{children: React.ReactNode}>;
+
+export default function ProtectedLayout({children}: props) {
+  const { isAuthenticated } = useAuth();
+
   return (
     <MsalAuthenticationTemplate 
-      loadingComponent={() => (<div>Authenticating User</div>)}
+      loadingComponent={LoadingUserView}
       interactionType={InteractionType.Redirect} 
       authenticationRequest={loginRequest} 
     >
-      <ProtectedHeaderView />
-      <main className="px-[12vw] pt-16">{children}</main>
+      {
+        isAuthenticated
+          ? (
+            <>
+              <ProtectedHeaderView />
+              <main className="px-[12vw] pt-16">{children}</main>
+            </>
+          )
+          : <LoadingUserView />
+      }
     </MsalAuthenticationTemplate>
   )
 }

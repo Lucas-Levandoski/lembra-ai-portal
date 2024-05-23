@@ -38,14 +38,15 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
-  const { instance, accounts } = useMsal();
+  const { instance, accounts, inProgress } = useMsal();
   const [user, setUser] = useState<User | null>(null);
   const request = { ...loginRequest, account: accounts[0] };
   const isAuthenticated = user != null;
 
   useEffect(() => {
-    saveInfoAfterLogin();
-  }, [accounts, instance]);
+    if(inProgress === 'none')
+      saveInfoAfterLogin();
+  }, [accounts, inProgress]);
 
   const saveInfoAfterLogin = async () => {
     if (accounts.length > 0) {
@@ -112,7 +113,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
   const logout = async () => {
     try {
-      await instance.logout();
+      await instance.logoutRedirect();
+      setUser(null);
       removeInfoFromLocalStorage();
     } catch (error) {
       console.error(error);
@@ -126,7 +128,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         login,
         register,
         logout,
-        isAuthenticated,
+        isAuthenticated
       }}
     >
       { props.children }
