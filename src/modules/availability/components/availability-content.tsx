@@ -1,41 +1,61 @@
 'use client';
 
-import { BouncingDotsLoading, Button, DaysOfWeek } from 'Common'
-import { DayOfWeek } from '../models'
+import { Button, CirclyingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common'
+import { AvailabilitiesByDay, DayOfWeek } from '../models'
 import { AvailabilityItem } from './availability-item'
-import { getAvailabilities } from '../services/scheduler'
-import { useStore } from 'Store';
 import { useEffect } from 'react';
+import { BiRefresh } from 'react-icons/bi';
+import { useAvailability } from '../hooks';
 
 export function AvailabilityContent() {
-  const { getAvailability, currentAvailability, isAvailabilityEdited } = useStore();
-
-  const order: DaysOfWeek[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']; 
+  const { 
+    availability, 
+    isEdited, 
+    isLoading,
+    resetAvailability,
+    saveAvailability,
+    getAvailability,
+  } = useAvailability();
 
   useEffect(() => {
     getAvailability();
   }, [])
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 relative'>
+      <Button variant='icon' className='absolute -top-8 right-1 p-0' onClick={() => getAvailability()}>
+        <BiRefresh className='text-blue-600 size-8' />
+      </Button>
       {
-        currentAvailability
-          ? (
-            order.map(day => (
-              currentAvailability[day] &&
-              <AvailabilityItem key={`availability-${day}`} content={currentAvailability[day]} label={DayOfWeek[day]} day={day} /> 
-            ))
-          )  
+        availability && !isLoading
+          ? <AvailabilityList availability={availability} />
           : (
-            <div className='m-auto'>
-              <BouncingDotsLoading />
-            </div>
+            isLoading 
+              ? <div className='m-auto'><CirclyingFourDotsLoading /></div>
+              : <ErrorMessage message='Falha ao carregar disponibilidades, por favor tente novamente' />
           )
       }
+  
       <div className='flex flex-row justify-end gap-4'>
-        <Button disabled={!isAvailabilityEdited} variant='secondary'>Cancelar</Button>
-        <Button disabled={!isAvailabilityEdited} onClick={() => getAvailabilities()} >Salvar</Button>
+        <Button disabled={!isEdited || isLoading} onClick={() => resetAvailability()} variant='secondary'>Cancelar</Button>
+        <Button disabled={!isEdited || isLoading} onClick={() => saveAvailability()} >Salvar</Button>
       </div>
     </div>
   )
+}
+
+type props = {
+  availability: AvailabilitiesByDay;
+}
+
+function AvailabilityList({ availability }: props) {
+  const order: DaysOfWeek[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']; 
+
+  return order.map(day => (
+    <AvailabilityItem
+      key={`availability-${day}`} 
+      content={availability[day]} 
+      label={DayOfWeek[day]} day={day} /> 
+  ))
+  
 }

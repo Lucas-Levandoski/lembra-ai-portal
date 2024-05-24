@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { DaysOfWeek } from 'Common';
 import { AvailabilitiesByDay } from '.'
-import { IAvailabilityTime } from '..';
 
 export type AvailabilitySlice = {
-  isCurrentAvailabilityLoading: boolean;
-  isAvailabilityEdited: boolean;
-  currentAvailability?: AvailabilitiesByDay;
+  availability?: AvailabilitiesByDay;
   oldAvailability?: AvailabilitiesByDay;
-  getAvailability: () => Promise<void>; 
-  removeAvailabilityTime: (day: DaysOfWeek, index: number) => void;
-  addAvailabilityTime: (day: DaysOfWeek, time: IAvailabilityTime) => void;
-  toggleEnableDay: (day: DaysOfWeek) => void;
+  isAvailabilityEdited: boolean;
+  isAvailabilityLoading: boolean;
+
+
+  setAvailability: (obj: AvailabilitiesByDay) => void;
+  setOldAvailability: (obj: AvailabilitiesByDay) => void;
+  setIsAvailabilityEdited: (isAvailabilityEdited: boolean) => void;
+  setIsAvailabilityLoading: (isAvailabilityLoading: boolean) => void;
+
   resetAvailability: () => void;
 }

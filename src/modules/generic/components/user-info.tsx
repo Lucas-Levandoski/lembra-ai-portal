@@ -1,6 +1,6 @@
 'use client';
 
-import { BouncingDotsLoading, Button, useAuth } from 'Common';
+import { BouncingThreeDotsLoading, Button, useAuth } from 'Common';
 import { FiBell } from 'react-icons/fi';
 
 export function UserInfo() {
@@ -20,7 +20,7 @@ export function UserInfo() {
               </Button>
             </>
           )
-          : <BouncingDotsLoading />
+          : <BouncingThreeDotsLoading />
       }
     </div>
   )

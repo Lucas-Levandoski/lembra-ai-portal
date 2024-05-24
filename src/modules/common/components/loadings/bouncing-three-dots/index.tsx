@@ -4,7 +4,7 @@
 
 import './index.css';
 
-export function BouncingDotsLoading() {
+export function BouncingThreeDotsLoading() {
   return (
     <div className="flex items-center w-14 h-7">
       <div className="loader">
