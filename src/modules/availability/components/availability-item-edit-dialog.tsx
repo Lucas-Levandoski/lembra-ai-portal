@@ -56,6 +56,9 @@ export function ItemEditDialog({ onEdit, onClose = () => {}, isOpen, endTime, st
 
   const onCancel = () => {
     setTimeout(() => {
+      setIsStartValid(true);
+      setIsEndValid(true);
+
       setTimeStart(startTime);
       setTimeEnd(endTime);
     }, 500);
@@ -66,7 +69,7 @@ export function ItemEditDialog({ onEdit, onClose = () => {}, isOpen, endTime, st
   }
 
   return (
-    <Popup isOpen={isOpen} onClose={onEdit}>
+    <Popup isOpen={isOpen} onClose={onCancel}>
       <form className='flex flex-col gap-8' onSubmit={onSubmit}>
         <h1 className='text-center'>Escolha o horário no qual<br /> você estará indisponível</h1>
         <div className='flex items-center justify-between'>

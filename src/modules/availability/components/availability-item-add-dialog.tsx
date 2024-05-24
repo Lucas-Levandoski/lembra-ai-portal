@@ -11,8 +11,8 @@ type props = {
 }
 
 export function ItemAddDialog({ onAdd, isOpen}: props) {
-  const [timeStart, setTimeStart] = useState('');
-  const [timeEnd, setTimeEnd] = useState('');
+  const [timeStart, setTimeStart] = useState('09:00');
+  const [timeEnd, setTimeEnd] = useState('12:00');
   const [isStartValid, setIsStartValid] = useState(true);
   const [isEndValid, setIsEndValid] = useState(true);
 
