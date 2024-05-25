@@ -1,3 +1,5 @@
+'use client';
+
 import { DaysOfWeek, deepClone, isEqual } from 'Common';
 import { useStore } from 'Store';
 import { IAvailabilityTime } from '../models';
@@ -36,8 +38,6 @@ export function useAvailability() {
       return;
 
     const availabilities = await setAvailabilities(availability);
-
-    console.log(availabilities);
 
     if(availabilities)
       setAvailability(availabilities);

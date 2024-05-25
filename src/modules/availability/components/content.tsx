@@ -2,10 +2,10 @@
 
 import { Button, CirclyingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common'
 import { AvailabilitiesByDay, DayOfWeek } from '../models'
-import { AvailabilityItem } from './availability-item'
+import { RowItem, TimeDialog } from '.'
 import { useEffect } from 'react';
 import { BiRefresh } from 'react-icons/bi';
-import { useAvailability } from '../hooks';
+import { useAvailability, useAvailabilityTime } from '../hooks';
 
 export function AvailabilityContent() {
   const { 
@@ -49,13 +49,48 @@ type props = {
 }
 
 function AvailabilityList({ availability }: props) {
+  const { 
+    isAddOpen,
+    isEditOpen,
+    initStartTime,
+    initEndTime,
+    onAddClick,
+    onEditClick,
+    onAdd,
+    onEdit,
+    onCancel,
+  } = useAvailabilityTime();
+  
   const order: DaysOfWeek[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']; 
 
-  return order.map(day => (
-    <AvailabilityItem
-      key={`availability-${day}`} 
-      content={availability[day]} 
-      label={DayOfWeek[day]} day={day} /> 
-  ))
-  
+  return (
+    <>
+      {
+        order.map(day => (
+          <RowItem
+            key={`availability-${day}`} 
+            content={availability[day]} 
+            label={DayOfWeek[day]} day={day}
+            onEditClick={onEditClick} 
+            onAddClick={onAddClick}/> 
+        ))
+      }
+
+      <TimeDialog 
+        isOpen={isAddOpen} 
+        onSubmit={onAdd}
+        onCancel={onCancel}
+        currentStart={initStartTime}
+        currentEnd={initEndTime}
+      />
+
+      <TimeDialog 
+        isOpen={isEditOpen} 
+        onSubmit={onEdit}
+        onCancel={onCancel}
+        currentStart={initStartTime}
+        currentEnd={initEndTime}
+      />
+    </>
+  )
 }

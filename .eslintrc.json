@@ -11,7 +11,7 @@
     "no-use-before-define": "off",
     "quotes": ["error", "single"],
     "linebreak-style": "off",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "no-shadow": "warn",
     "@typescript-eslint/no-shadow": "warn",

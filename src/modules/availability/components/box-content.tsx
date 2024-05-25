@@ -2,7 +2,7 @@
 
 import { Tabs } from 'Common';
 import { useState } from 'react';
-import { AvailabilityContent } from './availability-content';
+import { AvailabilityContent } from '.';
 
 export function BoxContent() {
   const [selectedTab, setSelectedTab] = useState('availability');

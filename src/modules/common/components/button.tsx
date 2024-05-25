@@ -10,7 +10,7 @@ type props = ButtonHTMLAttributes<HTMLButtonElement> & {
   disabled?: boolean;
 };
 
-// eslint-disable-next-line no-unused-vars
+
 const variants: { [key in Variant]: string } = {
   primary: 'bg-blue-700 text-white border-primary px-4 py-2 h-12 min-w-40',
   secondary: 'bg-slate-100 text-gray-900 border-primary px-4 py-2 h-12 min-w-40',
