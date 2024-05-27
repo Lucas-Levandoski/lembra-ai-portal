@@ -3,7 +3,7 @@
 import { DaysOfWeek, deepClone, isEqual } from 'Common';
 import { useStore } from 'Store';
 import { IAvailabilityTime } from '../models';
-import { getAvailabilities, setAvailabilities } from '../services/scheduler';
+import { getAvailabilities, setAvailabilities } from '../services';
 import { toast } from 'react-toastify';
 
 
@@ -19,17 +19,23 @@ export function useAvailability() {
     setIsEdited,
     isLoading,
     isEdited,
+    setErroredItem,
+    validity,
+    setValidity,
   } = useStore((state) => (
     {
       availability: state.availability,
       oldAvailability: state.oldAvailability,
       isEdited: state.isAvailabilityEdited,
       isLoading: state.isAvailabilityLoading,
+      validity: state.validity,
       resetAvailability: state.resetAvailability,
       setAvailability: state.setAvailability,
       setOldAvailability: state.setOldAvailability,
       setIsLoading: state.setIsAvailabilityLoading,
       setIsEdited: state.setIsAvailabilityEdited,
+      setErroredItem: state.setErroredItem,
+      setValidity: state.setValidity,
     }
   ));
 
@@ -37,10 +43,10 @@ export function useAvailability() {
     if(!availability)
       return;
 
-    const availabilities = await setAvailabilities(availability);
+    const res = await setAvailabilities({ validity, availabilities: availability }, setErroredItem);
 
-    if(availabilities)
-      setAvailability(availabilities);
+    if(res)
+      setAvailability(res.availabilities);
   }
 
   const getAvailability = async() => { 
@@ -48,8 +54,8 @@ export function useAvailability() {
 
     try {
       const availabilities = await getAvailabilities();
-      setAvailability(deepClone(availabilities));
-      setOldAvailability(deepClone(availabilities));
+      setAvailability(deepClone(availabilities.availabilities));
+      setOldAvailability(deepClone(availabilities.availabilities));
     } catch (e) {
       console.error(e);
       toast.error('Conexão falhou');

@@ -4,10 +4,13 @@ import { useState } from 'react';
 import { useAvailability } from '.';
 import { IAvailabilityTime } from '../models';
 import { DaysOfWeek, getTime } from 'Common';
+import { useStore } from 'Store';
 
 
 export function useAvailabilityTime() {
   const { editAvailabilityTime, addAvailabilityTime } = useAvailability();
+
+  const { erroredItem, cleanErroredItem } = useStore((state) => ({ erroredItem: state.erroredItem, cleanErroredItem: state.cleanErroredItem }));
 
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -28,6 +31,13 @@ export function useAvailabilityTime() {
     // if empty it just closes edit
     if(item && editConfig)
       editAvailabilityTime(editConfig.day, editConfig.index, item);
+
+    if (
+      erroredItem && 
+      editConfig &&
+      erroredItem?.day === editConfig.day &&
+      erroredItem?.index === editConfig?.index
+    ) cleanErroredItem();
 
     setIsEditOpen(false);
   }

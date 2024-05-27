@@ -1,24 +1,26 @@
 import { envVars, privateClient } from 'Common';
-import { AvailabilitiesByDay } from '../models';
+import { Availability, IAvailabilityErroredItem } from '../models';
 import { toast } from 'react-toastify';
 
-export const getAvailabilities = async () => {
-  return await privateClient.get<AvailabilitiesByDay>(`${envVars.schedulerUrl}/my-availability`)
+export const getAvailabilities = async (errorFn: (data: IAvailabilityErroredItem) => void = () => {}) => {
+  return await privateClient.get<Availability>(`${envVars.schedulerUrl}/my-availability`)
     .then(res => res.data)
     .catch(err => {
-      toast.error(err.response.data);
+      errorFn(err.response.data);
+      toast.error(err.response.data.message);
       return;
-    }) as AvailabilitiesByDay;
+    }) as Availability;
 }
 
-export const setAvailabilities = async (availabilities: AvailabilitiesByDay) => {
-  return await privateClient.post<AvailabilitiesByDay>(`${envVars.schedulerUrl}/my-availability`, availabilities)
+export const setAvailabilities = async (availabilities: Availability, errorFn: (data: IAvailabilityErroredItem) => void = () => {}) => {
+  return await privateClient.post<Availability>(`${envVars.schedulerUrl}/my-availability`, availabilities)
     .then(res => {
       toast.success('Disponibilidades salvas com sucesso');
       return res.data
     })
     .catch(err => {
-      toast.error(err.response.data);
+      errorFn(err.response.data.data);
+      toast.error(err.response.data.message);
       return;
-    }) as AvailabilitiesByDay | undefined;
+    }) as Availability | undefined;
 }

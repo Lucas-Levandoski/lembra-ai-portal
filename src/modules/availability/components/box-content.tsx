@@ -1,11 +1,18 @@
 'use client';
 
 import { Tabs } from 'Common';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AvailabilityContent } from '.';
+import { useAvailability } from '../hooks';
 
 export function BoxContent() {
+  const { getAvailability } = useAvailability();
+
   const [selectedTab, setSelectedTab] = useState('availability');
+
+  useEffect(() => {
+    getAvailability();
+  }, [])
 
   return (
     <div>

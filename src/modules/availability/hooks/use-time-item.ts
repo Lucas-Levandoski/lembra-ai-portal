@@ -1,6 +1,6 @@
 'use client';
 
-import { isHourMinuteValid, timeToDateISO } from 'Common';
+import { isHourMinuteValid } from 'Common';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { IAvailabilityTime } from '../models';
 
@@ -24,7 +24,7 @@ export function useTimeItem({onSubmit}: props) {
     setIsEndValid(validEnd);
 
     if(validStart && validEnd)
-      onSubmit({startTime: timeToDateISO(timeStart), endTime: timeToDateISO(timeEnd)});
+      onSubmit({startTime: timeStart, endTime: timeEnd});
   }
 
   const initTime = (start: string, end: string) => {

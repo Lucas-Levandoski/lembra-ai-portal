@@ -3,7 +3,6 @@
 import { Button, CirclyingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common'
 import { AvailabilitiesByDay, DayOfWeek } from '../models'
 import { RowItem, TimeDialog } from '.'
-import { useEffect } from 'react';
 import { BiRefresh } from 'react-icons/bi';
 import { useAvailability, useAvailabilityTime } from '../hooks';
 
@@ -16,10 +15,6 @@ export function AvailabilityContent() {
     saveAvailability,
     getAvailability,
   } = useAvailability();
-
-  useEffect(() => {
-    getAvailability();
-  }, [])
 
   return (
     <div className='flex flex-col gap-4 relative'>
