@@ -72,6 +72,7 @@ function AvailabilityList({ availability }: props) {
       }
 
       <TimeDialog 
+        key={`edit-${initStartTime}-${initEndTime}`}
         isOpen={isAddOpen} 
         onSubmit={onAdd}
         onCancel={onCancel}
@@ -80,6 +81,7 @@ function AvailabilityList({ availability }: props) {
       />
 
       <TimeDialog 
+        key={`add-${initStartTime}-${initEndTime}`}
         isOpen={isEditOpen} 
         onSubmit={onEdit}
         onCancel={onCancel}

@@ -16,8 +16,8 @@ export function useAvailabilityTime() {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [addConfig, setAddConfig] = useState<DaysOfWeek>();
   const [editConfig, setEditConfig] = useState<{day: DaysOfWeek, index: number, time: IAvailabilityTime}>();
-  const [initStartTime, setInitStartTime] = useState('');
-  const [initEndTime, setInitEndTime] = useState('');
+  const [initStartTime, setInitStartTime] = useState('09:00');
+  const [initEndTime, setInitEndTime] = useState('12:00');
 
   const onAdd = (item?: IAvailabilityTime) => {
     // if empty it just closes add
@@ -54,8 +54,8 @@ export function useAvailabilityTime() {
   const onEditClick = (day: DaysOfWeek ,index: number, time: IAvailabilityTime) => {
     setEditConfig({day, index, time});
 
-    setInitStartTime(getTime(time.startTime));
-    setInitEndTime(getTime(time.endTime));
+    setInitStartTime(time.startTime);
+    setInitEndTime(time.endTime);
 
     setIsEditOpen(true);
   }

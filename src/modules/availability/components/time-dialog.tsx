@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Popup } from 'Common';
+import { Button, Popup, TimeOptions } from 'Common';
 import { IAvailabilityTime } from '../models';
 import { twMerge } from 'tailwind-merge';
 import { CiClock1 } from 'react-icons/ci';
@@ -33,21 +33,25 @@ export function TimeDialog({ isOpen, currentStart = '', currentEnd = '',  onSubm
 
   return (
     <Popup isOpen={isOpen} onClose={onCancel}>
+      <TimeOptions />
       <form className='flex flex-col gap-8' onSubmit={trySubmit}>
         <h1 className='text-center'>Escolha o horário no qual<br /> você estará disponivel</h1>
         <div className='flex items-center justify-between'>
           <div className={twMerge('relative', !isStartValid && 'text-red-600')}>
             <input
+              list='time-options'
               value={timeStart}
               className={twMerge('relative border-[2px] w-32 h-12 rounded-md p-2 text-end focus:outline-none', !isStartValid && 'border-red-300 bg-red-50')}
               onChange={onChangeStartTime} />
+            
             <CiClock1 className='absolute left-3 top-3 size-6 stroke-[0.3]'/>
           </div>
           às
           <div className={twMerge('relative', !isEndValid && 'text-red-600')}>
             <input
+              list='time-options'
               value={timeEnd}
-              className={twMerge('border-[2px] w-32 h-12 rounded-md p-2 text-end focus:outline-none', !isEndValid && 'border-red-300 bg-red-50')}
+              className={twMerge('border-[2px] w-32 h-12 rounded-md p-2 text-end focus:outline-none focus:ring-blue-500', !isEndValid && 'border-red-300 bg-red-50')}
               onChange={onChangeEndTime} />
             <CiClock1 className='absolute left-3 top-3 size-6 stroke-[0.3]'/>
           </div>

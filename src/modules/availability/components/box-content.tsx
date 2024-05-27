@@ -28,6 +28,8 @@ export function BoxContent() {
           label: 'Não disponível (0)',
           content: (<div>tab2</div> )
         }]} />
+
+      
     </div>
   )
 }

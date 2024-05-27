@@ -4,3 +4,4 @@ export * from './tabs';
 export * from './loadings';
 export * from './error-message';
 export * from './dialog';
+export * from './time-options';
