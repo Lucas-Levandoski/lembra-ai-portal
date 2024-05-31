@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useAvailability } from '.';
 import { IAvailabilityTime } from '../models';
-import { DaysOfWeek, getTime } from 'Common';
+import { DaysOfWeek } from 'Common';
 import { useStore } from 'Store';
 
 
