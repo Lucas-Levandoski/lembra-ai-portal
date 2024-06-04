@@ -1,7 +1,7 @@
 
 export const envVars = {
-  get schedulerUrl() {
-    return checkVariable('NEXT_PUBLIC_SCHEDULER_URL', 'http://localhost:7071/api');
+  get agendaUrl() {
+    return checkVariable('NEXT_PUBLIC_AGENDA_URL', 'http://localhost:7071/api');
   },
 
   get tenantName() {
