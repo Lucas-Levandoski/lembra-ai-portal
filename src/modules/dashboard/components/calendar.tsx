@@ -1,5 +1,3 @@
-'use client';
-
 import { DayInfo } from '.';
 
 export function Calendar() {

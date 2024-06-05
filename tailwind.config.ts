@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        'margin': 'margin',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
