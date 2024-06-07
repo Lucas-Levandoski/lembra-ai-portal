@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         source: '/portal',
-        destination: '/portal/dashboard',
+        destination: '/portal/agenda',
         permanent: false,
       }
     ]

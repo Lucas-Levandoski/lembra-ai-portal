@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Agendas, Calendar, UserInfo } from '../components';
 import { useAgenda } from '../hooks';
 
-export function DashboardView() {
+export function AgendasView() {
   const { getAgendas } = useAgenda();
 
   useEffect(() => {

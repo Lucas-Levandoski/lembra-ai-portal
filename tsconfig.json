@@ -24,7 +24,7 @@
       "Common": ["./modules/common/index.ts"],
       "Auth": ["./authentication/index.ts"],
       "Availability": ["./modules/availability/index.ts"],
-      "Dashboard": ["./modules/dashboard/index.ts"],
+      "Agenda": ["./modules/agenda/index.ts"],
       "Store": ["./store/index.ts"],
     }
   },

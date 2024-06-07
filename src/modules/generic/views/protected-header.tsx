@@ -16,7 +16,7 @@ export function ProtectedHeaderView() {
           height={20} />
       </NextLink>
       <nav className="flex gap-8">
-        <Link route='dashboard'><PiStackSimpleLight strokeWidth={5} className='size-6 font-bold'/> Dashboard</Link>
+        <Link route='agenda'><PiStackSimpleLight strokeWidth={5} className='size-6 font-bold'/> Agendas</Link>
         <Link route='calendar'><CiCalendar strokeWidth={0.5} className='size-6' /> Calendário</Link>
         <Link route='availability'><CiClock2 strokeWidth={0.3} className='size-6' />Disponibilidade</Link>
         <Link route='reminders'><PiClockCounterClockwiseLight  strokeWidth={5} className='size-6'/> Lembretes</Link>
