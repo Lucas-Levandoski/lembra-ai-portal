@@ -17,22 +17,22 @@ export function AvailabilityContent() {
   } = useAvailability();
 
   return (
-    <div className='flex flex-col gap-4 relative min-h-[496px]'>
-      <Button variant='icon' className='absolute -top-8 right-1 p-0' onClick={() => getAvailability(true)}>
-        <BiRefresh className='text-blue-600 size-8' />
+    <div className="flex flex-col gap-4 relative min-h-[496px]">
+      <Button variant="icon" className="absolute -top-8 right-1 p-0" onClick={() => getAvailability(true)}>
+        <BiRefresh className="text-blue-600 size-8" />
       </Button>
       {
         availability && !isLoading
           ? <AvailabilityList availability={availability} />
           : (
             isLoading 
-              ? <div className='m-auto'><CirclyingFourDotsLoading /></div>
-              : <ErrorMessage message='Falha ao carregar disponibilidades, por favor tente novamente' />
+              ? <div className="m-auto"><CirclyingFourDotsLoading /></div>
+              : <ErrorMessage message="Falha ao carregar disponibilidades, por favor tente novamente" />
           )
       }
   
-      <div className='flex flex-row justify-end gap-4'>
-        <Button disabled={!isEdited || isLoading} onClick={() => resetAvailability()} variant='secondary'>Cancelar</Button>
+      <div className="flex flex-row justify-end gap-4">
+        <Button disabled={!isEdited || isLoading} onClick={() => resetAvailability()} variant="secondary">Cancelar</Button>
         <Button disabled={!isEdited || isLoading} onClick={() => saveAvailability()} >Salvar</Button>
       </div>
     </div>

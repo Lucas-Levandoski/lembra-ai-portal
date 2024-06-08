@@ -7,11 +7,10 @@ import { twMerge } from 'tailwind-merge';
 
 type props = AnchorHTMLAttributes<HTMLAnchorElement> & {
   route: string,
-  unsetStyle?: boolean,
   trackURL?: boolean
 }
 
-export function Link({ children, route, target, unsetStyle = false, trackURL = true }: props) {
+export function Link({ children, route, target, trackURL = true }: props) {
   const isRoute = usePathname().includes(route);
 
   return (

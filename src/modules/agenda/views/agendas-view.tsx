@@ -17,7 +17,7 @@ export function AgendasView() {
         <UserInfo /> 
         <Agendas />
       </div>
-      <div className='col-span-2'>
+      <div className="col-span-2">
         <Calendar />
       </div>
     </div>

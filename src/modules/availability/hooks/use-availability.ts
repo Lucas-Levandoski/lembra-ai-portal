@@ -21,7 +21,7 @@ export function useAvailability() {
     isEdited,
     setErroredItem,
     validity,
-    setValidity,
+    // setValidity,
   } = useStore((state) => (
     {
       availability: state.availability,

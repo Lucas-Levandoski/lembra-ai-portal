@@ -12,29 +12,29 @@ export function PublicHeaderView() {
 
   return (
     <header className="border-b h-20 px-[12vw] mx-0 my-auto flex items-center justify-between bg-white">
-      <NextLink href='/'>
+      <NextLink href="/">
         <Image
-          alt='logo' 
-          src='/assets/images/lembra-ai-logo.png' 
+          alt="logo" 
+          src="/assets/images/lembra-ai-logo.png" 
           width={140} 
           height={20} />
       </NextLink>
       <nav className="flex gap-8">
-        <Link route='/landing'>Landing</Link>
-        <Link route='/about-us'>Sobre Nós</Link>
+        <Link route="/landing">Landing</Link>
+        <Link route="/about-us">Sobre Nós</Link>
 
         <AuthenticatedTemplate>
-          <Link route='/portal'><PiStackSimpleLight  strokeWidth={5} className='size-6'/>Portal</Link>
+          <Link route="/portal"><PiStackSimpleLight  strokeWidth={5} className="size-6"/>Portal</Link>
         </AuthenticatedTemplate>
       </nav>
-      <div className='w-60'>
+      <div className="w-60">
         <AuthenticatedTemplate>
           <UserInfo />
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
-          <div className='flex gap-4'>
-            <Button variant='text' onClick={() => login()}> login </Button>
-            <Button variant='text' onClick={() => register()}> signup </Button>
+          <div className="flex gap-4">
+            <Button variant="text" onClick={() => login()}> login </Button>
+            <Button variant="text" onClick={() => register()}> signup </Button>
           </div>
         </UnauthenticatedTemplate>
       </div>  

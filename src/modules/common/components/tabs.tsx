@@ -20,7 +20,7 @@ type Item = {
 export function Tabs({ items = [], selectedId = '', onChangeTab = console.log as any }: props) {
   return (
     <div>
-      <div className='flex flex-row w-full'>
+      <div className="flex flex-row w-full">
         {items.filter(item => !item.shouldHide).map(item => 
           <button 
             onClick={() => onChangeTab(item.id)}
@@ -33,7 +33,7 @@ export function Tabs({ items = [], selectedId = '', onChangeTab = console.log as
           </button>
         )}
       </div>
-      <div className='pt-6'>
+      <div className="pt-6">
         {items.filter(item => item.id === selectedId).map(item =>
           <div key={`selected-${item.id}`}>{item.content}</div>  
         )}

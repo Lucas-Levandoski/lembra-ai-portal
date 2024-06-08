@@ -14,7 +14,7 @@ export function EditAgendaView({ agendaId }: props) {
   return (
     <>
       {isLoading && (
-        <div className='h-[600px] w-full flex my-auto items-center justify-center'>
+        <div className="h-[600px] w-full flex my-auto items-center justify-center">
           <CirclyingFourDotsLoading height={100} width={100} />
         </div>
       )}

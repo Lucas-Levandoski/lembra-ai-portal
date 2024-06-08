@@ -7,15 +7,15 @@ export function UserInfo() {
   const { user, logout } = useAuth();
 
   return (
-    <div className='flex flex-row items-center justify-center'>
+    <div className="flex flex-row items-center justify-center">
       {
         user
           ? (
             <>
-              <Button variant='icon' onClick={() => logout()}>
+              <Button variant="icon" onClick={() => logout()}>
                 <FiBell className="size-6"/>
               </Button>
-              <Button variant='text' >
+              <Button variant="text" >
                 Olá, {user?.name} {user?.surname}
               </Button>
             </>
