@@ -4,17 +4,27 @@ import { EditAgendaCard } from '../components';
 import { BookingAgendaVisualizationView, CirclyingFourDotsLoading } from 'Common';
 import { useEditAgenda } from '../hooks';
 
-export function EditAgendaView() {
-  const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda();
+type props = {
+  agendaId: string;
+}
+
+export function EditAgendaView({ agendaId }: props) {
+  const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda(agendaId);
+
+  console.log(agenda);
 
   return (
     <>
-      {isLoading && <CirclyingFourDotsLoading />}
+      {isLoading && (
+        <div className='h-[600px] w-full flex my-auto items-center justify-center'>
+          <CirclyingFourDotsLoading height={100} width={100} />
+        </div>
+      )}
       {
-        (agenda && !{isLoading}) && 
+        agenda && !isLoading && 
         <div className="grid grid-cols-10 gap-6">
           <div className="col-span-4">
-            <EditAgendaCard details={agenda} onChange={onChangeProperty} onSubmit={onSubmit} />
+            <EditAgendaCard details={agenda} onChange={onChangeProperty} onSubmit={onSubmit} isEdit/>
           </div>
           <div className="col-span-6">
             <BookingAgendaVisualizationView

@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: 'Editar Agenda'
 };
 
-export default function EditAgenda() {
-  return <EditAgendaView />
+type Params = {
+  agendaId: string;
+}
+
+export default function EditAgenda({ params }: { params: Params}) {
+
+  return <EditAgendaView agendaId={params.agendaId} />
+  // return <div>{params.agendaId}</div>
 }

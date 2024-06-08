@@ -10,9 +10,10 @@ type props = {
   details: AgendaDetails;
   onChange: (propName: keyof AgendaDetails, value: any) => void;
   onSubmit: FormEventHandler<HTMLFormElement>;
+  isEdit?: boolean;
 }
 
-export function EditAgendaCard({ onChange, details, onSubmit }: props) {
+export function EditAgendaCard({ onChange, details, onSubmit, isEdit = false }: props) {
   const { back } = useRouter()
   const { colorName, name, timeFrame } = details;
   
@@ -68,7 +69,7 @@ export function EditAgendaCard({ onChange, details, onSubmit }: props) {
         </div>
         <div className="flex justify-end gap-3">
           <Button variant="secondary" onClick={() => back()}>Cancelar</Button>
-          <Button variant="primary" type="submit">Criar Agenda</Button>
+          <Button variant="primary" type="submit">{isEdit ? 'Confirmar' : 'Criar Agenda'}</Button>
         </div>
       </form>
     </div>
