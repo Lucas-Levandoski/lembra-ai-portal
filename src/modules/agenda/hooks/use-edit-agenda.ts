@@ -37,7 +37,20 @@ export function useEditAgenda(agendaId: string) {
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {
     if(!agenda) return;
 
-    setAgenda({...agenda, [propName]: value});
+    let _value: any;
+
+    switch(typeof agenda[propName]) {
+      case 'number':
+        _value = +value;
+        break;
+      case 'boolean':
+        _value = value == 'true';
+        break;
+      default:
+        _value = value;
+    }
+
+    setAgenda({...agenda, [propName]: _value});
   }
 
   return {

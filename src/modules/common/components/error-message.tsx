@@ -1,10 +1,15 @@
+'use client';
+
+import { twMerge } from 'tailwind-merge';
+
 type props = {
-  message: string
+  message: string;
+  className?: string;
 }
 
-export function ErrorMessage({ message }: props) {
+export function ErrorMessage({ message, className }: props) {
   return (
-    <div className="rounded flex items-center text-center bg-red-200 p-4">
+    <div className={twMerge('rounded flex items-center justify-center text-center bg-red-200 p-4', className)} >
       <p className="text-red-600">{message}</p>
     </div>
   )

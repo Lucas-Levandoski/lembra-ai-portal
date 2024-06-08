@@ -1,7 +1,7 @@
 'use client';
 
 import { EditAgendaCard } from '../components';
-import { BookingAgendaVisualizationView, CirclyingFourDotsLoading } from 'Common';
+import { BookingAgendaVisualizationView, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
 import { useEditAgenda } from '../hooks';
 
 type props = {
@@ -19,20 +19,28 @@ export function EditAgendaView({ agendaId }: props) {
         </div>
       )}
       {
-        agenda && !isLoading && 
-        <div className="grid grid-cols-10 gap-6">
-          <div className="col-span-4">
-            <EditAgendaCard details={agenda} onChange={onChangeProperty} onSubmit={onSubmit} isEdit/>
+        agenda && !isLoading && (
+          <div className="grid grid-cols-10 gap-6">
+            <div className="col-span-4">
+              <EditAgendaCard details={agenda} onChange={onChangeProperty} onSubmit={onSubmit} isEdit/>
+            </div>
+            <div className="col-span-6">
+              <BookingAgendaVisualizationView
+                agendaName={agenda.name}
+                colorName={agenda.colorName}
+                timeFrame={agenda.timeFrame}
+                isPreview={true}
+              />
+            </div>
           </div>
-          <div className="col-span-6">
-            <BookingAgendaVisualizationView
-              agendaName={agenda.name}
-              colorName={agenda.colorName}
-              timeFrame={agenda.timeFrame}
-              isPreview={true}
-            />
+        )
+      }
+      {
+        !agenda && !isLoading && (
+          <div>
+            <ErrorMessage message="Lamentamos mas esta agenda não foi encontrada" className="text-2xl" />
           </div>
-        </div>
+        )
       }
     </>
   );

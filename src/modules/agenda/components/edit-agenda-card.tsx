@@ -14,7 +14,7 @@ type props = {
 }
 
 export function EditAgendaCard({ onChange, details, onSubmit, isEdit = false }: props) {
-  const { back } = useRouter()
+  const { push } = useRouter()
   const { colorName, name, timeFrame } = details;
   
   return (
@@ -68,7 +68,7 @@ export function EditAgendaCard({ onChange, details, onSubmit, isEdit = false }: 
           </div>
         </div>
         <div className="flex justify-end gap-3">
-          <Button variant="secondary" onClick={() => back()}>Cancelar</Button>
+          <Button variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
           <Button variant="primary" type="submit">{isEdit ? 'Confirmar' : 'Criar Agenda'}</Button>
         </div>
       </form>
