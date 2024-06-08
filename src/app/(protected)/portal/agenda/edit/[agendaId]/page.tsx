@@ -12,5 +12,4 @@ type Params = {
 export default function EditAgenda({ params }: { params: Params}) {
 
   return <EditAgendaView agendaId={params.agendaId} />
-  // return <div>{params.agendaId}</div>
 }
