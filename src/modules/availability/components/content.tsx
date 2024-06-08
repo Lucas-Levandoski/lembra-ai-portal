@@ -17,8 +17,8 @@ export function AvailabilityContent() {
   } = useAvailability();
 
   return (
-    <div className='flex flex-col gap-4 relative'>
-      <Button variant='icon' className='absolute -top-8 right-1 p-0' onClick={() => getAvailability()}>
+    <div className='flex flex-col gap-4 relative min-h-[496px]'>
+      <Button variant='icon' className='absolute -top-8 right-1 p-0' onClick={() => getAvailability(true)}>
         <BiRefresh className='text-blue-600 size-8' />
       </Button>
       {

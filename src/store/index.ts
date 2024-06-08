@@ -6,3 +6,6 @@ export const useStore = create<AvailabilitySlice & AgendaSlice>((...a) => ({
   ...createAvailabilitySlice(...a),
   ...createAgendaSlice(...a),
 }))
+// export const useStore = create<AvailabilitySlice >((...a) => ({
+//   ...createAvailabilitySlice(...a)
+// }))

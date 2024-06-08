@@ -12,7 +12,9 @@ export function useAgenda() {
     setIsAgendaLoading: state.setIsAgendaLoading
   }));
 
-  const onCopy = () => {
+  const onCopy = (agendaName: string) => {
+    console.info(agendaName, 'copied');
+
     toast.success('Link copiado com sucesso');
   }
 
@@ -41,8 +43,9 @@ export function useAgenda() {
       });
   }
 
-  const getAgendas = async () => {
-    setIsAgendaLoading(true);
+  const getAgendas = async (shouldSetLoading: boolean = false) => {
+
+    if(!agendas || shouldSetLoading) setIsAgendaLoading(true);
 
     listAgendas().then(agendaResult => {
       setAgendas(agendaResult);

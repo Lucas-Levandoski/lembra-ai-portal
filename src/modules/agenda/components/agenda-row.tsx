@@ -4,17 +4,16 @@ import { AgendaElement, Button, TimeCard, Toggle } from 'Common'
 import { BiTrash } from 'react-icons/bi';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
 import { IoCopyOutline } from 'react-icons/io5';
-import { twMerge } from 'tailwind-merge'
-import { useAgenda } from '../hooks';
+import { twMerge } from 'tailwind-merge';
 
 type props = {
-  agenda: AgendaElement
+  agenda: AgendaElement,
+  onToggleActive: (agendaId: string) => void;
+  onCopy: (agendaName: string) => void;
 }
 
-export function AgendaRow({ agenda }: props) {
+export function AgendaRow({ agenda, onCopy, onToggleActive }: props) {
   const {colorName, isEnable, name, timeFrame} = agenda.details;
-  const { onCopy, onToggleActive } = useAgenda();
-
 
   return (
     <div className='flex items-center min-h-12'>
@@ -31,7 +30,7 @@ export function AgendaRow({ agenda }: props) {
         </span>
         <Button variant='icon' onClick={() => {}}><BiTrash className='size-6' /></Button>
         <Button variant='icon' className='p-1' route={`/portal/agenda/edit/${agenda.id}`}><HiOutlineAdjustmentsHorizontal className='size-8' /></Button>
-        <Button variant='icon' className='text-blue-500 flex items-center gap-2' onClick={onCopy}><IoCopyOutline  className='size-8' />Copia link</Button>
+        <Button variant='icon' className='text-blue-500 flex items-center gap-2' onClick={() => onCopy(name)}><IoCopyOutline  className='size-8' />Copia link</Button>
       </div>
     </div>
   )

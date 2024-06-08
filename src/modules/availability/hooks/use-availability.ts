@@ -49,8 +49,9 @@ export function useAvailability() {
       setAvailability(res.availabilities);
   }
 
-  const getAvailability = async() => { 
-    setIsLoading(true);
+  const getAvailability = async(shouldSetLoading: boolean = false) => { 
+
+    if(!availability || shouldSetLoading) setIsLoading(true);
 
     try {
       const availabilities = await getAvailabilities();

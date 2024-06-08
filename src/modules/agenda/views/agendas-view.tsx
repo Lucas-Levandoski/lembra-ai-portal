@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Agendas, Calendar, UserInfo } from '../components';
+import { Calendar, UserInfo, Agendas } from '../components';
 import { useAgenda } from '../hooks';
 
 export function AgendasView() {
