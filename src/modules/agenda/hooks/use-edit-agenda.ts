@@ -4,30 +4,39 @@ import { AgendaDetails } from 'Common';
 import { FormEvent, useEffect, useState } from 'react';
 import { readAgenda, updateAgenda } from '../services';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
-export function useEditAgenda(agendaId: string) {
-  const { push } = useRouter();
+export function useEditAgenda() {
+  const router = useRouter();
+
 
   const [agenda, setAgenda] = useState<AgendaDetails>();
+  const [agendaId, setAgendaId] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    readAgenda(agendaId).then(res => {
-      setAgenda(res?.details);
-    }).finally(() => {
-      setIsLoading(false);
-    })
-  },[])
+    if (router.isReady) {
+      const { agendaId: _agendaId } = router.query as { agendaId: string };
+
+      setAgendaId(_agendaId);
+
+      readAgenda(_agendaId).then(res => {
+        setAgenda(res?.details);
+      }).finally(() => {
+        setIsLoading(false);
+      })
+    }
+
+  },[router.isReady])
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if(!agenda) return;
+    if(!agenda || !agendaId) return;
 
     await updateAgenda(agendaId, agenda).then(() => {
       toast.success(`Agenda ${agenda.name} criada com sucesso`);
       setTimeout(() => {
-        push('/portal/agenda');
+        router.push('/portal/agenda');
       }, 1000);
     });
   }

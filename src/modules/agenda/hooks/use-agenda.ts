@@ -1,3 +1,5 @@
+'use client';
+
 import { listAgendas, updateAgenda } from 'Agenda';
 import { useStore } from 'Store';
 import { toast } from 'react-toastify';

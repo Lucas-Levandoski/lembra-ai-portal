@@ -4,16 +4,12 @@ import { EditAgendaCard } from '../components';
 import { BookingAgendaVisualizationView, CirclyingFourDotsLoading } from 'Common';
 import { useEditAgenda } from '../hooks';
 
-type props = {
-  agendaId: string;
-}
-
-export function EditAgendaView({ agendaId }: props) {
-  const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda(agendaId);
+export function EditAgendaView() {
+  const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda();
 
   return (
     <>
-      {isLoading} && <CirclyingFourDotsLoading />
+      {isLoading && <CirclyingFourDotsLoading />}
       {
         (agenda && !{isLoading}) && 
         <div className="grid grid-cols-10 gap-6">

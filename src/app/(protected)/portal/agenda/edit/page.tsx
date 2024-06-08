@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Editar Agenda'
+};
+
+
 export default function EmptyEditAgenda() {
   return (
     <div className="flex justify-center items-center">
