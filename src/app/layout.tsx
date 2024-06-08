@@ -14,7 +14,6 @@ const inter = Inter({ subsets: ['latin'] });
 
 type props = Readonly<{children: React.ReactNode;}>
 
-
 const msalInstance = new PublicClientApplication(msalConfig);
 
 msalInstance.initialize().then(() => {
@@ -32,7 +31,6 @@ msalInstance.initialize().then(() => {
 });
 
 export default function RootLayout({children}: props) {
-
   return (
     <html lang="en">
       <MsalProvider instance={msalInstance}>

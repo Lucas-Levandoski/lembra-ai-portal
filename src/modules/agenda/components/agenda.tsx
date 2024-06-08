@@ -15,7 +15,7 @@ export function Agendas() {
     <div className="p-6 rounded-2xl shadow-lg bg-white">
       <div className="flex justify-between">
         <h2 className="font-bold">Agendas</h2>
-        <Button className='flex items-center gap-2 font-normal'>
+        <Button className='flex items-center gap-2 font-normal' route='/portal/agenda/new'>
           <PiPlusCircle className='size-8' /> Nova agenda
         </Button>
       </div>

@@ -11,6 +11,7 @@ type props = Readonly<{children: React.ReactNode}>;
 export default function ProtectedLayout({children}: props) {
   const { isAuthenticated } = useAuth();
 
+
   return (
     <MsalAuthenticationTemplate 
       loadingComponent={LoadingUserView}

@@ -1,6 +1,6 @@
 'use client';
 
-import { AgendaElement, Button, Toggle } from 'Common'
+import { AgendaElement, Button, TimeCard, Toggle } from 'Common'
 import { BiTrash } from 'react-icons/bi';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
 import { IoCopyOutline } from 'react-icons/io5';
@@ -20,7 +20,7 @@ export function AgendaRow({ agenda }: props) {
     <div className='flex items-center min-h-12'>
       <span className={twMerge('h-4 w-4 rounded-full mr-8', `bg-${colorName}-500`)} />
       <strong>{name}</strong>
-      <span className={twMerge('rounded-lg px-2 font-semibold ml-8', `bg-${colorName}-100 text-${colorName}-700`)}>{timeFrame} MIN</span>
+      <TimeCard colorName={colorName} timeFrame={timeFrame} className='ml-8'/>
       <div className='flex border-l ml-auto mr-0 items-center gap-6 pl-6'>
         <span className='flex gap-2 items-center w-32'>
           <Toggle onClick={() => onToggleActive(agenda.id)} state={isEnable} />
@@ -30,7 +30,7 @@ export function AgendaRow({ agenda }: props) {
           </div>
         </span>
         <Button variant='icon' onClick={() => {}}><BiTrash className='size-6' /></Button>
-        <Button variant='icon' className='p-1' onClick={() => {}}><HiOutlineAdjustmentsHorizontal className='size-8' /></Button>
+        <Button variant='icon' className='p-1' route={`/portal/agenda/edit/${agenda.id}`}><HiOutlineAdjustmentsHorizontal className='size-8' /></Button>
         <Button variant='icon' className='text-blue-500 flex items-center gap-2' onClick={onCopy}><IoCopyOutline  className='size-8' />Copia link</Button>
       </div>
     </div>

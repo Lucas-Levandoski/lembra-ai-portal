@@ -11,6 +11,16 @@ export const listAgendas = async (errorFn: (data: any) => void = () => {}) => {
     }) as AgendaElement[] | undefined;
 }
 
+export const readAgenda = async (agendaId: string, errorFn: (data: any) => void = () => {}) => {
+  return await privateClient.get<AgendaElement>(`${envVars.agendaUrl}/my-agenda`, {params: { agendaId }})
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      toast.error(err.response?.data?.message ?? 'Falha ao listar agendas');
+      throw new Error(err);
+    }) as AgendaElement | undefined;
+}
+
 export const updateAgenda = async (agendaId: string, details: AgendaDetails, errorFn: (data: any) => void = () => {}) => {
   return await privateClient.put<AgendaElement>(`${envVars.agendaUrl}/my-agenda`, {agendaId, details})
     .then(res => res.data)
@@ -22,7 +32,7 @@ export const updateAgenda = async (agendaId: string, details: AgendaDetails, err
 }
 
 export const newAgenda = async (agenda: AgendaDetails, errorFn: (data: any) => void = () => {}) => {
-  return await privateClient.post<AgendaElement>(`${envVars.agendaUrl}/my-agenda`)
+  return await privateClient.post<AgendaElement>(`${envVars.agendaUrl}/my-agenda`, agenda)
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);

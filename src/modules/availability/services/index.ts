@@ -1,1 +1,1 @@
-export * from './agenda';
+export * from './availabilities';

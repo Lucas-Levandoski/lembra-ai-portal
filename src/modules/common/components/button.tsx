@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import { twMerge } from 'tailwind-merge';
+import Link from 'next/link';
 
 type Variant = 'primary' | 'secondary' | 'outlined' | 'text' | 'icon';
 
@@ -8,6 +9,7 @@ type props = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  route?: string;
 };
 
 
@@ -19,22 +21,37 @@ const variants: { [key in Variant]: string } = {
   icon: 'border-none p-2 rounded-full hover:bg-gray-200 transition-colors'
 };
 
-export function Button({ variant = 'primary', onClick, children, className, disabled = false, type = 'button' }: props) {
+export function Button({ variant = 'primary', onClick, children, className, disabled = false, type = 'button', route }: props) {
   const baseClass = 'rounded-lg font-semibold px-4 py-1';
 
   return (
-    <button 
-      type={type}
-      disabled={disabled}
-      className={twMerge([
-        baseClass,
-        variants[variant],
-        className,
-        disabled && 'opacity-60 cursor-not-allowed'
-      ])}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    route && !disabled ? (
+      <Link
+        href={route}
+        className={twMerge([
+          baseClass,
+          variants[variant],
+          className,
+          disabled && 'opacity-60 cursor-not-allowed'
+        ])}
+      >
+        {children}
+      </Link>
+    ) : (
+      <button 
+        type={type}
+        disabled={disabled}
+        className={twMerge([
+          baseClass,
+          variants[variant],
+          className,
+          disabled && 'opacity-60 cursor-not-allowed'
+        ])}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    )
+  
   )
 }
