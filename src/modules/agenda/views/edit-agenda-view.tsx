@@ -11,8 +11,6 @@ type props = {
 export function EditAgendaView({ agendaId }: props) {
   const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda(agendaId);
 
-  console.log(agenda);
-
   return (
     <>
       {isLoading && (
