@@ -2,6 +2,7 @@
 
 import { TimeFrameOptions } from 'Agenda';
 import { AgendaDetails, Button, maskMinutes } from 'Common'
+import { MessageTemplatesBoxView } from 'Message-Templates';
 import { useRouter } from 'next/navigation';
 import { FormEventHandler } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -67,6 +68,7 @@ export function EditAgendaCard({ onChange, details, onSubmit, isEdit = false }: 
             </select>
           </div>
         </div>
+        <MessageTemplatesBoxView />
         <div className="flex justify-end gap-3">
           <Button variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
           <Button variant="primary" type="submit">{isEdit ? 'Confirmar' : 'Criar Agenda'}</Button>

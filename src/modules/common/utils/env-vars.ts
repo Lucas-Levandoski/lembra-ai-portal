@@ -4,6 +4,10 @@ export const envVars = {
     return checkVariable('NEXT_PUBLIC_AGENDA_URL', 'http://localhost:7071/api');
   },
 
+  get messageSenderUrl() {
+    return checkVariable('NEXT_PUBLIC_MESSAGE_SENDER_URL', 'http://localhost:7072/api');
+  },
+
   get tenantName() {
     return checkVariable('NEXT_PUBLIC_B2C_TENANT_NAME', 'lembraaidev');
   },

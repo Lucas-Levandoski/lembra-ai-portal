@@ -24,6 +24,7 @@
       "Common": ["./modules/common/index.ts"],
       "Auth": ["./authentication/index.ts"],
       "Availability": ["./modules/availability/index.ts"],
+      "Message-Templates": ["./modules/message-templates/index.ts"],
       "Agenda": ["./modules/agenda/index.ts"],
       "Store": ["./store/index.ts"],
     }
