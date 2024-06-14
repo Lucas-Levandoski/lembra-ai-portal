@@ -6,7 +6,7 @@ export const listAgendas = async (errorFn: (data: any) => void = () => {}) => {
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.message ?? 'Falha ao listar agendas');
+      toast.error(err.response?.data?.messages ?? 'Falha ao listar agendas');
       throw new Error(err);
     }) as AgendaElement[] | undefined;
 }
@@ -16,7 +16,7 @@ export const readAgenda = async (agendaId: string, errorFn: (data: any) => void 
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.message ?? 'Falha ao listar agendas');
+      toast.error(err.response?.data?.messages ?? 'Falha ao listar agendas');
       throw new Error(err);
     }) as AgendaElement | undefined;
 }
@@ -26,7 +26,7 @@ export const updateAgenda = async (agendaId: string, details: AgendaDetails, err
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.message ?? 'Falha ao atualizar agenda');
+      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar agenda');
       throw new Error(err);
     }) as AgendaElement | undefined;
 }
@@ -36,7 +36,7 @@ export const newAgenda = async (agenda: AgendaDetails, errorFn: (data: any) => v
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.message ?? 'Falha ao criar agenda');
+      toast.error(err.response?.data?.messages ?? 'Falha ao criar agenda');
       throw new Error(err);
     }) as AgendaElement | undefined;
 }
