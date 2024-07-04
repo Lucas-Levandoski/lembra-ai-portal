@@ -1,7 +1,7 @@
 'use client';
 
-import { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type props = {
   items: Item[],
@@ -39,5 +39,5 @@ export function Tabs({ items = [], selectedId = '', onChangeTab = console.log as
         )}
       </div>
     </div>
-  )
+  );
 }

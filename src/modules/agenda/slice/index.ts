@@ -7,4 +7,4 @@ export const createAgendaSlice: StateCreator<AgendaSlice> = (set) => ({
 
   setAgendas: (agendas) => set(() => ({ agendas })),
   setIsAgendaLoading: (isAgendaLoading) => set(() => ({ isAgendaLoading }))
-})
+});

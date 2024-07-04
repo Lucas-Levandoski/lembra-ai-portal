@@ -22,7 +22,12 @@ export function EditAgendaView({ agendaId }: props) {
         agenda && !isLoading && (
           <div className="grid grid-cols-10 gap-6">
             <div className="col-span-4">
-              <EditAgendaCard details={agenda} onChange={onChangeProperty} onSubmit={onSubmit} isEdit/>
+              <EditAgendaCard 
+                agendaId={agendaId} 
+                details={agenda} 
+                onChange={onChangeProperty} 
+                onSubmit={onSubmit} isEdit
+              />
             </div>
             <div className="col-span-6">
               <BookingAgendaVisualizationView

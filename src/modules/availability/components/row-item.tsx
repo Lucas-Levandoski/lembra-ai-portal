@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, DaysOfWeek } from 'Common';
-import { IAvailabilityItem, IAvailabilityTime } from '../models'
+import { IAvailabilityItem, IAvailabilityTime } from '../models';
 import { IoClose } from 'react-icons/io5';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { useAvailability } from '../hooks';
@@ -51,5 +51,5 @@ export function RowItem({ content, day, label, onAddClick, onEditClick }: props)
         <BsFillPlusCircleFill className="text-blue-700 size-8" />
       </Button>
     </div>
-  )
+  );
 }

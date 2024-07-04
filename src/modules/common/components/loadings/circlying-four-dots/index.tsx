@@ -2,7 +2,7 @@
 // copied from codepen
 // https://codepen.io/zerospree/pen/XWaGER
 
-import './index.css'
+import './index.css';
 
 type props = {
   width?: number,
@@ -17,5 +17,5 @@ export function CirclyingFourDotsLoading({ height=50, width=50 }: props) {
       <hr/>
       <hr/>
     </div>
-  )
+  );
 }

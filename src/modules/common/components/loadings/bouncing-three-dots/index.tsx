@@ -13,5 +13,5 @@ export function BouncingThreeDotsLoading() {
         <div className="dot bg-blue-600"></div>
       </div>
     </div>
-  )
+  );
 }

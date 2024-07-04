@@ -1,7 +1,7 @@
 'use client';
 
 import { TimeFrameOptions } from 'Agenda';
-import { AgendaDetails, Button, maskMinutes } from 'Common'
+import { AgendaDetails, Button, Select, maskMinutes, Option } from 'Common';
 import { MessageTemplatesBoxView } from 'Message-Templates';
 import { useRouter } from 'next/navigation';
 import { FormEventHandler } from 'react';
@@ -9,71 +9,70 @@ import { twMerge } from 'tailwind-merge';
 
 type props = {
   details: AgendaDetails;
+  agendaId: string;
   onChange: (propName: keyof AgendaDetails, value: any) => void;
   onSubmit: FormEventHandler<HTMLFormElement>;
   isEdit?: boolean;
 }
 
-export function EditAgendaCard({ onChange, details, onSubmit, isEdit = false }: props) {
-  const { push } = useRouter()
+export function EditAgendaCard({ onChange, details, agendaId, onSubmit, isEdit = false }: props) {
+  const { push } = useRouter();
   const { colorName, name, timeFrame } = details;
-  
+
   return (
     <div className="p-6 rounded-2xl shadow-lg bg-white">
-      <h2 className="mt-0 mb-6 font-bold">Nova Agenda</h2>
-      <form className="flex gap-3 flex-col" onSubmit={onSubmit}>
+      <h2 className="mt-0 mb-6 font-bold">Editar Agenda</h2>
+      <form className="flex gap-6 flex-col" onSubmit={onSubmit}>
         <div className="flex gap-3">
           <div className="flex flex-col gap-2 w-full">
             <label htmlFor="name" className="text-sm">Nome da agenda</label>
             <input
-              className="p-3 border-2 border-gray-200 bg-gray-50 rounded-lg"
+              className="p-2 border-2 border-gray-200 h-12 rounded-lg"
               id="name"
               type="text"
               value={name}
               onChange={(event) => onChange('name', event.target.value)}
             />
           </div>
-          <div className="flex flex-col gap-2 w-28">
+          <div className="flex flex-col gap-2 w-32">
             <label htmlFor="timeFrame" className="text-sm">Duração</label>
-            <select
+            <Select
               id="timeFrame"
-              className="p-3 border-2 border-gray-200 bg-gray-50 rounded-lg"
               value={timeFrame}
-              onChange={(event) => onChange('timeFrame', event.target.value)} 
+              onChange={(value) => onChange('timeFrame', value)} 
             >
               {
                 TimeFrameOptions.map(option => (
-                  <option key={`time-frame-${option}`} value={option}>
-                    {maskMinutes(option)}
-                  </option>
+                  <Option key={`time-frame-${option}`} value={option}>
+                    <div className="mx-auto">{maskMinutes(option)}</div>
+                  </Option>
                 ))
               }
-            </select>
+            </Select>
           </div>
-          <div className="flex flex-col gap-2 w-20">
+          <div className="flex flex-col gap-2 w-24">
             <label htmlFor="colorName" className="text-sm">Tema</label>
-            <select
-              id="colorName"
-              className="p-3 border-2 border-gray-200 bg-gray-50 rounded-lg"
-              value={colorName}
-              onChange={(event) => onChange('colorName', event.target.value)} 
+            <Select 
+              value={colorName} 
+              id="colorName" 
+              onChange={(value) => onChange('colorName', value)}
             >
               {
                 ['blue', 'green', 'red'].map(color => (
-                  <option key={`color-${color}`} value={color} className={twMerge('h-4 w-4 rounded-full mr-8', `bg-${color}-500`)}>
-                    {color}
-                  </option>
+                  <Option key={`color-${color}`} value={color}>
+                    <div className={twMerge('size-5 rounded-full mx-auto', `bg-${color}-500`)} />
+                  </Option>
                 ))
               }
-            </select>
+            </Select>
           </div>
         </div>
-        <MessageTemplatesBoxView />
+        <MessageTemplatesBoxView agendaId={agendaId} />
         <div className="flex justify-end gap-3">
           <Button variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
           <Button variant="primary" type="submit">{isEdit ? 'Confirmar' : 'Criar Agenda'}</Button>
         </div>
       </form>
     </div>
-  )
+  );
 }

@@ -21,6 +21,6 @@ export const createAvailabilitySlice: StateCreator<AvailabilitySlice> = (set) =>
 
   cleanErroredItem: () => set(() => ({ erroredItem: undefined })),
   resetAvailability: () => {
-    set(state => ({ availability: deepClone(state.oldAvailability), isAvailabilityEdited: false }))
+    set(state => ({ availability: deepClone(state.oldAvailability), isAvailabilityEdited: false }));
   }
-})
+});

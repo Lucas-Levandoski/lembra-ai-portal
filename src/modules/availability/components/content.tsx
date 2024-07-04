@@ -1,8 +1,8 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common'
-import { AvailabilitiesByDay, DayOfWeek } from '../models'
-import { RowItem, TimeDialog } from '.'
+import { Button, CirclyingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common';
+import { AvailabilitiesByDay, DayOfWeek } from '../models';
+import { RowItem, TimeDialog } from '.';
 import { BiRefresh } from 'react-icons/bi';
 import { useAvailability, useAvailabilityTime } from '../hooks';
 
@@ -36,7 +36,7 @@ export function AvailabilityContent() {
         <Button disabled={!isEdited || isLoading} onClick={() => saveAvailability()} >Salvar</Button>
       </div>
     </div>
-  )
+  );
 }
 
 type props = {
@@ -89,5 +89,5 @@ function AvailabilityList({ availability }: props) {
         currentEnd={initEndTime}
       />
     </>
-  )
+  );
 }

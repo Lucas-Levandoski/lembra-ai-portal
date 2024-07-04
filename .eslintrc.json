@@ -9,6 +9,7 @@
     "import/prefer-default-export": "off",
     "prefer-const": "error",
     "no-use-before-define": "off",
+    "semi": "error",
     "quotes": ["error", "single"],
     "jsx-quotes": ["error", "prefer-double"],
     "linebreak-style": "off",

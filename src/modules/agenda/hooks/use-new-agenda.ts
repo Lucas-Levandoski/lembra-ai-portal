@@ -5,9 +5,11 @@ import { FormEvent, useState } from 'react';
 import { newAgenda } from '../services';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { useTemplates } from 'Message-Templates';
 
 export function useNewAgenda() {
   const { push } = useRouter();
+  const { onCommitTemplates } = useTemplates();
 
   const [agenda, setAgenda] = useState<AgendaDetails>({colorName: 'blue', isEnable: true, name: 'Nome da agenda', pictureUrl: 'https://i.am.useless', timeFrame: 30});
   const [isLoading, setIsLoading] = useState(false);
@@ -16,24 +18,24 @@ export function useNewAgenda() {
     e.preventDefault();
     setIsLoading(true);
 
-    await newAgenda(agenda).then(() => {
+    const _agenda = await newAgenda(agenda).then((data) => {
       toast.success(`Agenda ${agenda.name} criada com sucesso`);
-      setTimeout(() => {
-        push('/portal/agenda');
-      }, 1000);
-    }).finally(() => {
-      setIsLoading(false);
+      return data;
     });
-  }
+
+    if(_agenda) await onCommitTemplates(_agenda.id);
+
+    await setTimeout(() => push('/portal/agenda'), 1000);
+  };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {
     setAgenda({...agenda, [propName]: value});
-  }
+  };
 
   return {
     isLoading,
     agenda,
     onChangeProperty,
     onSubmit,
-  }
+  };
 }

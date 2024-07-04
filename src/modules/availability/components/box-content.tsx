@@ -12,7 +12,7 @@ export function BoxContent() {
 
   useEffect(() => {
     getAvailability();
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -31,5 +31,5 @@ export function BoxContent() {
 
       
     </div>
-  )
+  );
 }

@@ -16,7 +16,7 @@ export function useAgenda() {
     console.info(agendaName, 'copied');
 
     toast.success('Link copiado com sucesso');
-  }
+  };
 
   const onToggleActive = async (agendaId: string) => {
     if (!agendas) return;
@@ -35,13 +35,13 @@ export function useAgenda() {
 
     await updateAgenda(agendaId, agenda.details)
       .then(() => {
-        toast.success(`Agenda '${agenda.details.name}' ${agenda.details.isEnable ? 'ativada' : 'desativada'} com sucesso`)
+        toast.success(`Agenda '${agenda.details.name}' ${agenda.details.isEnable ? 'ativada' : 'desativada'} com sucesso`);
       }).catch(() => {
-        agenda.details.isEnable = ! newState
+        agenda.details.isEnable = ! newState;
         agendas[index] = agenda;
         setAgendas(agendas);
       });
-  }
+  };
 
   const getAgendas = async (shouldSetLoading: boolean = false) => {
 
@@ -51,8 +51,8 @@ export function useAgenda() {
       setAgendas(agendaResult);
     }).finally(() => {
       setIsAgendaLoading(false);
-    })
-  }
+    });
+  };
 
   return {
     agendas,

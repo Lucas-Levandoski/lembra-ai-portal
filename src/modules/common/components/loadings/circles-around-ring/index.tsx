@@ -66,5 +66,5 @@ export function CirclesAroundRingLoading({ height = 150, width = 150 }: props) {
         </div>
       </div>
     </div>
-  )
+  );
 }

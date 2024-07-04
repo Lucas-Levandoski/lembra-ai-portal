@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Popup, TimeOptions } from 'Common';
+import { Button, Dialog, TimeOptions } from 'Common';
 import { IAvailabilityTime } from '../models';
 import { twMerge } from 'tailwind-merge';
 import { CiClock1 } from 'react-icons/ci';
@@ -28,11 +28,11 @@ export function TimeDialog({ isOpen, currentStart = '', currentEnd = '',  onSubm
   } = useTimeItem({ onSubmit });
 
   useEffect(() => {
-    initTime(currentStart, currentEnd)
-  }, [])
+    initTime(currentStart, currentEnd);
+  }, []);
 
   return (
-    <Popup isOpen={isOpen} onClose={onCancel}>
+    <Dialog isOpen={isOpen} onClose={onCancel}>
       <TimeOptions />
       <form className="flex flex-col gap-8" onSubmit={trySubmit}>
         <h1 className="text-center">Escolha o horário no qual<br /> você estará disponivel</h1>
@@ -61,6 +61,6 @@ export function TimeDialog({ isOpen, currentStart = '', currentEnd = '',  onSubm
           <Button type="submit">Concluir</Button>
         </div>
       </form>
-    </Popup>
-  )
+    </Dialog>
+  );
 }

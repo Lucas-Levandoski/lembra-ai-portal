@@ -23,5 +23,5 @@ export function ProtectedHeaderView() {
       </nav>
       <UserInfo />
     </header>
-  )
+  );
 }

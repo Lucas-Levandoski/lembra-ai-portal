@@ -6,7 +6,7 @@ import { useNewAgenda } from '../hooks';
 
 
 export function NewAgendaView() {
-  const { agenda, onChangeProperty, onSubmit } = useNewAgenda()
+  const { agenda, onChangeProperty, onSubmit } = useNewAgenda();
 
   return (
     <div className="grid grid-cols-10 gap-6">

@@ -12,5 +12,5 @@ export default function EmptyEditAgenda() {
         É necessário identificar qual agenda será editada
       </h1>
     </div>
-  )
+  );
 } 

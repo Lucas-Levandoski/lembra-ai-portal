@@ -1,6 +1,6 @@
 'use client';
 
-import { AnchorHTMLAttributes } from 'react'
+import { AnchorHTMLAttributes } from 'react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
@@ -23,5 +23,5 @@ export function Link({ children, route, target, trackURL = true }: props) {
       target={target}>
       {children}
     </NextLink>
-  )
+  );
 }

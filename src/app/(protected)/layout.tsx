@@ -28,5 +28,5 @@ export default function ProtectedLayout({children}: props) {
           : <LoadingUserView />
       }
     </MsalAuthenticationTemplate>
-  )
+  );
 }

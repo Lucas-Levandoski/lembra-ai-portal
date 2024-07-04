@@ -23,5 +23,5 @@ export function UserInfo() {
           : <BouncingThreeDotsLoading />
       }
     </div>
-  )
+  );
 }

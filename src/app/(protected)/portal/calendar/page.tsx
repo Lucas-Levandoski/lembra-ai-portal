@@ -5,5 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default function PortalCalendar() {
-  return <div> testing landing inside portal </div>
+  return <div> testing landing inside portal </div>;
 }

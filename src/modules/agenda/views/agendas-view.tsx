@@ -9,7 +9,7 @@ export function AgendasView() {
 
   useEffect(() => {
     getAgendas();
-  }, [])
+  }, []);
 
   return (
     <div className="grid grid-cols-7 gap-6">
@@ -21,5 +21,5 @@ export function AgendasView() {
         <Calendar />
       </div>
     </div>
-  )
+  );
 }

@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function PortalAgenda() {
-  return <AgendasView />
+  return <AgendasView />;
 }

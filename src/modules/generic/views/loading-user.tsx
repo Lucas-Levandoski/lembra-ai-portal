@@ -6,5 +6,5 @@ export function LoadingUserView() {
       <CirclesAroundRingLoading />
       <h1 className="text-blue-600">Carregando Usuário</h1>
     </div>
-  )
+  );
 }

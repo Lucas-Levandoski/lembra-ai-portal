@@ -16,5 +16,5 @@ export function TimeOptions({ id = 'time-options' }: props) {
         <option key={time} value={time}>{time}</option>
       ))}
     </datalist>
-  )
+  );
 }

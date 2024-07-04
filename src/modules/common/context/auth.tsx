@@ -86,7 +86,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
   const setHeaderBearerToken = (accessToken: string) => {
     privateClient.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
-  }
+  };
 
   const saveInfoInLocalStorage = (accessToken: string) => {
     localStorage.setItem(`REACT_TOKEN_AUTH_PORTAL_${process.env.NEXT_PUBLIC_MSAL_CLIENT_ID}`, accessToken);

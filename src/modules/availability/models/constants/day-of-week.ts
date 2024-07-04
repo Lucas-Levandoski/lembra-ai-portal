@@ -10,4 +10,4 @@ export const DayOfWeek: {[k in DaysOfWeek]: string} = {
   thursday: 'Quinta',
   friday: 'Sexta',
   saturday: 'Sábado'
-}
+};

@@ -30,5 +30,5 @@ export function Toggle({
     >
       <span className={twMerge('flex rounded-full h-6 w-6 transition-all duration-200 ml-0', state ? activeColors.bullet : inactiveColors.bullet ,state && 'ml-8 mr-0')} />
     </button>
-  )
+  );
 }

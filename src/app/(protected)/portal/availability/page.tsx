@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function PortalAvailability() {
-  return <AvailabilityView />
+  return <AvailabilityView />;
 }

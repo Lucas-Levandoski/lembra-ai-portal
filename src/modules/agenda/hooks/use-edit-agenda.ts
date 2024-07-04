@@ -5,9 +5,11 @@ import { FormEvent, useEffect, useState } from 'react';
 import { readAgenda, updateAgenda } from '../services';
 import { toast } from 'react-toastify';
 import { useRouter  } from 'next/navigation';
+import { useTemplates } from 'Message-Templates';
 
 export function useEditAgenda(agendaId: string) {
   const { push } = useRouter();
+  const { onCommitTemplates } = useTemplates();
 
   const [agenda, setAgenda] = useState<AgendaDetails>();
   const [isLoading, setIsLoading] = useState(true);
@@ -19,8 +21,8 @@ export function useEditAgenda(agendaId: string) {
       setAgenda(res?.details);
     }).finally(() => {
       setIsLoading(false);
-    })
-  },[])
+    });
+  },[]);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -28,11 +30,12 @@ export function useEditAgenda(agendaId: string) {
 
     await updateAgenda(agendaId, agenda).then(() => {
       toast.success(`Agenda ${agenda.name} editada com sucesso`);
-      setTimeout(() => {
-        push('/portal/agenda');
-      }, 1000);
     });
-  }
+
+    await onCommitTemplates(agendaId);
+
+    await setTimeout(() => push('/portal/agenda'), 1000);
+  };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {
     if(!agenda) return;
@@ -51,12 +54,12 @@ export function useEditAgenda(agendaId: string) {
     }
 
     setAgenda({...agenda, [propName]: _value});
-  }
+  };
 
   return {
     isLoading,
     agenda,
     onChangeProperty,
     onSubmit,
-  }
+  };
 }

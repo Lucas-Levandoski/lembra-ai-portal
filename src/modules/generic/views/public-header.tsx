@@ -39,5 +39,5 @@ export function PublicHeaderView() {
         </UnauthenticatedTemplate>
       </div>  
     </header>
-  )
+  );
 }

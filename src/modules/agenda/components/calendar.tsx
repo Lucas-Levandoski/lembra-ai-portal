@@ -6,5 +6,5 @@ export function Calendar() {
       calendar here
       <DayInfo />
     </div>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { DaysOfWeek } from 'Common';
-import { AvailabilitiesByDay } from '.'
+import { AvailabilitiesByDay } from '.';
 
 export type AvailabilitySlice = {
   validity: number;

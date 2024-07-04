@@ -25,30 +25,30 @@ export function useTimeItem({onSubmit}: props) {
 
     if(validStart && validEnd)
       onSubmit({startTime: timeStart, endTime: timeEnd});
-  }
+  };
 
   const initTime = (start: string, end: string) => {
     setTimeStart(start);
     setTimeEnd(end);
-  }
+  };
 
   const onChangeStartTime = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target 
+    const { value } = event.target; 
 
     if(value.length > 5) return;
 
     setTimeStart(value);
     setIsStartValid(true);
-  }
+  };
 
   const onChangeEndTime = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target 
+    const { value } = event.target; 
 
     if(value.length > 5) return;
 
-    setTimeEnd(value)
+    setTimeEnd(value);
     setIsEndValid(true);
-  }
+  };
 
   const onCancel = () => {
     setTimeout(() => {
@@ -60,7 +60,7 @@ export function useTimeItem({onSubmit}: props) {
     }, 500);
 
     onSubmit();
-  }
+  };
 
   return {
     isStartValid,
@@ -73,5 +73,5 @@ export function useTimeItem({onSubmit}: props) {
     onCancel,
     trySubmit,
     initTime,
-  }
+  };
 }

@@ -23,5 +23,5 @@ export function UserInfo() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

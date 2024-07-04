@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function NewAgenda() {
-  return <NewAgendaView />
+  return <NewAgendaView />;
 }

@@ -3,5 +3,5 @@ export function DayInfo() {
     <div>
       day info here
     </div>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { AgendaElement, Button, TimeCard, Toggle } from 'Common'
+import { AgendaElement, Button, TimeCard, Toggle } from 'Common';
 import { BiTrash } from 'react-icons/bi';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
 import { IoCopyOutline } from 'react-icons/io5';
@@ -33,5 +33,5 @@ export function AgendaRow({ agenda, onCopy, onToggleActive }: props) {
         <Button variant="icon" className="text-blue-500 flex items-center gap-2" onClick={() => onCopy(name)}><IoCopyOutline  className="size-8" />Copia link</Button>
       </div>
     </div>
-  )
+  );
 }

@@ -10,17 +10,17 @@ export const getAvailabilities = async (errorFn: (data: IAvailabilityErroredItem
       toast.error(err.response.data.message.join('\n'));
       return;
     }) as Availability;
-}
+};
 
 export const setAvailabilities = async (availabilities: Availability, errorFn: (data: IAvailabilityErroredItem) => void = () => {}) => {
   return await privateClient.post<Availability>(`${envVars.agendaUrl}/my-availability`, availabilities)
     .then(res => {
       toast.success('Disponibilidades salvas com sucesso');
-      return res.data
+      return res.data;
     })
     .catch(err => {
       errorFn(err.response.data.data);
       toast.error(err.response.data.messages.join('\n'));
       return;
     }) as Availability | undefined;
-}
+};

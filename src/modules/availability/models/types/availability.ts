@@ -1,4 +1,4 @@
-import { AvailabilitiesByDay } from '.'
+import { AvailabilitiesByDay } from '.';
 
 export type Availability = {
   validity: number;

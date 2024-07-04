@@ -47,7 +47,7 @@ export function useAvailability() {
 
     if(res)
       setAvailability(res.availabilities);
-  }
+  };
 
   const getAvailability = async(shouldSetLoading: boolean = false) => { 
 
@@ -114,5 +114,5 @@ export function useAvailability() {
     toggleEnableDay,
     resetAvailability,
     editAvailabilityTime
-  }
+  };
 }

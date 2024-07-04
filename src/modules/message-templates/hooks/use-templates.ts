@@ -1,40 +1,56 @@
 import { useStore } from 'Store';
 import { MessageTemplate } from '../models';
-import { newTemplates, sortTemplates } from 'Message-Templates';
+import { defaultTemplate, getTemplates, replaceTemplates, sortTemplates } from 'Message-Templates';
+import { useState } from 'react';
 
 
 export function useTemplates() {
   const { 
     isTemplatesLoading,
-    messageTemplates,
-    setMessageTemplates,
-    setTemplatesProCommit,
+    setTemplatesPreCommit,
     templatesPreCommit,
     setIsTemplatesLoading
   } = useStore((state) => ({
     isTemplatesLoading: state.isTemplatesLoading,
-    messageTemplates: state.messageTemplates,
     templatesPreCommit: state.templatesPreCommit,
-    setMessageTemplates: state.setMessageTemplates,
-    setTemplatesProCommit: state.setTemplatesPreCommit,
+    setTemplatesPreCommit: state.setTemplatesPreCommit,
     setIsTemplatesLoading: state.setIsTemplatesLoading,
   }));
 
-  const onAddTemplate = async (agendaId: string, template: MessageTemplate) => {
+  const [template, setTemplate] = useState<MessageTemplate>(defaultTemplate);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState<number | undefined>();
+
+  const onGetTemplates = async (agendaId: string) => {
     setIsTemplatesLoading(true);
 
-    const result = await newTemplates(agendaId, template).finally(() => setIsTemplatesLoading(false));
+    const result = await getTemplates(agendaId).finally(() => setIsTemplatesLoading(false));
 
     if(!result) return;
 
-    setMessageTemplates(result);
-  }
+    setTemplatesPreCommit(result);
+  };
 
-  const onAddTemplatePreCommit = async (template: MessageTemplate) => {
+  const onModalCancel = () => {
+    setIsOpen(false);
+  };
+
+  const onModalComplete = () => {
+    if(currentIndex !== undefined)
+      return onEditTemplate();
+
+    onAddTemplate();
+  };
+
+  const onAddTemplate = async () => {
+    setIsOpen(false);
+
     if(!templatesPreCommit)
-      return setTemplatesProCommit([template]);
+      return setTemplatesPreCommit([template]);
 
     setIsTemplatesLoading(true);
+
+    template.isNew = true;
 
     templatesPreCommit.push(template);
 
@@ -42,10 +58,29 @@ export function useTemplates() {
 
     if(!sorted) return;
 
-    setTemplatesProCommit(sorted);
-  }
+    setTemplatesPreCommit(sorted);
+  };
 
-  const onRemoveTemplatePreCommit = async (index: number) => {
+  const onEditTemplate = async () => {
+    setIsOpen(false);
+
+    if(!templatesPreCommit || currentIndex === undefined)
+      return;
+
+    setIsTemplatesLoading(true);
+
+    template.isEdited = true;
+
+    templatesPreCommit[currentIndex] = template;
+
+    const sorted = await sortTemplates(templatesPreCommit).finally(() => setIsTemplatesLoading(false));
+
+    if(!sorted) return;
+
+    setTemplatesPreCommit(sorted);
+  };
+
+  const onRemoveTemplate = async (index: number) => {
     if(!templatesPreCommit)
       return;
 
@@ -57,8 +92,8 @@ export function useTemplates() {
 
     if(!sorted) return;
 
-    setTemplatesProCommit(sorted);
-  }
+    setTemplatesPreCommit(sorted);
+  };
 
   const onCommitTemplates = async (agendaId: string) => {
     if(!templatesPreCommit)
@@ -66,18 +101,63 @@ export function useTemplates() {
 
     setIsTemplatesLoading(true);
 
-    const result = await newTemplates(agendaId, templatesPreCommit).finally(() => setIsTemplatesLoading(false));
+    const result = await replaceTemplates(agendaId, templatesPreCommit).finally(() => setIsTemplatesLoading(false));
 
     return result;
-  }
+  };
+
+  const onModal = (index?: number) => {
+    setCurrentIndex(index);
+    setIsOpen(true);
+
+    if(index !== undefined) 
+      return (onEditModal(index));
+
+    onAddModal();
+  };
+
+  const onEditModal = (index: number) => {
+    if(!templatesPreCommit || index === undefined) return;
+
+    setTemplate(templatesPreCommit[index]);
+  };
+
+  const onAddModal = () => {
+    setTemplate(defaultTemplate);
+  };
+
+  const onChangeProperty = (propName: keyof MessageTemplate, value: any) => {
+    if(!template) return;
+
+    let _value: any;
+
+    switch(typeof template[propName]) {
+      case 'number':
+        _value = +value;
+        break;
+      case 'boolean':
+        _value = value == 'true';
+        break;
+      default:
+        _value = value;
+    }
+
+    setTemplate({...template, [propName]: _value});
+  };
 
   return {
+    onGetTemplates,
+    onEditTemplate,
     onAddTemplate,
-    onAddTemplatePreCommit,
-    onRemoveTemplatePreCommit,
+    onRemoveTemplate,
+    onModal,
+    onChangeProperty,
     onCommitTemplates,
+    onModalCancel,
+    isOpen,
     isTemplatesLoading,
-    messageTemplates,
     templatesPreCommit,
-  }
+    template,
+    onModalComplete,
+  };
 }

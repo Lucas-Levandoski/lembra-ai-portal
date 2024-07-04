@@ -25,7 +25,7 @@ export function useAvailabilityTime() {
       addAvailabilityTime(addConfig, item);
 
     setIsAddOpen(false);
-  }
+  };
 
   const onEdit = (item?: IAvailabilityTime) => {
     // if empty it just closes edit
@@ -40,7 +40,7 @@ export function useAvailabilityTime() {
     ) cleanErroredItem();
 
     setIsEditOpen(false);
-  }
+  };
 
   const onAddClick = (day: DaysOfWeek) => {
     setAddConfig(day);
@@ -49,7 +49,7 @@ export function useAvailabilityTime() {
     setInitEndTime('12:00');
 
     setIsAddOpen(true);
-  }
+  };
 
   const onEditClick = (day: DaysOfWeek ,index: number, time: IAvailabilityTime) => {
     setEditConfig({day, index, time});
@@ -58,7 +58,7 @@ export function useAvailabilityTime() {
     setInitEndTime(time.endTime);
 
     setIsEditOpen(true);
-  }
+  };
 
   const onCancel = () => {
     setIsAddOpen(false);
@@ -75,5 +75,5 @@ export function useAvailabilityTime() {
     onAddClick,
     onEditClick,
     onCancel,
-  }
+  };
 }

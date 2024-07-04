@@ -53,5 +53,5 @@ export function Agendas() {
         )
       }
     </div>
-  )
+  );
 }
