@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading } from 'Common';
+import { Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
 import { useStore } from 'Store';
 import { PiPlusCircle } from 'react-icons/pi';
 import { AgendaRow } from '.';
@@ -38,7 +38,7 @@ export function Agendas() {
 
       { agendas === undefined && !isAgendaLoading && (
         <div>
-          Nenhuma agenda encontrada
+          <ErrorMessage message="Falha ao carregar suas agendas, por favor tente novamente" />
         </div>
       )}
 
