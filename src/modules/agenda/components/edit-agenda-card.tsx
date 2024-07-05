@@ -9,13 +9,12 @@ import { twMerge } from 'tailwind-merge';
 
 type props = {
   details: AgendaDetails;
-  agendaId: string;
+  agendaId?: string;
   onChange: (propName: keyof AgendaDetails, value: any) => void;
   onSubmit: FormEventHandler<HTMLFormElement>;
-  isEdit?: boolean;
 }
 
-export function EditAgendaCard({ onChange, details, agendaId, onSubmit, isEdit = false }: props) {
+export function EditAgendaCard({ onChange, details, agendaId, onSubmit }: props) {
   const { push } = useRouter();
   const { colorName, name, timeFrame } = details;
 
@@ -70,7 +69,7 @@ export function EditAgendaCard({ onChange, details, agendaId, onSubmit, isEdit =
         <MessageTemplatesBoxView agendaId={agendaId} />
         <div className="flex justify-end gap-3">
           <Button variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
-          <Button variant="primary" type="submit">{isEdit ? 'Confirmar' : 'Criar Agenda'}</Button>
+          <Button variant="primary" type="submit">{agendaId ? 'Confirmar' : 'Criar Agenda'}</Button>
         </div>
       </form>
     </div>

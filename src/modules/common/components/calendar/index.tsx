@@ -5,7 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 import { PickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 
 import './index.css';
@@ -16,22 +16,17 @@ type props = {
   // ['yyyy-mm-dd', '2024-10-23']
   highlightedDays?: string[];
 
-
   onSelectedDay?: (day: string) => void;
 
   // 'yyyy-mm-dd', '2024-10-23'
   currentDay?: string;
 }
 
-function HiglightedDayElement(dayProps: PickersDayProps<Dayjs> & { highlightedDays?: string[] }) {
+function HiglightedDayElement(dayProps: PickersDayProps<dayjs.Dayjs> & { highlightedDays?: string[] }) {
   const { highlightedDays = [], day, outsideCurrentMonth, ...other } = dayProps;
 
   const isHighlighted =
     !dayProps.outsideCurrentMonth && highlightedDays.indexOf(dayProps.day.format('YYYY-MM-DD')) >= 0;
-
-  // console.log(dayProps.day.format('MM-DD'));
-  // console.log(highlightedDays);
-  // console.log(dayProps);
 
   return (
     <PickersDay {...other} className={isHighlighted ? 'highlighted': ''} outsideCurrentMonth={outsideCurrentMonth} day={day} />
@@ -40,7 +35,7 @@ function HiglightedDayElement(dayProps: PickersDayProps<Dayjs> & { highlightedDa
 
 export function Calendar({ 
   isLoading = false, 
-  highlightedDays = ['2024-07-05', '2024-07-12'],
+  highlightedDays = [],
   onSelectedDay = () => {},
   currentDay = new Date().toString(),
 }: props) {
