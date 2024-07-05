@@ -1,6 +1,6 @@
 'use client';
 
-import { TimeFrameOptions } from 'Agenda';
+import { AvailableColors, TimeFrameOptions } from 'Agenda';
 import { AgendaDetails, Button, Select, maskMinutes, Option } from 'Common';
 import { MessageTemplatesBoxView } from 'Message-Templates';
 import { useRouter } from 'next/navigation';
@@ -58,7 +58,7 @@ export function EditAgendaCard({ onChange, details, agendaId, onSubmit, isEdit =
               onChange={(value) => onChange('colorName', value)}
             >
               {
-                ['blue', 'green', 'red'].map(color => (
+                AvailableColors.map(color => (
                   <Option key={`color-${color}`} value={color}>
                     <div className={twMerge('size-5 rounded-full mx-auto', `bg-${color}-500`)} />
                   </Option>

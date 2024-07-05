@@ -27,10 +27,10 @@ export function AvailabilityContent() {
           : (
             isLoading 
               ? <div className="m-auto"><CirclyingFourDotsLoading /></div>
-              : <ErrorMessage message="Falha ao carregar disponibilidades, por favor tente novamente" />
+              : <ErrorMessage message="Falha ao carregar suas disponibilidades, por favor tente novamente" />
           )
       }
-  
+
       <div className="flex flex-row justify-end gap-4">
         <Button disabled={!isEdited || isLoading} onClick={() => resetAvailability()} variant="secondary">Cancelar</Button>
         <Button disabled={!isEdited || isLoading} onClick={() => saveAvailability()} >Salvar</Button>

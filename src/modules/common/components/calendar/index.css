@@ -1,0 +1,23 @@
+
+.MuiPickersCalendarHeader-label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.MuiIconButton-edgeEnd {
+  color: #1d4ed8 !important;
+}
+
+.MuiIconButton-edgeStart {
+  color: #1d4ed8 !important;
+}
+
+.MuiDayCalendar-weekDayLabel {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: black !important;
+}
+
+.MuiPickersDay-root.highlighted:not(.Mui-selected) {
+  background-color: #93c5fd !important;
+}
