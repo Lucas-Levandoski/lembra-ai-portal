@@ -22,6 +22,8 @@ export function MessageTemplatesBoxView({ agendaId }: props) {
     onModal,
     onModalCancel,
     onModalComplete,
+    onRemoveTemplate,
+    onDuplicateTemplate,
   } = useTemplates();
 
   useEffect(() => {
@@ -53,7 +55,13 @@ export function MessageTemplatesBoxView({ agendaId }: props) {
 
               {
                 templatesPreCommit?.map((_template, i) => (
-                  <TemplateRow index={i} key={`${_template.target}-${i}`} template={_template} onEdit={onModal}/>
+                  <TemplateRow 
+                    index={i} 
+                    key={`${_template.target}-${i}`} 
+                    template={_template} 
+                    onEdit={onModal} 
+                    onRemove={onRemoveTemplate} 
+                    onDuplicate={onDuplicateTemplate}/>
                 ))
               }
             </div>

@@ -1,5 +1,6 @@
 
 .MuiPickersCalendarHeader-label {
+  font-family: inherit !important;
   font-size: 18px;
   font-weight: 600;
 }
@@ -13,6 +14,7 @@
 }
 
 .MuiDayCalendar-weekDayLabel {
+  font-family: inherit !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   color: black !important;
@@ -20,4 +22,8 @@
 
 .MuiPickersDay-root.highlighted:not(.Mui-selected) {
   background-color: #93c5fd !important;
+}
+
+.MuiPickersDay-root {
+  font-family: inherit !important;
 }

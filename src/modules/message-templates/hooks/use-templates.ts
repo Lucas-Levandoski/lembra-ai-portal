@@ -80,14 +80,24 @@ export function useTemplates() {
     setTemplatesPreCommit(sorted);
   };
 
-  const onRemoveTemplate = async (index: number) => {
+  const onRemoveTemplate = (index: number) => {
+    if(!templatesPreCommit)
+      return;
+
+    const filtered = templatesPreCommit.filter((_, i) => i !== index);
+
+    setTemplatesPreCommit(filtered);
+  };
+
+  const onDuplicateTemplate = async (index: number) => {
     if(!templatesPreCommit)
       return;
 
     setIsTemplatesLoading(true);
 
-    const sorted = await sortTemplates(
-      templatesPreCommit.filter((_, i) => i !== index)
+    const sorted = await sortTemplates([
+      ...templatesPreCommit, 
+      templatesPreCommit[index]]
     ).finally(() => setIsTemplatesLoading(false));
 
     if(!sorted) return;
@@ -159,5 +169,6 @@ export function useTemplates() {
     templatesPreCommit,
     template,
     onModalComplete,
+    onDuplicateTemplate,
   };
 }

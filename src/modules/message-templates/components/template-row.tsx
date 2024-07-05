@@ -8,9 +8,17 @@ type props = {
   template: MessageTemplate;
   index: number;
   onEdit?: (index: number) => void;
+  onRemove?: (index: number) => void;
+  onDuplicate?: (index: number) => void;
 }
 
-export function TemplateRow({ template, onEdit = () => {}, index }: props) {
+export function TemplateRow({ 
+  template, 
+  onEdit = () => {}, 
+  onRemove = () => {}, 
+  onDuplicate = () => {}, 
+  index
+}: props) {
   return (
     <div className="flex relative border-2 rounded-lg items-center w-full h-14 bg-gray-50">
       {
@@ -23,8 +31,8 @@ export function TemplateRow({ template, onEdit = () => {}, index }: props) {
       </div>
       <div className="ml-auto mr-0 items-center">
         <Button variant="icon" onClick={() => onEdit(index)}><HiOutlineAdjustmentsHorizontal className="size-6 text-gray-600" /></Button>
-        <Button variant="icon" onClick={() => {}}><IoCopyOutline  className="size-6 text-gray-600" /></Button>
-        <Button variant="icon" onClick={() => {}}><BiTrash className="size-6 text-gray-600" /></Button>
+        <Button variant="icon" onClick={() => onDuplicate(index)}><IoCopyOutline  className="size-6 text-gray-600" /></Button>
+        <Button variant="icon" onClick={() => onRemove(index)}><BiTrash className="size-6 text-gray-600" /></Button>
       </div>  
     </div>
   );
