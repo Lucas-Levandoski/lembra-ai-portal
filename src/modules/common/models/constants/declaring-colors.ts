@@ -3,7 +3,7 @@
 export const DeclaredColors = [
   'bg-blue-500', 'bg-blue-100', 'text-blue-700', 'text-blue-500',
   'bg-red-500', 'bg-red-100', 'text-red-700', 'text-red-700',
-  'bg-green-500', 'bg-green-100', 'text-green-700', 'text-green-700',
+  'bg-lime-500', 'bg-lime-100', 'text-lime-700', 'text-lime-700',
   'bg-orange-500', 'bg-orange-100', 'text-orange-700', 'text-orange-700',
   'bg-emerald-500', 'bg-emerald-100', 'text-emerald-700', 'text-emerald-700',
   'bg-rose-500', 'bg-rose-100', 'text-rose-700', 'text-rose-700',

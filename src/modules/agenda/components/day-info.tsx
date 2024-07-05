@@ -1,7 +1,9 @@
+import { TimeGrid } from 'Common';
+
 export function DayInfo() {
   return (
     <div>
-      day info here
+      <TimeGrid />
     </div>
   );
 }

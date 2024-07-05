@@ -11,3 +11,4 @@ export * from './time-card';
 export * from './accordion';
 export * from './dropdown';
 export * from './calendar';
+export * from './time-grid';
