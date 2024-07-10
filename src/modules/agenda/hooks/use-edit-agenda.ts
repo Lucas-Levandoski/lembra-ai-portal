@@ -34,7 +34,7 @@ export function useEditAgenda(agendaId: string) {
 
     await onCommitTemplates(agendaId);
 
-    await setTimeout(() => push('/portal/agenda'), 1000);
+    await setTimeout(() => push('/portal/agenda'), 500);
   };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {

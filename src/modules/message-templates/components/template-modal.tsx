@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Dialog, Option, Select } from 'Common';
-import { MessageTargets } from '../models/constants/message-targets';
+import { MessageTargets } from 'Message-Templates';
 import { MessageTags, MessageTemplate, TimesUntil } from '../models';
 import { TextareaWithTags } from '.';
 

@@ -13,7 +13,7 @@ const nextConfig = {
         destination: '/portal/agenda',
         permanent: false,
       }
-    ]
+    ];
   },
   output: 'standalone',
 };

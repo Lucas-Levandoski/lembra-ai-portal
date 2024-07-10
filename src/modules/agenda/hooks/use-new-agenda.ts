@@ -25,7 +25,7 @@ export function useNewAgenda() {
 
     if(_agenda) await onCommitTemplates(_agenda.id);
 
-    await setTimeout(() => push('/portal/agenda'), 1000);
+    await setTimeout(() => push('/portal/agenda'), 500);
   };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {

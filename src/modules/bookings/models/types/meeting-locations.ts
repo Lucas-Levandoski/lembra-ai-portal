@@ -1,0 +1,1 @@
+export type BookingLocation = 'google-meeting' | 'on-premise';

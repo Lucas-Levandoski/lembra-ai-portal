@@ -1,0 +1,1 @@
+export type BookingStatus = 'booked' | 'no-show' | 'show' | 'canceled' | 'rescheduled';

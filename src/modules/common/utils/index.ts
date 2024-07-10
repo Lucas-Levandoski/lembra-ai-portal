@@ -5,3 +5,4 @@ export * from './deep-clone';
 export * from './hour-minute-validate';
 export * from './time-to-date';
 export * from './mask-minutes';
+export * from './parse-date';
