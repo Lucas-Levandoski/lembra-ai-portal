@@ -6,7 +6,7 @@ import { BookingsSlice, createBookingsSlice } from 'Bookings';
 
 export const useStore = create<AvailabilitySlice & AgendaSlice & MessageTemplateSlice & BookingsSlice>((...a) => ({
   ...createAvailabilitySlice(...a),
-  ...createAgendaSlice(...a),
   ...createMessageTemplateSlice(...a),
+  ...createAgendaSlice(...a),
   ...createBookingsSlice(...a),
 }));

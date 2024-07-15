@@ -15,6 +15,16 @@ const nextConfig = {
       }
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'd3v0px0pttie1i.cloudfront.net',
+        port: '',
+        pathname: '/uploads/user/**',
+      },
+    ],
+  },
   output: 'standalone',
 };
 

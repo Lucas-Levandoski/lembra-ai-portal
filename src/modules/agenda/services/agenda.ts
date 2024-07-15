@@ -1,5 +1,6 @@
-import { AgendaDetails, AgendaElement, envVars, privateClient } from 'Common';
+import { AgendaDetails, AgendaElement, envVars, privateClient, publicClient } from 'Common';
 import { toast } from 'react-toastify';
+import { IShortAgendaProps } from '../models';
 
 export const listAgendas = async (errorFn: (data: any) => void = () => {}) => {
   return await privateClient.get<AgendaElement[]>(`${envVars.agendaUrl}/my-agendas`)
@@ -39,4 +40,14 @@ export const newAgenda = async (agenda: AgendaDetails, errorFn: (data: any) => v
       toast.error(err.response?.data?.messages ?? 'Falha ao criar agenda');
       throw new Error(err);
     }) as AgendaElement | undefined;
+};
+
+export const getAgendasByUser = async (userId: string, errorFn: (data: any) => void = () => {}): Promise<IShortAgendaProps[] | undefined> => {
+  return await publicClient.get<IShortAgendaProps[]>(`${envVars.agendaUrl}/agendas-info`, {params: { userId }})
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar agenda');
+      throw new Error(err);
+    }) as IShortAgendaProps[] | undefined;
 };

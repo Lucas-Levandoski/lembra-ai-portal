@@ -12,6 +12,11 @@ export const envVars = {
     return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'http://localhost:7073/api');
   },
 
+  get profileUrl() {
+    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'http://localhost:7074/api');
+  },
+
+
   get tenantName() {
     return checkVariable('NEXT_PUBLIC_B2C_TENANT_NAME', 'lembraaidev');
   },
