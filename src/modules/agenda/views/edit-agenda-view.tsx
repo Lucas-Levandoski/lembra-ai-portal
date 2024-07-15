@@ -26,7 +26,7 @@ export function EditAgendaView({ agendaId }: props) {
                 agendaId={agendaId} 
                 details={agenda} 
                 onChange={onChangeProperty} 
-                onSubmit={onSubmit} isEdit
+                onSubmit={onSubmit}
               />
             </div>
             <div className="col-span-6">

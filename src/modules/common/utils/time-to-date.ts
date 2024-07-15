@@ -9,4 +9,4 @@ export function timeToDateISO(timeString: string): string {
   currentDate.setMinutes(minutes);
 
   return currentDate.toISOString();
-}  
+}

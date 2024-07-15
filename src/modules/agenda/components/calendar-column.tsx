@@ -3,6 +3,7 @@
 import { Calendar, TimeGrid } from 'Common';
 import { useEffect } from 'react';
 import { useBookings } from 'Bookings';
+import dayjs from 'dayjs';
 
 export function CalendarColumn() {
   const { 
@@ -16,6 +17,7 @@ export function CalendarColumn() {
   } = useBookings();
 
   useEffect(() => {
+    onSelectingDate(dayjs(new Date()).format('YYYY-MM-DD'));
     getMyBookedDates();
   }, []);
 
