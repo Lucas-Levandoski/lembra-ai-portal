@@ -1,8 +1,7 @@
 'use client';
 
-import { EditAgendaCard } from '../components';
-import { BookingAgendaVisualizationView } from 'Common';
-import { useNewAgenda } from '../hooks';
+import { BookingAgendaVisualization } from 'Bookings';
+import { EditAgendaCard, useNewAgenda } from 'Agenda';
 
 
 export function NewAgendaView() {
@@ -14,7 +13,7 @@ export function NewAgendaView() {
         <EditAgendaCard details={agenda} onChange={onChangeProperty} onSubmit={onSubmit} />
       </div>
       <div className="col-span-6">
-        <BookingAgendaVisualizationView
+        <BookingAgendaVisualization
           agendaName={agenda.name}
           colorName={agenda.colorName}
           timeFrame={agenda.timeFrame}

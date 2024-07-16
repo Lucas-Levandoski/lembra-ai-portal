@@ -1,7 +1,8 @@
 'use client';
 
 import { EditAgendaCard } from '../components';
-import { BookingAgendaVisualizationView, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
+import { BookingAgendaVisualization } from 'Bookings';
+import { CirclyingFourDotsLoading, ErrorMessage } from 'Common';
 import { useEditAgenda } from '../hooks';
 
 type props = {
@@ -30,7 +31,7 @@ export function EditAgendaView({ agendaId }: props) {
               />
             </div>
             <div className="col-span-6">
-              <BookingAgendaVisualizationView
+              <BookingAgendaVisualization
                 agendaName={agenda.name}
                 colorName={agenda.colorName}
                 timeFrame={agenda.timeFrame}

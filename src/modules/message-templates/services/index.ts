@@ -9,7 +9,7 @@ export const removeTemplate = async (agendaId: string, templateId: string): Prom
       return res.data;
     })
     .catch(err => {
-      toast.error(err.response.data.messages.join('\n'));
+      toast.error(err.response?.data?.messages.join('\n'));
       return;
     }) as MessageTemplateList | undefined;
 };
@@ -21,7 +21,7 @@ export const getTemplates = async (agendaId: string): Promise<MessageTemplate[] 
       return (res.data as MessageTemplateList).templates;
     })
     .catch(err => {
-      toast.error(err.response.data.messages.join('\n'));
+      toast.error(err.response?.data?.messages.join('\n'));
       return;
     }) as MessageTemplate[] | undefined;
 };
@@ -36,7 +36,7 @@ export const replaceTemplates = async (agendaId: string, templates: MessageTempl
       return res.data;
     })
     .catch(err => {
-      toast.error(err.response.data.messages.join('\n'));
+      toast.error(err.response?.data?.messages.join('\n'));
       return;
     }) as MessageTemplate[] | undefined;
 };
@@ -50,7 +50,7 @@ export const sortTemplates = async (templates: MessageTemplate[]): Promise<Messa
       return (res.data as MessageTemplateList).templates;
     })
     .catch(err => {
-      toast.error(err.response.data.messages.join('\n'));
+      toast.error(err.response?.data?.messages.join('\n'));
       return;
     }) as MessageTemplate[] | undefined;
 };
@@ -58,7 +58,7 @@ export const sortTemplates = async (templates: MessageTemplate[]): Promise<Messa
 export const initUser = async(): Promise<void> => {
   await privateClient.post(`${envVars.messageSenderUrl}/sort-templates`)
     .catch(err => {
-      toast.error(err.response.data.messages.join('\n'));
+      toast.error(err.response?.data?.messages.join('\n'));
       return;
     });
 };

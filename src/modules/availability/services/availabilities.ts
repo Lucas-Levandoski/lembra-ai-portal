@@ -7,7 +7,7 @@ export const getAvailabilities = async (errorFn: (data: IAvailabilityErroredItem
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response.data);
-      toast.error(err.response.data.message.join('\n'));
+      toast.error(err.response?.data?.message.join('\n'));
       return;
     }) as Availability;
 };
@@ -20,7 +20,7 @@ export const setAvailabilities = async (availabilities: Availability, errorFn: (
     })
     .catch(err => {
       errorFn(err.response.data.data);
-      toast.error(err.response.data.messages.join('\n'));
+      toast.error(err.response?.data?.messages.join('\n'));
       return;
     }) as Availability | undefined;
 };

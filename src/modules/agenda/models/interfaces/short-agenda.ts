@@ -3,4 +3,5 @@ export interface IShortAgendaProps {
   name: string;
   colorName: string;
   tag: string;
+  timeFrame: number;
 }
