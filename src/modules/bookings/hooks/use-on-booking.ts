@@ -46,12 +46,15 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
 
   const getProfile = async () => {
     const _profile = await readProfileByTag(userTag);
-
     if(!_profile) return ''; 
 
     setProfile(_profile);
 
     return _profile.id;
+  };
+
+  const getAvailabilities = async () => {
+    
   };
 
   const getAgenda = async (_agendas: IShortAgendaProps[], _agendaTag: string) => {

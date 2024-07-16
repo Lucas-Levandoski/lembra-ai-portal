@@ -47,7 +47,7 @@ export const getAgendasByUser = async (userId: string, errorFn: (data: any) => v
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar agenda');
+      toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
       throw new Error(err);
     }) as IShortAgendaProps[] | undefined;
 };
