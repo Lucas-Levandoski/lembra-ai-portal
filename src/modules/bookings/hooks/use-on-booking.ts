@@ -2,6 +2,7 @@
 
 import { IShortAgendaProps } from 'Agenda/models';
 import { getAgendasByUser } from 'Agenda/services';
+import { listAvailableDates } from 'Bookings/services';
 import { readProfileByTag, IShortProfile } from 'Profile';
 import { useEffect, useState } from 'react';
 
@@ -11,6 +12,7 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
   const [agenda, setAgenda] = useState<IShortAgendaProps>();
   const [agendas, setAgendas] = useState<IShortAgendaProps[]>([]);
   const [profile, setProfile] = useState<IShortProfile>();
+  const [availableDates, setAvailableDates] = useState<string[]>([]);
 
   useEffect(() => {
     init();
@@ -24,7 +26,14 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
       if(!userId) return;
 
       const _agendas = await getAgendas(userId);
-      if(agendaTag && _agendas) await getAgenda(_agendas, agendaTag);
+      if(agendaTag && _agendas) {
+        const foundAgenda = getAgenda(_agendas, agendaTag);
+
+        console.log(foundAgenda);
+
+        if(foundAgenda)
+          await getAvailabeDates(userId, foundAgenda.id);
+      } 
 
     } finally {
       setIsLoading(false);
@@ -46,28 +55,39 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
 
   const getProfile = async () => {
     const _profile = await readProfileByTag(userTag);
-    if(!_profile) return ''; 
+    if(!_profile) return '';
 
     setProfile(_profile);
 
     return _profile.id;
   };
 
-  const getAvailabilities = async () => {
-    
+  const getAvailabeDates = async (userId: string, agendaId: string) => {
+    const dates = await listAvailableDates(userId, agendaId);
+
+    console.log(dates);
+
+    if(!dates) return;
+
+    setAvailableDates(dates);
   };
 
-  const getAgenda = async (_agendas: IShortAgendaProps[], _agendaTag: string) => {
+  const getAgenda = (_agendas: IShortAgendaProps[], _agendaTag: string): IShortAgendaProps | undefined => {
     const agendaFound = _agendas.find(_agenda => _agenda.tag === _agendaTag);
 
+    if(!agendaFound) return;
+
     setAgenda(agendaFound);
+
+    return agendaFound;
   };
 
   return {
-    getAgendaIds: getAgenda,
+    getAgenda,
     isLoading,
     profile,
     agendas,
     agenda,
+    availableDates,
   };
 }

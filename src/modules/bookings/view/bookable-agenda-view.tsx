@@ -8,11 +8,17 @@ type props = {
 }
 
 export function BookableAgendaView({ userTag, agendaTag }: props) {
-  const { profile, agenda } = useOnBooking(userTag, agendaTag);
+  const { profile, agenda, availableDates } = useOnBooking(userTag, agendaTag);
 
   return (
     agenda &&
     profile &&
-    <BookingAgendaVisualization agendaName={agenda.name} colorName={agenda.colorName} key={agenda.id} timeFrame={agenda.timeFrame} profile={profile} />
+    <BookingAgendaVisualization 
+      agendaName={agenda.name} 
+      colorName={agenda.colorName} 
+      key={agenda.id} 
+      timeFrame={agenda.timeFrame} 
+      profile={profile} 
+      availableDates={availableDates} />
   );
 }

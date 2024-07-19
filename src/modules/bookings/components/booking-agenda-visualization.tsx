@@ -9,9 +9,10 @@ type props = {
   colorName: string;
   isPreview?: boolean;
   profile?: IShortProfile;
+  availableDates?: string[];
 }
 
-export function BookingAgendaVisualization({ agendaName, timeFrame, colorName, isPreview, profile }: props) {
+export function BookingAgendaVisualization({ agendaName, timeFrame, colorName, isPreview, profile, availableDates }: props) {
   return (
     <div className="flex min-w-[600px] w-fit shadow-lg p-6 rounded-xl gap-4 mx-auto">
       <div className="flex gap-3 flex-col w-[500px]">
@@ -25,7 +26,7 @@ export function BookingAgendaVisualization({ agendaName, timeFrame, colorName, i
       </div>
       <div className="border-r w-1"></div>
       <div className="flex"> 
-        <Calendar  />
+        <Calendar highlightedDays={availableDates} />
       </div>
     </div>
   );
