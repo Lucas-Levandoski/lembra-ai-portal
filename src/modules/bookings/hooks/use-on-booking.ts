@@ -65,8 +65,6 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
   const getAvailabeDates = async (userId: string, agendaId: string) => {
     const dates = await listAvailableDates(userId, agendaId);
 
-    console.log(dates);
-
     if(!dates) return;
 
     setAvailableDates(dates);
