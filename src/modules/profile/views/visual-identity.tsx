@@ -1,7 +1,7 @@
 export function VisualIdentityView() {
   return (
     <div>
-      Identidyade Visual Configs
+      Identidade Visual Configs
     </div>
   );
 }

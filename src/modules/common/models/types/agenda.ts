@@ -2,6 +2,7 @@ export type AgendaElement = {
   id: string;
   pKey: string;
   details: AgendaDetails;
+  tag: string;
 }
 
 export type AgendaDetails = {

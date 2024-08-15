@@ -1,9 +1,11 @@
-import { IShortProfile } from '../interfaces';
+import { IProfile, IShortProfile } from '../interfaces';
 
 export type ProfileSlice = {
-  profile?: IShortProfile,
+  profile?: IProfile,
+  shortProfile?: IShortProfile,
   isProfileLoading: boolean,
 
-  setProfile: (profile?: IShortProfile) => void,
+  setProfile: (profile?: IProfile) => void,
+  setShortProfile: (profile?: IShortProfile) => void,
   setIsProfileLoading: (isProfileLoading: boolean) => void,
 }

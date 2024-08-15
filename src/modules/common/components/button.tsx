@@ -14,15 +14,15 @@ type props = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 
 const variants: { [key in Variant]: string } = {
-  primary: 'bg-blue-700 text-white border-primary px-4 py-2 h-12 min-w-40',
-  secondary: 'bg-slate-100 text-gray-900 border-primary px-4 py-2 h-12 min-w-40',
-  outlined: 'bg-white text-primary border-2 border-primary px-4 py-2 h-12 min-w-40',
+  primary: 'bg-blue-700 text-white border-primary h-12 min-w-40',
+  secondary: 'bg-slate-100 text-gray-900 border-primary h-12 min-w-40',
+  outlined: 'bg-white text-primary border-2 border-primary h-12 min-w-40',
   text: 'bg-white text-textPrimary p-2',
   icon: 'border-none p-2 rounded-full hover:bg-gray-200 transition-colors'
 };
 
 export function Button({ variant = 'primary', onClick, children, className, disabled = false, type = 'button', route }: props) {
-  const baseClass = 'rounded-lg font-semibold px-4 py-1';
+  const baseClass = 'flex justify-center items-center rounded-lg font-semibold';
 
   return (
     route && !disabled ? (

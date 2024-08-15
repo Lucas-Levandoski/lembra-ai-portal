@@ -1,8 +1,9 @@
+import { IDateTimes } from 'Bookings/models';
 import { envVars, publicClient } from 'Common';
 import { toast } from 'react-toastify';
 
-export const listAvailableDates = async (userId: string, agendaId: string, errorFn: (data: any) => void = () => {}): Promise<string[]> => {
-  return await publicClient.get<string[]>(`${envVars.bookingsUrl}/calculated-times/list-dates`, { params: { userId, agendaId } })
+export const listAvailableDatesAndTimes = async (userId: string, agendaId: string, errorFn: (data: any) => void = () => {}): Promise<{dates: string[], times: IDateTimes}> => {
+  return await publicClient.get<{dates: string[], times: IDateTimes}>(`${envVars.bookingsUrl}/calculated-times/list-dates-and-times`, { params: { userId, agendaId } })
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);

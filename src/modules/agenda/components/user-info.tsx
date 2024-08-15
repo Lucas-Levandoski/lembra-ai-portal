@@ -1,10 +1,12 @@
 'use client';
 
-import { useAuth } from 'Common';
+import { BouncingThreeDotsLoading, useAuth } from 'Common';
+import { useStore } from 'Store';
 import Link from 'next/link';
 
 export function UserInfo() {
   const { user } = useAuth();
+  const { profile, isProfileLoading } = useStore(state => ({ profile: state.profile, isProfileLoading: state.isProfileLoading }));
 
   const domain = window ? window.location.origin : '';
 
@@ -14,13 +16,15 @@ export function UserInfo() {
       <h1>{user?.name} {user?.surname}</h1>
       <div className="flex gap-3 items-center">
         <span className="bg-blue-100 rounded-lg text-blue-700 px-3 py-1 font-semibold">LINK</span>
-        <Link 
-          target="_blank"
-          href={`/${user?.name.toLowerCase()}-${user?.surname.toLowerCase()}`}
-          className="font-semibold text-blue-700"
-        >
-          {domain}/{user?.name.toLowerCase()}-{user?.surname.toLowerCase()}
-        </Link>
+        {
+          isProfileLoading
+            ? <BouncingThreeDotsLoading />
+            : (
+              <Link target="_blank" href={`/${profile?.tag}`} className="font-semibold text-blue-700">
+                {domain}/{profile?.tag}
+              </Link>
+            )
+        }
       </div>
     </div>
   );

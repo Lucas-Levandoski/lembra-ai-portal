@@ -5,15 +5,19 @@ import { useStore } from 'Store';
 import { toast } from 'react-toastify';
 
 export function useAgenda() {
-  const { agendas, isAgendaLoading, setAgendas, setIsAgendaLoading } = useStore(state => ({
+  const { agendas, isAgendaLoading, setAgendas, setIsAgendaLoading, profile } = useStore(state => ({
     agendas: state.agendas,
     setAgendas: state.setAgendas,
     isAgendaLoading: state.isAgendaLoading,
-    setIsAgendaLoading: state.setIsAgendaLoading
+    setIsAgendaLoading: state.setIsAgendaLoading,
+    isProfileLoading: state.isProfileLoading,
+    profile: state.profile,
   }));
 
-  const onCopy = (agendaName: string) => {
-    console.info(agendaName, 'copied');
+  const onCopy = (agendaTag: string) => {
+    const domain = window ? window.location.origin : '';
+
+    navigator.clipboard.writeText(`${domain}/${profile?.tag}/${agendaTag}`);
 
     toast.success('Link copiado com sucesso');
   };

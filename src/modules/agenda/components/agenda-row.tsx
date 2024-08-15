@@ -13,7 +13,8 @@ type props = {
 }
 
 export function AgendaRow({ agenda, onCopy, onToggleActive }: props) {
-  const {colorName, isEnable, name, timeFrame} = agenda.details;
+  const { tag } = agenda;
+  const { colorName, isEnable, name, timeFrame } = agenda.details;
 
   return (
     <div className="flex items-center min-h-12">
@@ -30,7 +31,7 @@ export function AgendaRow({ agenda, onCopy, onToggleActive }: props) {
         </span>
         <Button variant="icon" onClick={() => {}}><BiTrash className="size-6" /></Button>
         <Button variant="icon" className="p-1" route={`/portal/agenda/edit/${agenda.id}`}><HiOutlineAdjustmentsHorizontal className="size-8" /></Button>
-        <Button variant="icon" className="text-blue-500 flex items-center gap-2" onClick={() => onCopy(name)}><IoCopyOutline  className="size-8" />Copia link</Button>
+        <Button variant="icon" className="text-blue-500 flex items-center gap-2" onClick={() => onCopy(tag)}><IoCopyOutline className="size-8" />Copiar link</Button>
       </div>
     </div>
   );
