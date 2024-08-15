@@ -15,10 +15,9 @@ export function useInitializeUser() {
     setIsProfileLoading(true);
 
     await readMyProfile()
-      .then(_profile => setProfile(_profile))
+      .then(async (profile) => setProfile(profile))
       .finally(() => setIsProfileLoading(false));
   };
-
 
   return {
     onInitilalize,

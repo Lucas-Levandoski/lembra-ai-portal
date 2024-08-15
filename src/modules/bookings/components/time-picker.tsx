@@ -3,9 +3,11 @@ import { twMerge } from 'tailwind-merge';
 
 type props = {
   times?: string[];
+  selectedTime?: number;
+  onSelectTime?: (index: number) => void;
 }
 
-export function TimePicker({ times }: props) {
+export function TimePicker({ times, onSelectTime = () => {}, selectedTime }: props) {
 
   return (
     <div className={twMerge('flex flex-col gap-4 overflow-x-hidden transition-all w-fit', times && times.length > 0 ? 'max-w-300' : 'max-w-0')}>
@@ -13,7 +15,12 @@ export function TimePicker({ times }: props) {
       <div className="grid grid-cols-4 gap-2 max-h-[300px] overflow-y-auto">
         {
           times && 
-          times.map(time => <Button variant="text" className="bg-slate-200 h-8" key={time}>{time}</Button>) 
+          times.map((time, i) => <Button 
+            onClick={() => onSelectTime(i)} 
+            variant="text" 
+            className={twMerge('bg-slate-200 h-8', i === selectedTime && 'bg-blue-600 text-white')} 
+            key={time}
+          >{time}</Button>) 
         }
         {
           times && 

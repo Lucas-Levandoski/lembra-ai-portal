@@ -4,6 +4,7 @@ import { EditAgendaCard } from '../components';
 import { BookingAgendaVisualization } from 'Bookings';
 import { CirclyingFourDotsLoading, ErrorMessage } from 'Common';
 import { useEditAgenda } from '../hooks';
+import { useStore } from 'Store';
 
 type props = {
   agendaId: string;
@@ -11,6 +12,7 @@ type props = {
 
 export function EditAgendaView({ agendaId }: props) {
   const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda(agendaId);
+  const { shortProfile } = useStore(state => ({ shortProfile: state.shortProfile }));
 
   return (
     <>
@@ -32,6 +34,7 @@ export function EditAgendaView({ agendaId }: props) {
             </div>
             <div className="col-span-6">
               <BookingAgendaVisualization
+                profile={shortProfile}
                 agendaName={agenda.name}
                 colorName={agenda.colorName}
                 timeFrame={agenda.timeFrame}

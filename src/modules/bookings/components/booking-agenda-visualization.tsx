@@ -8,16 +8,30 @@ type props = {
   agendaName: string;
   timeFrame: number;
   colorName: string;
-  profile: IShortProfile;
+  profile?: IShortProfile;
   selectedDate?: string;
   isPreview?: boolean;
   availableDates?: string[];
   availableTimes?: string[];
   onDateChange?: (date: string) => void;
-
+  selectedTime?: number;
+  onSelectTime?: (index: number) => void;
 }
 
-export function BookingAgendaVisualization({ agendaName, timeFrame, colorName, isPreview, profile, availableDates, selectedDate, onDateChange, availableTimes }: props) {
+export function BookingAgendaVisualization({ 
+  agendaName, 
+  timeFrame, 
+  colorName, 
+  isPreview, 
+  profile, 
+  availableDates, 
+  selectedDate, 
+  onDateChange, 
+  availableTimes,
+  selectedTime,
+  onSelectTime,
+}: props) {
+
   return (
     <div className="flex min-w-[600px] w-fit shadow-lg p-6 rounded-xl gap-4 mx-auto">
       <div className="flex gap-3 flex-col w-[500px]">
@@ -32,7 +46,7 @@ export function BookingAgendaVisualization({ agendaName, timeFrame, colorName, i
       <div className="border-r w-1"></div>
       <div className="flex gap-6"> 
         <Calendar currentDay={selectedDate} highlightedDays={availableDates} onSelectedDay={onDateChange} />
-        <TimePicker times={availableTimes} />
+        <TimePicker times={availableTimes} selectedTime={selectedTime} onSelectTime={onSelectTime} />
       </div>
     </div>
   );

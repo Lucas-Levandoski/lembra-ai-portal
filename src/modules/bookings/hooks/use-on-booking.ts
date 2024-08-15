@@ -17,6 +17,7 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
   const [availableTimes, setAvailableTimes] = useState<IDateTimes>({});
   const [selectedDate, setSelectedDate] = useState<string>();
   const [timesForDate, setTimesForDate] = useState<string[]>();
+  const [selectedTime, setSelectedTime] = useState<number>();
 
   useEffect(() => {
     init();
@@ -89,6 +90,10 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
     setTimesForDate(availableTimes[date]);
   };
 
+  const handleSelectedTime = (index: number) => {
+    setSelectedTime(index);
+  };
+
   return {
     getAgenda,
     isLoading,
@@ -100,5 +105,7 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
     selectedDate,
     timesForDate,
     handleDateChange,
+    handleSelectedTime,
+    selectedTime,
   };
 }
