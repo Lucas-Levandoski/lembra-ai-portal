@@ -10,15 +10,15 @@ type props = {
 export function TimePicker({ times, onSelectTime = () => {}, selectedTime }: props) {
 
   return (
-    <div className={twMerge('flex flex-col gap-4 overflow-x-hidden transition-all w-fit', times && times.length > 0 ? 'max-w-300' : 'max-w-0')}>
+    <div className={twMerge('flex flex-col gap-4 overflow-x-hidden', times && times.length > 0 ? 'max-w-300' : 'max-w-0')}>
       <h2>Selecione o Horário</h2>
-      <div className="grid grid-cols-4 gap-2 max-h-[300px] overflow-y-auto">
+      <div className="grid grid-cols-4 gap-2 px-2 max-h-[300px] overflow-y-auto">
         {
           times && 
           times.map((time, i) => <Button 
             onClick={() => onSelectTime(i)} 
             variant="text" 
-            className={twMerge('bg-slate-200 h-8', i === selectedTime && 'bg-blue-600 text-white')} 
+            className={twMerge('bg-slate-200 h-8 duration-300 transition-colors', i === selectedTime && 'bg-blue-600 text-white')} 
             key={time}
           >{time}</Button>) 
         }

@@ -31,6 +31,7 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
       if(!userId) return;
 
       const _agendas = await getAgendas(userId);
+
       if(agendaTag && _agendas) {
         const foundAgenda = getAgenda(_agendas, agendaTag);
 
@@ -88,10 +89,16 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
     setSelectedDate(date);
 
     setTimesForDate(availableTimes[date]);
+
+    setSelectedTime(-1);
   };
 
   const handleSelectedTime = (index: number) => {
     setSelectedTime(index);
+  };
+
+  const onNext = () => {
+
   };
 
   return {
@@ -107,5 +114,6 @@ export function useOnBooking(userTag: string, agendaTag?: string) {
     handleDateChange,
     handleSelectedTime,
     selectedTime,
+    onNext,
   };
 }
