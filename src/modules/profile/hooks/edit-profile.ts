@@ -15,18 +15,18 @@ export function useEditProfile() {
     isProfileLoading, 
     setProfile 
   } = useStore(state => ({ 
-    profile: state.profile, 
+    profile: state.profile!, 
     isProfileLoading: state.isProfileLoading,
     setProfile: state.setProfile,
   }));
   
 
   const tryLeave = (event: BeforeUnloadEvent) => {
-    if(changedProfile.tag !== profile?.tag) return event.preventDefault();
+    if(changedProfile.tag !== profile.tag) return event.preventDefault();
 
     if(changedProfile.details) {
       for(const key in changedProfile.details) {
-        if(profile?.details[key as keyof IProfileDetails] !== changedProfile.details[key as keyof IProfileDetails]) 
+        if(profile.details[key as keyof IProfileDetails] !== changedProfile.details[key as keyof IProfileDetails]) 
           return event.preventDefault(); 
       }
     }
@@ -61,9 +61,9 @@ export function useEditProfile() {
     await patchProfile(changedProfile)
       .then(_profile => {
         setProfile(_profile);
+        setChangedProfile({});
         toast.success('Dados atualizados com sucesso');
-      })
-      .catch;
+      });
   };
 
   const onCancel = () => {

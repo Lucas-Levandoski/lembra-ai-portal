@@ -56,7 +56,7 @@ export function ProfileView() {
               </div>
               <div className="flex w-full flex-col gap-2">
                 <label className="text-lg font-bold" htmlFor="welcoming">Mensagem de boas-vindas</label>
-                <textarea className="p-2 border-2 border-gray-200 h-40 rounded-lg" id="welcoming" value="Seja muito bem vindo"/>
+                <textarea className="p-2 border-2 border-gray-200 h-40 rounded-lg" id="welcoming" value="Seja muito bem vindo" onChange={console.info}/>
               </div>
               <div className="flex w-full flex-col gap-2">
                 <label htmlFor="phone-region" className="text-lg font-bold">Região do Telefone</label>
