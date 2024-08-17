@@ -13,7 +13,7 @@ export function ProfileLeftMenuView({ children }: props) {
         <Link isStrictURL route="/portal/profile/my-link">Meu Link</Link>
         <Link isStrictURL route="/portal/profile/manage-connections">Gerenciar Conexões</Link>
       </div>
-      <div className="col-span-4 flex items-center justify-center">
+      <div className="col-span-4 flex justify-center">
         {children}
       </div>
     </div>

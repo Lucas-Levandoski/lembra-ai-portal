@@ -48,7 +48,6 @@ export function useAgenda() {
   };
 
   const getAgendas = async (shouldSetLoading: boolean = false) => {
-
     if(!agendas || shouldSetLoading) setIsAgendaLoading(true);
 
     listAgendas().then(agendaResult => {
