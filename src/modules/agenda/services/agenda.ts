@@ -43,11 +43,21 @@ export const newAgenda = async (agenda: AgendaDetails, errorFn: (data: any) => v
 };
 
 export const getAgendasByUser = async (userId: string, errorFn: (data: any) => void = () => {}): Promise<IShortAgendaProps[] | undefined> => {
-  return await publicClient.get<IShortAgendaProps[]>(`${envVars.agendaUrl}/agendas-info`, {params: { userId }})
+  return await publicClient.get<IShortAgendaProps[]>(`${envVars.agendaUrl}/list-agendas`, {params: { userId }})
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
       throw new Error(err);
     }) as IShortAgendaProps[] | undefined;
+};
+
+export const getAgendaByTag = async (userId: string, tag: string, errorFn: (data: any) => void = () => {}): Promise<IShortAgendaProps | undefined> => {
+  return await publicClient.get<IShortAgendaProps>(`${envVars.agendaUrl}/agenda-info`, {params: { userId, tag}})
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
+      throw new Error(err);
+    }) as IShortAgendaProps | undefined;
 };

@@ -9,7 +9,7 @@ type props = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
-  route?: string;
+  route?: string | { pathname: string, query: { [name: string]: string }};
 };
 
 

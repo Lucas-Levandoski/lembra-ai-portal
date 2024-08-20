@@ -33,7 +33,7 @@ function HiglightedDayElement(dayProps: PickersDayProps<dayjs.Dayjs> & { highlig
   );
 }
 
-export function Calendar({ 
+export function Calendar({
   isLoading = false, 
   highlightedDays = [],
   onSelectedDay = () => {},

@@ -36,7 +36,7 @@ export default function RootLayout({children}: props) {
       <MsalProvider instance={msalInstance}>
         <AuthContextProvider>
           <body className={inter.className} suppressHydrationWarning>
-            <ToastContainer position="bottom-center" closeOnClick />
+            <ToastContainer position="bottom-center" closeOnClick stacked/>
             {children}
           </body>
         </AuthContextProvider>

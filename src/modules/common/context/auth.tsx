@@ -37,7 +37,7 @@ type AuthContextProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextType);
 
-export function AuthContextProvider(props: AuthContextProviderProps) {
+export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const { instance, accounts, inProgress } = useMsal();
   const [user, setUser] = useState<User | null>(null);
   const request = { ...loginRequest, account: accounts[0] };
@@ -131,7 +131,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         isAuthenticated
       }}
     >
-      { props.children }
+      { children }
     </AuthContext.Provider>
   );
 }

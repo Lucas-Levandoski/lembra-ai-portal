@@ -1,4 +1,4 @@
-import { BookableAgendaView } from 'Bookings';
+import { PickTimeForAgendaView } from 'Bookings/views';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,5 +11,5 @@ type Params = {
 }
 
 export default function PublicAgendaByTag({ params }: { params: Params}) {
-  return <BookableAgendaView userTag={params.userTag} agendaTag={params.agendaTag} />;
+  return <PickTimeForAgendaView userTag={params.userTag} agendaTag={params.agendaTag} />;
 }

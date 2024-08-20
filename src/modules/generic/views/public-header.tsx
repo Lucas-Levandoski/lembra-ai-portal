@@ -33,8 +33,8 @@ export function PublicHeaderView() {
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
           <div className="flex gap-4">
-            <Button variant="text" onClick={() => login()}> login </Button>
-            <Button variant="text" onClick={() => register()}> signup </Button>
+            <Button variant="text" onClick={() => login()}>login</Button>
+            <Button variant="text" onClick={() => register()}>signup</Button>
           </div>
         </UnauthenticatedTemplate>
       </div>  

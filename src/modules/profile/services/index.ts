@@ -1,7 +1,7 @@
-import { RecursivePartial, envVars, privateClient, publicClient } from 'Common';
+import { RecursivePartial, envVars } from 'Common/utils';
+import { privateClient, publicClient } from 'Common/services';
 import { IProfile, IShortProfile } from '../models';
 import { toast } from 'react-toastify';
-
 
 export const readProfileByTag = async (tag: string, errorFn: (data: any) => void = () => {}) => {
   return await publicClient.get<IShortProfile>(`${envVars.profileUrl}/user-tag`, {params: { tag }})
