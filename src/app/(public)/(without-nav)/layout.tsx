@@ -1,4 +1,4 @@
-import { PublicNoNavHeaderView } from 'Generic';
+import { PublicNoNavHeaderView } from 'Generic/views';
 
 export default function PublicLayout({
   children,
