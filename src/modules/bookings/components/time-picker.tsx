@@ -18,7 +18,7 @@ export function TimePicker({ times, onSelectTime = () => {}, selectedTime }: pro
           times.map((time, i) => <Button 
             onClick={() => onSelectTime(i)} 
             variant="text" 
-            className={twMerge('bg-slate-200 h-8 duration-300 transition-colors', i === selectedTime && 'bg-blue-600 text-white')} 
+            className={twMerge('bg-slate-200 h-8  duration-300 transition-colors w-14', i === selectedTime && 'bg-blue-600 text-white')} 
             key={time}
           >{time}</Button>) 
         }
@@ -26,14 +26,14 @@ export function TimePicker({ times, onSelectTime = () => {}, selectedTime }: pro
           times && 
           times.length < 28 && 
           new Array(28 - (times?.length ?? 0)).fill('-').map(
-            (numb, i) => <Button  variant="text" className="bg-slate-200 h-8" key={numb+i} disabled>{numb}</Button>
+            (numb, i) => <Button  variant="text" className="bg-slate-200 h-8 w-14" key={numb+i} disabled>{numb}</Button>
           )
         }
         {
           times &&
           times.length > 28 &&
           new Array(4 - times.length % 4).fill('-').map(
-            (numb, i) => <Button  variant="text" className="bg-slate-200 h-8" key={numb+i} disabled>{numb}</Button>
+            (numb, i) => <Button  variant="text" className="bg-slate-200 h-8 w-14" key={numb+i} disabled>{numb}</Button>
           )
         }
       </div>

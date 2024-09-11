@@ -71,10 +71,6 @@ export function useOnPickingTime(userTag: string, agendaTag: string) {
     }));
   };
 
-  const onNext = () => {
-
-  };
-
   return {
     isLoading,
     profile,
@@ -83,6 +79,5 @@ export function useOnPickingTime(userTag: string, agendaTag: string) {
     selected,
     handleDateChange,
     handleSelectedTime,
-    onNext,
   };
 }
