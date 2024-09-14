@@ -53,7 +53,7 @@ export const getAgendasByUser = async (userId: string, errorFn: (data: any) => v
 };
 
 export const getAgendaByTag = async (userId: string, tag: string, errorFn: (data: any) => void = () => {}): Promise<IShortAgendaProps | undefined> => {
-  return await publicClient.get<IShortAgendaProps>(`${envVars.agendaUrl}/agenda-info`, {params: { userId, tag}})
+  return await publicClient.get<IShortAgendaProps>(`${envVars.agendaUrl}/agenda-info-by-tag`, {params: { userId, tag}})
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);

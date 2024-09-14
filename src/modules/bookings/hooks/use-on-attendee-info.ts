@@ -52,6 +52,7 @@ export function useOnAttendeeInfo(userTag: string, agendaTag: string, date: stri
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    
   };
 
   return {
