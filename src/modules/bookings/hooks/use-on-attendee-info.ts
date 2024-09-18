@@ -1,7 +1,7 @@
 import { IShortAgendaProps } from 'Agenda/models';
 import { getAgendaByTag } from 'Agenda/services';
 import { IAttendeeDetails } from 'Bookings/models/interfaces';
-import { bookNewEvent } from 'Bookings/services/book-time';
+import { bookNewEvent } from 'Bookings/services';
 import { minutesToTime } from 'Common/utils';
 import { IShortProfile } from 'Profile/models';
 import { readProfileByTag } from 'Profile/services';

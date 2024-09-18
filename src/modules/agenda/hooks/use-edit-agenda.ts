@@ -6,6 +6,7 @@ import { readAgenda, updateAgenda } from '../services';
 import { toast } from 'react-toastify';
 import { useRouter  } from 'next/navigation';
 import { useTemplates } from 'Message-Templates';
+import { calculateMyAvailableTimes } from 'Bookings/services';
 
 export function useEditAgenda(agendaId: string) {
   const { push } = useRouter();
@@ -14,11 +15,14 @@ export function useEditAgenda(agendaId: string) {
   const [agenda, setAgenda] = useState<AgendaDetails>();
   const [isLoading, setIsLoading] = useState(true);
 
+  let initialTimeframe: number; 
+
   useEffect(() => {
     if(!agenda) setIsLoading(true);
 
     readAgenda(agendaId).then(res => {
-      setAgenda(res?.details);
+      setAgenda(res!.details);
+      initialTimeframe = res!.details.timeFrame;
     }).finally(() => {
       setIsLoading(false);
     });
@@ -34,7 +38,12 @@ export function useEditAgenda(agendaId: string) {
 
     await onCommitTemplates(agendaId);
 
-    await setTimeout(() => push('/portal/agenda'), 500);
+    if(initialTimeframe !== agenda.timeFrame)
+      await calculateMyAvailableTimes().then(() => {
+        toast.success('Horários disponíveis recalculados com sucesso');
+      });
+
+    setTimeout(() => push('/portal/agenda'), 500);
   };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {

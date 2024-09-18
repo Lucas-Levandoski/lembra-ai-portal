@@ -16,11 +16,12 @@ export function EditAgendaView({ agendaId }: props) {
 
   return (
     <>
-      {isLoading && (
+      {
+        isLoading && 
         <div className="h-[600px] w-full flex my-auto items-center justify-center">
           <CirclyingFourDotsLoading height={100} width={100} />
         </div>
-      )}
+      }
       {
         agenda && !isLoading && (
           <div className="grid grid-cols-10 gap-6">
