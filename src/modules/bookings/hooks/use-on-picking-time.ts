@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 
 export function useOnPickingTime(userTag: string, agendaTag: string) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [agenda, setAgenda] = useState<IShortAgendaProps>();
   const [profile, setProfile] = useState<IShortProfile>();
   const [availabilities, setAvailabilities] = useState<{ dates: string[], times: IDateTimes }>({ dates: [], times: {} });

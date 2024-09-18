@@ -1,1 +1,1 @@
-export type BookingLocation = 'google-meeting' | 'on-premise';
+export type BookingLocations = 'google-meeting' | 'on-premise';

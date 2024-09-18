@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand';
-import { Booking, BookingsSlice } from 'Bookings';
+import { BookingEntity, BookingsSlice } from 'Bookings';
 
 export const createBookingsSlice: StateCreator<BookingsSlice> = (set) => ({
   bookedDates: undefined,
@@ -11,6 +11,6 @@ export const createBookingsSlice: StateCreator<BookingsSlice> = (set) => ({
   setBookedDates: (bookedDates) => set(() => ({ bookedDates })),
   setIsBookedDatesLoading: (isBookedDatesLoading) => set(() => ({ isBookedDatesLoading })),
   setSelectedDate: (selectedDate) => set(() => ({ selectedDate })),
-  setDayBookings: (dayBookings: Booking[]) => set(() => ({ dayBookings })),
+  setDayBookings: (dayBookings: BookingEntity[]) => set(() => ({ dayBookings })),
   setIsDayBookingsLoading: (isDayBookingsLoading) => set(() => ({ isDayBookingsLoading })),
 });

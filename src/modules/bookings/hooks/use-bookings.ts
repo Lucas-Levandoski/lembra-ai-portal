@@ -1,7 +1,7 @@
 'use client';
 
 import { getBookingsByDay, listBookedDates } from 'Bookings';
-import { ParseDate, TimeGridMeeting, getTime } from 'Common';
+import { ParseDate, TimeGridMeeting, sumTimes } from 'Common';
 import { useStore } from 'Store';
 import { toast } from 'react-toastify';
 
@@ -73,16 +73,16 @@ export function useBookings() {
     if(!dayBookings || !agendas) return result;
 
     for(const booking of dayBookings) {
-      const agenda = agendas.find(_agenda => _agenda.id === booking.details.agendaId);
+      const agenda = agendas.find(_agenda => _agenda.id === booking.agendaId);
 
       if(!agenda) continue;
 
       result.push({
         agendaName: agenda.details.name,
         color: agenda.details.colorName,
-        startTime: getTime(booking.details.startDateTime),
-        endTime: getTime(booking.details.endDateTime),
-        title: booking.person.name
+        startTime: booking.details.time,
+        endTime: sumTimes(booking.details.time, booking.details.duration),
+        title: booking.guestDetails.name
       });
     }
 

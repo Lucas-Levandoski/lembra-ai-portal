@@ -1,4 +1,4 @@
-import { CirclyingFourDotsLoading, TimeGridMeeting } from 'Common';
+import { CirclyingFourDotsLoading, TimeGridMeeting, timeToMinutes } from 'Common';
 import { twMerge } from 'tailwind-merge';
 
 type props = {
@@ -27,28 +27,29 @@ export function TimeGrid({
         {
           meetings.map((meeting, i) => {
             const top = (
-              +meeting.startTime.slice(0,2) 
-              + +meeting.startTime.slice(3,5)/60 
+              timeToMinutes(meeting.startTime)/60
               - startHour
             ) * rowHeight + rowHeight/2;
 
             const height = (
-              (+meeting.endTime.slice(0,2) + +meeting.endTime.slice(3,5)/60) 
-              - (+meeting.startTime.slice(0,2) + +meeting.startTime.slice(3,5)/60)) 
-              * rowHeight;
+              (
+                (timeToMinutes(meeting.endTime)/60)- (timeToMinutes(meeting.startTime)/60)
+              )
+              * rowHeight
+            );
 
             return (
               <div key={meeting.title + i} className="absolute grid grid-cols-5 w-full" style={{ top, height }}>
-                <div className="col-span-2"></div>
+                <div className="col-span-1"></div>
                 <div className={
                   twMerge(
-                    'flex flex-col text-center justify-center col-span-2 rounded-xl bg-opacity-80', 
+                    'flex flex-col text-center justify-center col-span-4 rounded-xl bg-opacity-80 mx-auto px-2', 
                     'relative group',
                     `bg-${meeting.color}-100 text-${meeting.color}-700`
                   )
                 }>
-                  <span className="font-semibold leading-4">{meeting.title}</span>
-                  <span className={`font-light leading-4 ${height < 32 ? 'hidden' : ''}`}>{meeting.startTime} - {meeting.endTime}</span>
+                  <span className="font-semibold text-sm leading-4">{meeting.title}</span>
+                  <span className={`font-light text-sm leading-4 ${height < 32 ? 'hidden' : ''}`}>{meeting.startTime} - {meeting.endTime}</span>
                   <span className={
                     twMerge(
                       'z-10 absolute opacity-0 -right-full font-normal text-white p-2 bg-slate-900 rounded-lg', 

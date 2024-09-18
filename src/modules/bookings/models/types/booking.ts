@@ -1,28 +1,27 @@
-import { BookingLocation, BookingStatus } from 'Bookings';
+import { BookingLocations, BookingStatus, IAttendeeDetails } from 'Bookings';
 import { MessageTargets } from 'Message-Templates';
 
-export type Booking = {
+export type BookingDetails = {
+  date: string;
+  time: string;
+  duration: string;
+}
+
+export type BookingLocation = {
+  location: BookingLocations;
+  url?: string;
+}
+
+
+export type BookingEntity = {
   id: string;
-  pKey: string;
+  agendaId: string;
 
-  details: {
-    startDateTime: string,
-    endDateTime: string,
-    status: BookingStatus,
-    rescheduleBookingId?: string,
-    agendaId: string,
-  };
+  details: BookingDetails;
 
-  meetingLocation: {
-    location: BookingLocation,
-    url?: string,
-  };
+  meetingLocation: BookingLocation;
 
-  person: {
-    name: string,
-    phoneNumber: string,
-    otherInfo: string,
-  };
+  guestDetails: IAttendeeDetails;
 
   notifications: {
     [key in keyof typeof MessageTargets ]: any; //TODO: find a proper type for the notifications

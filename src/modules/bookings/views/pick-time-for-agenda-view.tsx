@@ -2,7 +2,7 @@
 
 import { TimePicker } from 'Bookings/components';
 import { useOnPickingTime } from 'Bookings/hooks';
-import { Button, Calendar, TimeCard } from 'Common/components';
+import { BouncingThreeDotsLoading, Button, Calendar, ErrorMessage, TimeCard } from 'Common/components';
 import { ProfileTag } from 'Profile/components';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -19,26 +19,44 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
     selected,
     handleDateChange,
     handleSelectedTime,
+    isLoading,
   } = useOnPickingTime(userTag, agendaTag);
 
   return (
-    agenda &&
-    profile &&
-    availabilities.dates.length &&
     (
       <div className="flex flex-col shadow-lg p-6 rounded-xl w-fit mx-auto gap-8">
         <div className="flex min-w-[600px] gap-4">
           <div className="flex gap-3 flex-col w-[500px]">
-            <ProfileTag profile={profile} />
-            <h1>{agenda.name}</h1>
-            <TimeCard colorName={agenda.colorName} timeFrame={agenda.timeFrame} />
-            <div className="border rounded-lg mt-8 p-4 flex items-center gap-6">
-              <FcGoogle className="size-8" />Google meet
-            </div>
+            {
+              isLoading
+                ? <div className="m-auto"><BouncingThreeDotsLoading /></div>
+                : (
+                  <>
+                    {
+                      profile === undefined
+                        ? <ErrorMessage message="Falha ao carregar dados do usuário" />
+                        : <ProfileTag profile={profile} />
+                    }
+                    {
+                      agenda === undefined 
+                        ? <ErrorMessage message="Falha ao carregar informações da agenda" />
+                        : (
+                          <>
+                            <h1>{agenda.name}</h1>
+                            <TimeCard colorName={agenda.colorName} timeFrame={agenda.timeFrame} />
+                            <div className="border rounded-lg mt-8 p-4 flex items-center gap-6">
+                              <FcGoogle className="size-8" />Google meet
+                            </div>
+                          </>
+                        )  
+                    }
+                  </>
+                )
+            }
           </div>
           <div className="border-r w-1"></div>
           <div className="flex gap-6"> 
-            <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={handleDateChange} />
+            <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={handleDateChange} isLoading={isLoading} />
             <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={handleSelectedTime} />
           </div>
         </div>
