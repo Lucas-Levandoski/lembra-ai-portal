@@ -29,7 +29,7 @@ export function TemplateRow({
         <span>{maskMinutes(template.timeUntil, true)} antes</span>  
         {/* <b>•</b><b>Enviar por {TargetTexts[template.target]}</b> */}
       </div>
-      <div className="ml-auto mr-0 items-center">
+      <div className="flex ml-auto mr-0 items-center">
         <Button variant="icon" onClick={() => onEdit(index)}><HiOutlineAdjustmentsHorizontal className="size-6 text-gray-600" /></Button>
         <Button variant="icon" onClick={() => onDuplicate(index)}><IoCopyOutline  className="size-6 text-gray-600" /></Button>
         <Button variant="icon" onClick={() => onRemove(index)}><BiTrash className="size-6 text-gray-600" /></Button>

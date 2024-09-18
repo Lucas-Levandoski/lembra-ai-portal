@@ -16,6 +16,7 @@ export function useOnAttendeeInfo(userTag: string, agendaTag: string, date: stri
   const [profile, setProfile] = useState<IShortProfile>();
   const [attendee, setAttendee] = useState<IAttendeeDetails>({email: '', name: '', otherInfo: '', phoneNumber: ''});
   const { time } = parseParams({ time: '' });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     init();
@@ -82,20 +83,24 @@ export function useOnAttendeeInfo(userTag: string, agendaTag: string, date: stri
             }
           }
         );
+
+        setShowSuccess(true);
       } finally {
         setIsLoadingBooking(false);
       }
-
     }
   };
 
   return {
     isLoading,
+    time,
     isLoadingBooking,
     profile,
     agenda,
     attendee,
+    showSuccess,
     onChangeProperty,
     onSubmit,
+    setShowSuccess,
   };
 }
