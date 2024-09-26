@@ -5,6 +5,7 @@ export type BookingDetails = {
   date: string;
   time: string;
   duration: string;
+  status: BookingStatus;
 }
 
 export type BookingLocation = {
@@ -16,6 +17,9 @@ export type BookingLocation = {
 export type BookingEntity = {
   id: string;
   agendaId: string;
+
+  // pKey is userId from Azure AAD
+  pKey: string;
 
   details: BookingDetails;
 

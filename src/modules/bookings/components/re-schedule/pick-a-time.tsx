@@ -1,29 +1,40 @@
-'use client';
-
-import { TimePicker } from 'Bookings/components';
-import { useOnPickingTime } from 'Bookings/hooks';
+import { IShortAgendaProps } from 'Agenda';
+import { BookingEntity, IDateTimes } from 'Bookings/models';
 import { BouncingThreeDotsLoading, Button, Calendar, ErrorMessage, TimeCard } from 'Common/components';
-import { ProfileTag } from 'Profile/components';
+import { IShortProfile, ProfileTag } from 'Profile';
 import { FcGoogle } from 'react-icons/fc';
+import { TimePicker } from '../time-picker';
+
 
 type props = {
-  userTag: string;
-  agendaTag: string;
+  booking: BookingEntity;
+  agenda?: IShortAgendaProps;
+  profile?: IShortProfile;
+  isLoading: boolean;
+  availabilities: { dates: string[], times: IDateTimes };
+  selected: { date: string, timeIndex: number, time: string};
+  onDateChange: (date: string) => void;
+  onSelectedTime: (timeIndex: number) => void;
+  onSubmit: () => void;
 }
 
-export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
-  const { 
-    profile,
-    agenda,
-    availabilities,
-    selected,
-    handleDateChange,
-    handleSelectedTime,
-    isLoading,
-  } = useOnPickingTime(userTag, agendaTag);
+
+export function ReSchedulePickATime({ 
+  agenda, 
+  booking, 
+  isLoading, 
+  profile,
+  availabilities,
+  onDateChange,
+  onSelectedTime,
+  onSubmit,
+  selected,
+}: props) {
+
+
 
   return (
-    <div className="flex flex-col shadow-lg p-6 rounded-xl w-fit mx-auto gap-8">
+    <div className="flex flex-col gap-10">
       <div className="flex min-w-[600px] gap-4">
         <div className="flex gap-3 flex-col w-[500px]">
           {
@@ -55,12 +66,12 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
         </div>
         <div className="border-r w-1"></div>
         <div className="flex gap-6"> 
-          <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={handleDateChange} isLoading={isLoading} />
-          <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={handleSelectedTime} />
+          <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={onDateChange} isLoading={isLoading} />
+          <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={onSelectedTime} />
         </div>
       </div>
       <div className="flex justify-end">
-        <Button route={{ pathname: `${agendaTag}/${selected.date}`, query: { time: selected.time } }} disabled={selected.timeIndex < 0}>Avançar</Button>
+        <Button onClick={() => onSubmit()}  disabled={selected.timeIndex < 0}>Confirmar Reagendamento</Button>
       </div>
     </div>
   );

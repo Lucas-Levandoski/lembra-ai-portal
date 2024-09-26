@@ -22,7 +22,7 @@ const variants: { [key in Variant]: string } = {
 };
 
 export function Button({ variant = 'primary', onClick, children, className, disabled = false, type = 'button', route }: props) {
-  const baseClass = 'flex justify-center items-center rounded-lg font-semibold';
+  const baseClass = 'flex justify-center items-center rounded-lg font-semibold px-4';
 
   return (
     route && !disabled ? (

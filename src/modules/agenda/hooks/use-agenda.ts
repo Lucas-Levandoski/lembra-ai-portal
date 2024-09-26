@@ -1,6 +1,6 @@
 'use client';
 
-import { listAgendas, updateAgenda } from 'Agenda';
+import { listMyAgendas, updateMyAgenda } from 'Agenda';
 import { useStore } from 'Store';
 import { toast } from 'react-toastify';
 
@@ -37,7 +37,7 @@ export function useAgenda() {
 
     setAgendas(agendas);
 
-    await updateAgenda(agendaId, agenda.details)
+    await updateMyAgenda(agendaId, agenda.details)
       .then(() => {
         toast.success(`Agenda '${agenda.details.name}' ${agenda.details.isEnable ? 'ativada' : 'desativada'} com sucesso`);
       }).catch(() => {
@@ -50,7 +50,7 @@ export function useAgenda() {
   const getAgendas = async (shouldSetLoading: boolean = false) => {
     if(!agendas || shouldSetLoading) setIsAgendaLoading(true);
 
-    listAgendas().then(agendaResult => {
+    listMyAgendas().then(agendaResult => {
       setAgendas(agendaResult);
     }).finally(() => {
       setIsAgendaLoading(false);

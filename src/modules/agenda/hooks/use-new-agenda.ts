@@ -2,7 +2,7 @@
 
 import { AgendaDetails } from 'Common';
 import { FormEvent, useState } from 'react';
-import { newAgenda } from '../services';
+import { newMyAgenda } from '../services';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useTemplates } from 'Message-Templates';
@@ -18,7 +18,7 @@ export function useNewAgenda() {
     e.preventDefault();
     setIsLoading(true);
 
-    const _agenda = await newAgenda(agenda).then((data) => {
+    const _agenda = await newMyAgenda(agenda).then((data) => {
       toast.success(`Agenda ${agenda.name} criada com sucesso`);
       return data;
     });

@@ -6,3 +6,11 @@ export interface IBookingReqBody {
   meetingLocation: BookingLocation;
   guestDetails: IAttendeeDetails;
 }
+
+export interface IReScheduleReqBody {
+  oldBookingId: string;
+  date: string;
+  time: string;
+  duration: string;
+  reason: string;
+}

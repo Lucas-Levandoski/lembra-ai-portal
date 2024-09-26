@@ -2,7 +2,7 @@
 
 import { AgendaDetails } from 'Common';
 import { FormEvent, useEffect, useState } from 'react';
-import { readAgenda, updateAgenda } from '../services';
+import { readMyAgenda, updateMyAgenda } from '../services';
 import { toast } from 'react-toastify';
 import { useRouter  } from 'next/navigation';
 import { useTemplates } from 'Message-Templates';
@@ -20,7 +20,7 @@ export function useEditAgenda(agendaId: string) {
   useEffect(() => {
     if(!agenda) setIsLoading(true);
 
-    readAgenda(agendaId).then(res => {
+    readMyAgenda(agendaId).then(res => {
       setAgenda(res!.details);
       initialTimeframe = res!.details.timeFrame;
     }).finally(() => {
@@ -32,7 +32,7 @@ export function useEditAgenda(agendaId: string) {
     e.preventDefault();
     if(!agenda) return;
 
-    await updateAgenda(agendaId, agenda).then(() => {
+    await updateMyAgenda(agendaId, agenda).then(() => {
       toast.success(`Agenda ${agenda.name} editada com sucesso`);
     });
 

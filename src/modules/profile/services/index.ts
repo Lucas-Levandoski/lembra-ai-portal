@@ -13,6 +13,16 @@ export const readProfileByTag = async (tag: string, errorFn: (data: any) => void
     }) as IShortProfile | undefined;
 };
 
+export const readProfileById = async (userId: string, errorFn: (data: any) => void = () => {}) => {
+  return await publicClient.get<IShortProfile>(`${envVars.profileUrl}/user-id`, {params: { userId }})
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      toast.error(err.response?.data?.messages ?? 'Falha ao encontrar usuário pelo id');
+      throw new Error(err);
+    }) as IShortProfile | undefined;
+};
+
 export const readMyProfile = async (errorFn: (data: any) => void = () => {}) => {
   return await privateClient.get<IProfile>(`${envVars.profileUrl}/my-profile`)
     .then(res => res.data)
