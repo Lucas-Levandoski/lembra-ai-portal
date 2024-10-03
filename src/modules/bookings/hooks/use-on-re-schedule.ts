@@ -1,6 +1,6 @@
 import { getAgendaById, IShortAgendaProps } from 'Agenda';
 import { BookingEntity, IDateTimes } from 'Bookings/models';
-import { listAvailableDatesAndTimes, readEvent } from 'Bookings/services';
+import { listAvailableDatesAndTimes, readEvent, reScheduleEvent } from 'Bookings/services';
 import { IShortProfile } from 'Profile/models';
 import { readProfileById } from 'Profile/services';
 import { useEffect, useState } from 'react';
@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 export function useOnReSchedule(bookingId: string) {
   const [isLoading, setIsLoading] = useState(true);
   const [isBookingLoading, setIsBookingLoading] = useState(true);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [agenda, setAgenda] = useState<IShortAgendaProps>();
   const [profile, setProfile] = useState<IShortProfile>();
   const [oldBooking, setOldBooking] = useState<BookingEntity>();
@@ -82,14 +84,33 @@ export function useOnReSchedule(bookingId: string) {
   };
 
   const handleSubmit = async () => {
-    console.log('submit');
+    if (
+      selected.timeIndex < 0 ||
+      !oldBooking ||
+      !agenda
+    ) return;
 
-    // await reScheduleEvent(oldBooking!.pKey, {});
+    setIsSubmitLoading(true);
+
+    try {
+      await reScheduleEvent(oldBooking!.pKey, {
+        date: selected.date,
+        duration: oldBooking.details.duration,
+        time: selected.time,
+        oldBookingId: oldBooking.id,
+      });
+
+      setIsSubmitSuccess(true);
+    } finally {
+      setIsSubmitLoading(false);
+    }
   };
 
   return {
     isBookingLoading,
+    isSubmitLoading,
     isLoading,
+    isSubmitSuccess,
     oldBooking,
     profile,
     agenda,

@@ -1,4 +1,4 @@
-export function timeAndDateToIso(date: string, time: string, length: string): string {
+export function timeAndDateToIso(date: string, time: string): string {
   const result = new Date(date);
 
   const [hours, minutes] = time.split(':');

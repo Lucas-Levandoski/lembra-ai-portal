@@ -13,6 +13,8 @@ export function ReScheduleView({ bookingId }: props) {
     agenda, 
     isLoading, 
     isBookingLoading, 
+    isSubmitLoading,
+    isSubmitSuccess,
     oldBooking, 
     profile, 
     availabilities, 
@@ -28,22 +30,14 @@ export function ReScheduleView({ bookingId }: props) {
         return <BookingNotFound />;
       case 'booked':
         return (
-          <ReSchedulePickATime 
-            availabilities={availabilities} 
-            agenda={agenda} 
-            booking={oldBooking!} 
-            isLoading={isLoading} 
-            profile={profile} 
-            selected={selected}
-            onSelectedTime={handleSelectedTime}
-            onDateChange={handleDateChange} 
-            onSubmit={handleSubmit} 
+          <ReSchedulePickATime availabilities={availabilities} agenda={agenda} booking={oldBooking!} isLoading={isLoading} profile={profile} selected={selected} 
+            onSelectedTime={handleSelectedTime}onDateChange={handleDateChange} onSubmit={handleSubmit} isSubmitLoading={isSubmitLoading} isSubmitSuccess={isSubmitSuccess}
           />
         );
       case 'rescheduled':
-        return <BookingAlreadyReScheduled agenda={agenda} booking={oldBooking} isLoading={isLoading} profile={profile} />;
+        return <BookingAlreadyReScheduled agenda={agenda} booking={oldBooking} profile={profile} />;
       case 'canceled':
-        return <BookingCanceled agenda={agenda} booking={oldBooking} isLoading={isLoading} profile={profile} />;
+        return <BookingCanceled agenda={agenda} booking={oldBooking} profile={profile} />;
     }
   };
 

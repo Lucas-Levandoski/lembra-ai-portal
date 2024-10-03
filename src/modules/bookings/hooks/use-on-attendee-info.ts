@@ -74,6 +74,7 @@ export function useOnAttendeeInfo(userTag: string, agendaTag: string, date: stri
               phoneNumber: `+55${attendee.phoneNumber}`
             },
             details: {
+              status: 'booked',
               date,
               time,
               duration: minutesToTime(agenda.timeFrame),

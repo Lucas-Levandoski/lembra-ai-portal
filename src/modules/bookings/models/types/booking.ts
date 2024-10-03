@@ -6,6 +6,8 @@ export type BookingDetails = {
   time: string;
   duration: string;
   status: BookingStatus;
+  rescheduleBookingId?: string;
+  sourceBookingId?: string;
 }
 
 export type BookingLocation = {

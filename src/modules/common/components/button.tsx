@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 
-type Variant = 'primary' | 'secondary' | 'outlined' | 'text' | 'icon';
+type Variant = 'primary' | 'secondary' | 'danger' | 'outlined' | 'text' | 'icon';
 
 type props = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: Variant;
@@ -16,6 +16,7 @@ type props = ButtonHTMLAttributes<HTMLButtonElement> & {
 const variants: { [key in Variant]: string } = {
   primary: 'bg-blue-700 text-white border-primary h-12 min-w-40',
   secondary: 'bg-slate-100 text-gray-900 border-primary h-12 min-w-40',
+  danger: 'bg-red-500 text-white border-primary h-12 min-w-40',
   outlined: 'bg-white text-primary border-2 border-primary h-12 min-w-40',
   text: 'bg-white text-textPrimary p-2',
   icon: 'border-none p-2 rounded-full hover:bg-gray-200 transition-colors'

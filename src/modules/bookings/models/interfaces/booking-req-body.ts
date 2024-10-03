@@ -12,5 +12,5 @@ export interface IReScheduleReqBody {
   date: string;
   time: string;
   duration: string;
-  reason: string;
+  reason?: string;
 }
