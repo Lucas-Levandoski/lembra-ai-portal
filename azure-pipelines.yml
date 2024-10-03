@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  name: LLS PC hosted
+
+steps:
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: './'
+    output_location: './.next'
+    skip_app_build: false
+    skip_api_build: true
+    azure_static_web_apps_api_token: '693bf6f18e33486f0f91c86776e5c92cfea459b9a7ad6d304d1386f3e4cf53a55-3b60db29-9865-45b9-90bc-0a9bd75aa49c00f385699'
