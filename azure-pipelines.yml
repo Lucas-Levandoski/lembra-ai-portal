@@ -10,6 +10,10 @@ pool:
   name: LLS PC hosted
 
 steps:
+- script: |
+    echo "Testing bash access"
+    bash --version
+  displayName: "Check bash availability"
 
 - task: AzureStaticWebApp@0
   inputs:
