@@ -54,12 +54,12 @@ stages:
         buildType: 'current'
         downloadType: 'single'
         artifactName: 'drop'
-        downloadPath: '$(Pipeline.Workspace)'
+        downloadPath: '$(Build.ArtifactStagingDirectory)'
 
     - task: ExtractFiles@1
       displayName: 'Extract files'
       inputs:
-        archiveFilePatterns: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+        archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/drop/$(Build.BuildId).zip'
         destinationFolder: '$(Pipeline.Workspace)'
         cleanDestinationFolder: true
         
