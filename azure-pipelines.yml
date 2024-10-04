@@ -10,11 +10,6 @@ pool:
   name: LLS PC hosted
 
 steps:
-- task: CmdLine@2
-  inputs:
-    script: |
-      bash
-      time
 
 - task: AzureStaticWebApp@0
   inputs:
