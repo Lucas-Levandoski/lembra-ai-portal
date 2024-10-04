@@ -10,6 +10,12 @@ pool:
   name: LLS PC hosted
 
 steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      bash
+      echo "123"
+
 - task: AzureStaticWebApp@0
   inputs:
     app_location: 'src'
