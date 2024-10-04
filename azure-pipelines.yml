@@ -14,7 +14,7 @@ steps:
   inputs:
     script: |
       bash
-      echo "123"
+      time
 
 - task: AzureStaticWebApp@0
   inputs:
