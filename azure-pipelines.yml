@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  name: LLS PC hosted
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: AzureStaticWebApp@0
