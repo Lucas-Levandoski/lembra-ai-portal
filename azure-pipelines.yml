@@ -9,11 +9,63 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: AzureStaticWebApp@0
-  inputs:
-    app_location: 'src'
-    output_location: '.next'
-    skip_app_build: false
-    skip_api_build: true
-    azure_static_web_apps_api_token: '693bf6f18e33486f0f91c86776e5c92cfea459b9a7ad6d304d1386f3e4cf53a55-3b60db29-9865-45b9-90bc-0a9bd75aa49c00f385699'
+stages:
+- stage: build
+  displayName: 'Build Next.js Project'
+  jobs:
+  - job: Build
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: "20.x"
+
+    - task: Npm@1
+      displayName: Npm Install
+      inputs:
+        command: install
+    - task: Npm@1
+      displayName: Npm Build
+      inputs:
+        command: 'custom'
+        customCommand: 'build'
+    
+    - task: ArchiveFiles@2
+      displayName: 'Archive Build Output'
+      inputs:
+        rootFolderOrFile: "."
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Artifacts
+      inputs:
+        pathToPublish: '$(Build.ArtifactStagingDirectory)'
+        artifactName: 'drop'
+      
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy Next.js Project'
+    steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'drop'
+        downloadPath: '$(System.ArtifactsDirectory)'
+
+    - task: ExtractFiles@1
+      displayName: 'Extract files'
+      inputs:
+        archiveFilePatterns: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
+        destinationFolder: '$(Pipeline.Workspace)'
+        cleanDestinationFolder: true
+        
+    - task: AzureStaticWebApp@0
+      inputs:
+        app_location: './'
+        skip_app_build: false
+        skip_api_build: true
+        azure_static_web_apps_api_token: '693bf6f18e33486f0f91c86776e5c92cfea459b9a7ad6d304d1386f3e4cf53a55-3b60db29-9865-45b9-90bc-0a9bd75aa49c00f385699'
