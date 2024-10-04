@@ -11,9 +11,9 @@ pool:
 
 stages:
 - stage: build
-  displayName: 'Build Next.js Project'
   jobs:
   - job: Build
+    displayName: 'Build Next.js Project'
     steps:
     - task: NodeTool@0
       inputs:
@@ -27,7 +27,7 @@ stages:
       displayName: Npm Build
       inputs:
         command: 'custom'
-        customCommand: 'build'
+        customCommand: 'npm run build'
     
     - task: ArchiveFiles@2
       displayName: 'Archive Build Output'
