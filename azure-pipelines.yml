@@ -61,7 +61,6 @@ stages:
       inputs:
         archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/drop/$(Build.BuildId).zip'
         destinationFolder: '$(Pipeline.Workspace)'
-        cleanDestinationFolder: true
         
     - task: AzureStaticWebApp@0
       inputs:
