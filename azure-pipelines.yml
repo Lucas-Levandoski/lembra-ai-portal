@@ -7,14 +7,9 @@ trigger:
 - main
 
 pool:
-  name: LLS PC hosted
+  name: Azure Pipelines
 
 steps:
-- script: |
-    echo "Testing bash access"
-    bash --version
-  displayName: "Check bash availability"
-
 - task: AzureStaticWebApp@0
   inputs:
     app_location: 'src'
