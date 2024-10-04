@@ -43,7 +43,7 @@ stages:
       inputs:
         pathToPublish: '$(Build.ArtifactStagingDirectory)'
         artifactName: 'drop'
-      
+
 - stage: Deploy
   jobs:
   - job: Deploy
@@ -68,4 +68,4 @@ stages:
         app_location: './'
         skip_app_build: false
         skip_api_build: true
-        azure_static_web_apps_api_token: '693bf6f18e33486f0f91c86776e5c92cfea459b9a7ad6d304d1386f3e4cf53a55-3b60db29-9865-45b9-90bc-0a9bd75aa49c00f385699'
+        azure_static_web_apps_api_token: '482347a12bc965871d970a4bb180348f4c2432d9f860de42ea25129400fbb9755-97d9cbea-19c3-4576-b255-afd78ba05ecb00f387275'
