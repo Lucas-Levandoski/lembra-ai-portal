@@ -59,7 +59,7 @@ stages:
     - task: ExtractFiles@1
       displayName: 'Extract files'
       inputs:
-        archiveFilePatterns: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
+        archiveFilePatterns: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
         destinationFolder: '$(Pipeline.Workspace)'
         cleanDestinationFolder: true
         
