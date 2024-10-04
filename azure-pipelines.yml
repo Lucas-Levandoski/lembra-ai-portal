@@ -69,3 +69,4 @@ stages:
         skip_app_build: false
         skip_api_build: true
         azure_static_web_apps_api_token: '482347a12bc965871d970a4bb180348f4c2432d9f860de42ea25129400fbb9755-97d9cbea-19c3-4576-b255-afd78ba05ecb00f387275'
+        cwd: '$(Pipeline.Workspace)'
