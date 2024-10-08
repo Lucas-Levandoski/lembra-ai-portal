@@ -10,11 +10,25 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: vercel-deployment-task@1
-  inputs:
-    vercelProjectId: 'lembra-ai-portal-dev'
-    vercelOrgId: 'fGohYzsMR0XNN227OyYVck5B'
-    vercelToken: 'Ud1hOXJEY3zjiqLkTf4t3RlE'
+  - task : NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+
+  - script: npm install --verbose
+    displayName: 'Install dependencies'
+
+  - script: npm run build --verbose
+    displayName: 'Build Next.js app'
+  
+  - task: AzureStaticWebApp@0
+    inputs:
+      app_location: ''
+      skip_api_build: true
+      verbose: true
+      azure_static_web_apps_api_token: '482347a12bc965871d970a4bb180348f4c2432d9f860de42ea25129400fbb9755-97d9cbea-19c3-4576-b255-afd78ba05ecb00f387275'
+      cwd: '$(Pipeline.Workspace)'
+
 #     steps:
 #     - task: NodeTool@0
 #       inputs:
@@ -63,29 +77,3 @@ steps:
 #         appType: 'webApp'
 #         WebAppName: 'wa-lembra-ai-portal-dev'
 #         packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-                  
-  # jobs:
-  # - job: Deploy
-  #   displayName: 'Deploy Next.js Project'
-  #   steps:
-  #   - task: DownloadBuildArtifacts@0
-  #     inputs:
-  #       buildType: 'current'
-  #       downloadType: 'single'
-  #       artifactName: 'drop'
-  #       downloadPath: '$(Build.ArtifactStagingDirectory)'
-
-    # - task: ExtractFiles@1
-    #   displayName: 'Extract files'
-    #   inputs:
-    #     archiveFilePatterns: '$(Build.ArtifactStagingDirectory)/drop/$(Build.BuildId).zip'
-    #     destinationFolder: '$(Pipeline.Workspace)/deploy-folder'
-    #     cleanDestinationFolder: true
-        
-    # - task: AzureStaticWebApp@0
-    #   inputs:
-    #     app_location: 'deploy-folder'
-    #     skip_app_build: false
-    #     skip_api_build: true
-    #     azure_static_web_apps_api_token: '482347a12bc965871d970a4bb180348f4c2432d9f860de42ea25129400fbb9755-97d9cbea-19c3-4576-b255-afd78ba05ecb00f387275'
-    #     cwd: '$(Pipeline.Workspace)'
