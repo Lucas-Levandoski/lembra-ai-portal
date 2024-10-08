@@ -9,59 +9,60 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-stages:
-- stage: build
-  jobs:
-  - job: Build
-    displayName: 'Build Next.js Project'
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: "20.x"
+steps:
+- task: vercel-deployment-task@1
+  inputs:
+    vercelProjectId: 'lembra-ai-portal-dev'
+    vercelOrgId: 'fGohYzsMR0XNN227OyYVck5B'
+    vercelToken: 'Ud1hOXJEY3zjiqLkTf4t3RlE'
+#     steps:
+#     - task: NodeTool@0
+#       inputs:
+#         versionSpec: "20.x"
 
-    - task: Npm@1
-      displayName: Npm Install
-      inputs:
-        command: install
-    - task: Npm@1
-      displayName: Npm Build
-      inputs:
-        command: 'custom'
-        customCommand: 'run build'
+#     - task: Npm@1
+#       displayName: Npm Install
+#       inputs:
+#         command: install
+#     - task: Npm@1
+#       displayName: Npm Build
+#       inputs:
+#         command: 'custom'
+#         customCommand: 'run build'
     
-    - task: ArchiveFiles@2
-      displayName: 'Archive Build Output'
-      inputs:
-        rootFolderOrFile: "."
-        includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
-        replaceExistingArchive: true
+#     - task: ArchiveFiles@2
+#       displayName: 'Archive Build Output'
+#       inputs:
+#         rootFolderOrFile: "."
+#         includeRootFolder: false
+#         archiveType: 'zip'
+#         archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+#         replaceExistingArchive: true
 
-    - task: PublishBuildArtifacts@1
-      displayName: Publish Artifacts
-      inputs:
-        pathToPublish: '$(Build.ArtifactStagingDirectory)'
-        artifactName: 'drop'
+#     - task: PublishBuildArtifacts@1
+#       displayName: Publish Artifacts
+#       inputs:
+#         pathToPublish: '$(Build.ArtifactStagingDirectory)'
+#         artifactName: 'drop'
 
-- stage: Deploy
-  jobs:
-  - job: Deploy
-    displayName: "Deploy WebApp"
-    steps:
-    - task: DownloadBuildArtifacts@0
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'drop'
-        downloadPath: '$(System.DefaultWorkingDirectory)'
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'lls-tech Lembra Ai Subscription'
-        appType: 'webApp'
-        WebAppName: 'wa-lembra-ai-portal-dev'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+# - stage: Deploy
+#   jobs:
+#   - job: Deploy
+#     displayName: "Deploy WebApp"
+#     steps:
+#     - task: DownloadBuildArtifacts@0
+#       inputs:
+#         buildType: 'current'
+#         downloadType: 'single'
+#         artifactName: 'drop'
+#         downloadPath: '$(System.DefaultWorkingDirectory)'
+#     - task: AzureRmWebAppDeployment@4
+#       inputs:
+#         ConnectionType: 'AzureRM'
+#         azureSubscription: 'lls-tech Lembra Ai Subscription'
+#         appType: 'webApp'
+#         WebAppName: 'wa-lembra-ai-portal-dev'
+#         packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
                   
   # jobs:
   # - job: Deploy
