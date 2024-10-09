@@ -24,8 +24,7 @@ const nextConfig = {
         pathname: '/uploads/user/**',
       },
     ],
-  },
-  output: 'standalone',
+  }
 };
 
 export default nextConfig;

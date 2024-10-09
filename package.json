@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -35,6 +35,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-input-mask": "^3.0.5",
+    "cpx": "^1.5.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
