@@ -1,19 +1,19 @@
 
 export const envVars = {
   get agendaUrl() {
-    return checkVariable('NEXT_PUBLIC_AGENDA_URL', 'http://localhost:7071/api');
+    return checkVariable('NEXT_PUBLIC_AGENDA_URL', 'https://fa-agenda-management-dev.azurewebsites.net/api');
   },
 
   get messageSenderUrl() {
-    return checkVariable('NEXT_PUBLIC_MESSAGE_SENDER_URL', 'http://localhost:7072/api');
+    return checkVariable('NEXT_PUBLIC_MESSAGE_SENDER_URL', 'https://fa-message-sender-dev.azurewebsites.net/api');
   },
 
   get bookingsUrl() {
-    return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'http://localhost:7073/api');
+    return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'https://fa-bookings-management-dev.azurewebsites.net/api');
   },
 
   get profileUrl() {
-    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'http://localhost:7074/api');
+    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'https://fa-profile-management-dev.azurewebsites.net/api');
   },
 
 
@@ -26,11 +26,11 @@ export const envVars = {
   },
 
   get msalRedirectURI() {
-    return checkVariable('NEXT_PUBLIC_MSAL_REDIRECT_URI', 'http://localhost:3000/portal');
+    return checkVariable('NEXT_PUBLIC_MSAL_REDIRECT_URI', '/portal');
   },
 
   get msalLogoutRedirectURI() {
-    return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', 'http://localhost:3000');
+    return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', '/');
   },
 };
 
