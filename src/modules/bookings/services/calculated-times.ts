@@ -8,6 +8,6 @@ export const listAvailableDatesAndTimes = async (userId: string, agendaId: strin
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao listar datas disponíveis');
-      throw new Error(err);
+      throw err;
     });
 };

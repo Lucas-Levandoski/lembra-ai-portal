@@ -2,6 +2,7 @@
 
 import { listMyAgendas, updateMyAgenda } from 'Agenda';
 import { useStore } from 'Store';
+import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
 export function useAgenda() {
@@ -50,11 +51,20 @@ export function useAgenda() {
   const getAgendas = async (shouldSetLoading: boolean = false) => {
     if(!agendas || shouldSetLoading) setIsAgendaLoading(true);
 
-    listMyAgendas().then(agendaResult => {
-      setAgendas(agendaResult);
-    }).finally(() => {
-      setIsAgendaLoading(false);
-    });
+    listMyAgendas()
+      .then(agendaResult => {
+        setAgendas(agendaResult);
+      }).catch((err) => {
+        if(err instanceof AxiosError) {
+          if (err.response?.status === 404)
+            return setAgendas([]);
+
+          toast.error('Falha ao listar suas agendas');
+        }
+      })      
+      .finally(() => {
+        setIsAgendaLoading(false);
+      });
   };
 
   return {

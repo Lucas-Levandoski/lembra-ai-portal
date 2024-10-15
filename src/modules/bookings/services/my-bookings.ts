@@ -1,5 +1,4 @@
 import { envVars, privateClient } from 'Common';
-import { toast } from 'react-toastify';
 import { BookingEntity, IListDatesResponse } from 'Bookings';
 
 export const listBookedDates = async (errorFn: (data: any) => void = () => {}): Promise<IListDatesResponse> => {
@@ -7,8 +6,7 @@ export const listBookedDates = async (errorFn: (data: any) => void = () => {}): 
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao listar datas com bookings');
-      throw new Error(err);
+      throw err;
     });
 };
 
@@ -17,7 +15,7 @@ export const getBookingsByDay = async (date: string, errorFn: (data: any) => voi
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      throw new Error(err);
+      throw err;
     });
 };
 

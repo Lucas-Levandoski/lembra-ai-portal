@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
+import { Button, CirclyingFourDotsLoading, ErrorMessage, StatusMessage } from 'Common';
 import { useStore } from 'Store';
 import { PiPlusCircle } from 'react-icons/pi';
 import { AgendaRow } from '.';
@@ -37,13 +37,19 @@ export function Agendas() {
       )}
 
       { agendas === undefined && !isAgendaLoading && (
-        <div>
+        <div className="mt-2">
           <ErrorMessage message="Falha ao carregar suas agendas, por favor tente novamente" />
         </div>
       )}
-
       {
-        agendas && !isAgendaLoading && (
+        agendas && agendas.length === 0 && !isAgendaLoading && (
+          <div className="mt-2">
+            <StatusMessage message="Não foi encontrado nenhuma agenda, gostaria de criar uma?" />
+          </div>
+        )
+      }
+      {
+        agendas && agendas.length > 0 && !isAgendaLoading && (
           agendas?.map(agenda => (
             <span key={agenda.id}>
               <hr className="my-6" />

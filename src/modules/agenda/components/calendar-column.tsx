@@ -12,7 +12,7 @@ export function CalendarColumn() {
     isBookedDatesLoading, 
     getMyBookedDates, 
     onSelectingDate, 
-    getDayBookingsFormated,
+    getDayBookingsFormatted,
     isDayBookingsLoading
   } = useBookings();
 
@@ -24,7 +24,7 @@ export function CalendarColumn() {
   return (
     <div className="flex flex-col gap-4">
       <Calendar highlightedDays={bookedDates?.dates} isLoading={isBookedDatesLoading} onSelectedDay={onSelectingDate} currentDay={selectedDate} />
-      <TimeGrid meetings={getDayBookingsFormated()} isLoading={isDayBookingsLoading} />
+      <TimeGrid meetings={getDayBookingsFormatted()} isLoading={isDayBookingsLoading} />
     </div>
   );
 }

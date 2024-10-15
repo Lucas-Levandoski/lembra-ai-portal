@@ -5,6 +5,6 @@ export const calculateMyAvailableTimes = async (errorFn: (data: any) => void = (
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      throw new Error(err);
+      throw err;
     });
 };

@@ -14,7 +14,7 @@ export const bookNewEvent = async (
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages.join(',\n ') ?? 'Falha ao fazer o seu agendamento');
-      throw new Error(err);
+      throw err;
     });
 };
 
@@ -28,7 +28,7 @@ export const readEvent = async (
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages.join(',\n ') ?? 'Falha ao realizar o seu agendamento');
-      throw new Error(err);
+      throw err;
     });
 };
 
@@ -43,7 +43,7 @@ export const cancelEvent = async (
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages.join(',\n ') ?? 'Falha ao cancelar o seu agendamento');
-      throw new Error(err);
+      throw err;
     });
 };
 
@@ -58,6 +58,6 @@ export const reScheduleEvent = async (
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages.join(',\n ') ?? 'Falha ao realizar o seu reagendamento');
-      throw new Error(err);
+      throw err;
     });
 };

@@ -9,7 +9,7 @@ export const readProfileByTag = async (tag: string, errorFn: (data: any) => void
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao encontrar usuário pela tag');
-      throw new Error(err);
+      throw err;
     }) as IShortProfile | undefined;
 };
 
@@ -19,7 +19,7 @@ export const readProfileById = async (userId: string, errorFn: (data: any) => vo
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao encontrar usuário pelo id');
-      throw new Error(err);
+      throw err;
     }) as IShortProfile | undefined;
 };
 
@@ -29,7 +29,7 @@ export const readMyProfile = async (errorFn: (data: any) => void = () => {}) => 
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao encontrar dados do usuário');
-      throw new Error(err);
+      throw err;
     }) as IProfile | undefined;
 };
 
@@ -39,6 +39,6 @@ export const patchProfile = async (profile: RecursivePartial<IProfile>, errorFn:
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao atualizar dados do usuário');
-      throw new Error(err);
+      throw err;
     }) as IProfile | undefined;
 };

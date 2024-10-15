@@ -3,6 +3,7 @@
 import { getBookingsByDay, listBookedDates } from 'Bookings';
 import { ParseDate, TimeGridMeeting, sumTimes } from 'Common';
 import { useStore } from 'Store';
+import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
 
@@ -40,6 +41,9 @@ export function useBookings() {
       const booked = await listBookedDates();
       setBookedDates(booked);
     } catch (e) {
+      if(e instanceof AxiosError) 
+        if (e.response?.status === 404) return; //ignores if  the error is notfound
+
       toast.error('Falha ao listar datas com bookings');
     } finally {
       setIsBookedDatesLoading(false);
@@ -51,23 +55,29 @@ export function useBookings() {
 
     setSelectedDate(selected);
 
+    setDayBookings([]);
+
+    if(!bookedDates?.dates.includes(selected)) return;
+
     if(shouldLoadDayBookings) {
       try {
         setIsDayBookingsLoading(true);
         const bookings = await getBookingsByDay(selected);
         setDayBookings(bookings);
       } catch(e) {
-        setDayBookings([]);
+        getMyBookedDates();
 
-        if(bookedDates?.dates.includes(selected)) 
-          toast.error(`Falha ao ler os bookings para o dia ${selected}`);
+        if(e instanceof AxiosError) 
+          if (e.response?.status === 404) return; //ignores if  the error is notfound
+
+        toast.error(`Falha ao ler os bookings para o dia ${selected}`);
       } finally {
         setIsDayBookingsLoading(false);
       }
     } 
   };
 
-  const getDayBookingsFormated = (): TimeGridMeeting[] => {
+  const getDayBookingsFormatted = (): TimeGridMeeting[] => {
     const result: TimeGridMeeting[] = [];
 
     if(!dayBookings || !agendas) return result;
@@ -97,6 +107,6 @@ export function useBookings() {
     setSelectedDate,
     getMyBookedDates,
     onSelectingDate,
-    getDayBookingsFormated,
+    getDayBookingsFormatted,
   };
 }

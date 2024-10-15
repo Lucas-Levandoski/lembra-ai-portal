@@ -11,3 +11,4 @@ export * from './dropdown';
 export * from './calendar';
 export * from './time-grid';
 export * from './dropdown-menu';
+export * from './status-message';

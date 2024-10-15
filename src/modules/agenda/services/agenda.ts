@@ -8,7 +8,7 @@ export const listMyAgendas = async (errorFn: (data: any) => void = () => {}) => 
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao listar agendas');
-      throw new Error(err);
+      throw err;
     }) as AgendaElement[] | undefined;
 };
 
@@ -18,7 +18,7 @@ export const readMyAgenda = async (agendaId: string, errorFn: (data: any) => voi
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao listar agendas');
-      throw new Error(err);
+      throw err;
     }) as AgendaElement | undefined;
 };
 
@@ -28,7 +28,7 @@ export const updateMyAgenda = async (agendaId: string, details: AgendaDetails, e
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao atualizar agenda');
-      throw new Error(err);
+      throw err;
     }) as AgendaElement | undefined;
 };
 
@@ -38,7 +38,7 @@ export const newMyAgenda = async (agenda: AgendaDetails, errorFn: (data: any) =>
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao criar agenda');
-      throw new Error(err);
+      throw err;
     }) as AgendaElement | undefined;
 };
 
@@ -48,7 +48,7 @@ export const getAgendasByUser = async (userId: string, errorFn: (data: any) => v
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
-      throw new Error(err);
+      throw err;
     }) as IShortAgendaProps[] | undefined;
 };
 
@@ -58,7 +58,7 @@ export const getAgendaByTag = async (userId: string, tag: string, errorFn: (data
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
-      throw new Error(err);
+      throw err;
     }) as IShortAgendaProps | undefined;
 };
 
@@ -68,6 +68,6 @@ export const getAgendaById = async (userId: string, agendaId: string, errorFn: (
     .catch(err => {
       errorFn(err.response?.data);
       toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
-      throw new Error(err);
+      throw err;
     }) as IShortAgendaProps | undefined;
 };
