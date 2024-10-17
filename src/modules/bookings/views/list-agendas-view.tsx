@@ -3,7 +3,7 @@
 import { useListAgendas } from 'Bookings/hooks';
 import { ProfileTag } from 'Profile/components';
 import { ShortAgendaCard } from 'Agenda/components';
-import { BouncingThreeDotsLoading, ErrorMessage, Link } from 'Common/components';
+import { BouncingThreeDotsLoading, ErrorMessage, Link, StatusMessage } from 'Common/components';
 
 type props = {
   userTag: string;
@@ -23,7 +23,7 @@ export function ListAgendasForTagView({ userTag }: props) {
         <h1 className="mb-8 mt-0">Agendas</h1>
         { isLoading && <div className="mx-auto"><BouncingThreeDotsLoading /></div>}
         {
-          !isLoading && agendas.length > 0 && (
+          !isLoading && agendas && agendas.length > 0 && (
             <ul>
               {
                 agendas.map(agenda => (
@@ -37,7 +37,8 @@ export function ListAgendasForTagView({ userTag }: props) {
             </ul>
           )
         }
-        { !isLoading && agendas.length === 0 && <ErrorMessage message="Falha ao carregar agendas para este usuário" /> }
+        { !isLoading && agendas && agendas.length === 0 && <StatusMessage message="Não foi encontrada nenhuma agenda ativa para este usuário" /> }
+        { !isLoading && !agendas && <ErrorMessage message="Falha ao carregar agendas para este usuário" /> }
       </div>
     </div>
   );

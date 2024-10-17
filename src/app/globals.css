@@ -41,7 +41,6 @@ h3 {
   @apply text-lg;
 }
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
