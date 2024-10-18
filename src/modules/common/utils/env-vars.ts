@@ -18,11 +18,11 @@ export const envVars = {
 
 
   get tenantName() {
-    return checkVariable('NEXT_PUBLIC_B2C_TENANT_NAME', 'lembraaidev');
+    return checkVariable('NEXT_PUBLIC_B2C_TENANT_NAME', 'lembradev');
   },
 
   get msalClientID() {
-    return checkVariable('NEXT_PUBLIC_MSAL_CLIENT_ID', '8ab93fbe-25de-4662-b372-b2896c9688f1');
+    return checkVariable('NEXT_PUBLIC_MSAL_CLIENT_ID', '0c9c9fdc-4cb4-44d1-88ce-3325d93b4f19');
   },
 
   get msalRedirectURI() {

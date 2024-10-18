@@ -78,8 +78,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     setUser((prevState) => ({
       ...prevState,
       email: decodedToken?.emails[0] || '',
-      name: decodedToken?.name.split(' ')[0] || '',
-      surname: decodedToken?.name.split(' ')[1] || '',
+      name: decodedToken?.name?.split(' ')[0] || '',
+      surname: decodedToken?.name?.split(' ')[1] || '',
       accountProvider: decodedToken?.idp || '',
     }));
   };
