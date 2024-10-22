@@ -29,20 +29,24 @@ export function RowItem({ content, day, label, onAddClick, onEditClick }: props)
       <div className="flex flex-row gap-4 overflow-hidden flex-wrap">
         {content.times.map(
           (time, i) => (
-            <Button
+            <div
               key={day + i}
-              onClick={() => onEditClick(day, i, time)}
               className={
                 twMerge(
                   'flex flex-row items-center gap-2 min-w-[150px] h-8 justify-center text-nowrap rounded-full px-3 py-1 text-blue-700 bg-blue-100',
                   erroredItem && erroredItem.day === day && erroredItem.index === i && 'text-red-600 bg-red-50 animate-pulse border-red-600 border '
                 )
               }>
-              <span>{time.startTime} às {time.endTime}</span>
+              <Button
+                onClick={() => onEditClick(day, i, time)}
+                variant="unset"
+              >
+                <span>{time.startTime} às {time.endTime}</span>
+              </Button>
               <Button className="p-0 -mr-2" onClick={() => removeAvailabilityTime(day, i)} variant="icon">
                 <IoClose className="size-6" />
               </Button>
-            </Button>
+            </div>
           )
         )}
       </div>
