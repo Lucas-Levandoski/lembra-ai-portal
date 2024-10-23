@@ -2,6 +2,8 @@ import { useStore } from 'Store';
 import { MessageTemplate } from '../models';
 import { defaultTemplate, getTemplates, replaceTemplates, sortTemplates } from 'Message-Templates';
 import { useState } from 'react';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 
 export function useTemplates() {
@@ -21,14 +23,30 @@ export function useTemplates() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number | undefined>();
 
+  const onClearTemplates = () => {
+    setTemplatesPreCommit([]);
+  };
+
   const onGetTemplates = async (agendaId: string) => {
     setIsTemplatesLoading(true);
 
-    const result = await getTemplates(agendaId).finally(() => setIsTemplatesLoading(false));
+    try {
+      const result = await getTemplates(agendaId);
+  
+      if(!result) return;
+  
+      setTemplatesPreCommit(result);
+    } catch (ex) {
+      if(ex instanceof AxiosError) {
+        if (ex.status === 404) {
+          return;
+        }
+      }
 
-    if(!result) return;
-
-    setTemplatesPreCommit(result);
+      toast.error('Falha ao listar seus templates');
+    } finally {
+      setIsTemplatesLoading(false);
+    }
   };
 
   const onModalCancel = () => {
@@ -164,6 +182,7 @@ export function useTemplates() {
     onChangeProperty,
     onCommitTemplates,
     onModalCancel,
+    onClearTemplates,
     isOpen,
     isTemplatesLoading,
     templatesPreCommit,

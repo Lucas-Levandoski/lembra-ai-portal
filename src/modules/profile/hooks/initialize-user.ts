@@ -11,7 +11,7 @@ export function useInitializeUser() {
     setIsProfileLoading: state.setIsProfileLoading
   }));
 
-  const onInitilalize = async () => {
+  const onInitialize = async () => {
     setIsProfileLoading(true);
 
     await readMyProfile()
@@ -20,6 +20,6 @@ export function useInitializeUser() {
   };
 
   return {
-    onInitilalize,
+    onInitialize,
   };
 }

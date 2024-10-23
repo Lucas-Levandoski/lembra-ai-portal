@@ -7,7 +7,6 @@ export const listMyAgendas = async (errorFn: (data: any) => void = () => {}) => 
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao listar agendas');
       throw err;
     }) as AgendaElement[] | undefined;
 };

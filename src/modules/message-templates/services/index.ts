@@ -21,8 +21,7 @@ export const getTemplates = async (agendaId: string): Promise<MessageTemplate[] 
       return (res.data as MessageTemplateList).templates;
     })
     .catch(err => {
-      toast.error(err.response?.data?.messages.join('\n'));
-      return;
+      throw err;
     }) as MessageTemplate[] | undefined;
 };
 
