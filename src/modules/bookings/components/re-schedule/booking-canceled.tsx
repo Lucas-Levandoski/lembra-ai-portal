@@ -19,7 +19,7 @@ export function BookingCanceled({ booking, agenda, profile }: props) {
     <div className="flex flex-col gap-8 justify-center text-center rounded-lg p-6 w-full mx-auto">
       {
         profile &&
-        <Image className="rounded-full mx-auto" height={100} width={100} src={profile.profilePictureUrl} alt="profile" />
+        <Image className="rounded-full mx-auto" height={100} width={100} src={profile.profilePictureUrl ?? '/assets/images/user-placeholder.png'} alt="profile" />
       }
       <h1 className="mx-auto flex items-center gap-6">
         É uma pena mas este evento foi <strong className="text-red-700">cancelado</strong>
