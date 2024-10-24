@@ -9,7 +9,7 @@ export const envVars = {
   },
 
   get bookingsUrl() {
-    return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'http://localhost:7073/api');
+    return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'https://fa-bookings-management-dev.azurewebsites.net/api');
   },
 
   get profileUrl() {

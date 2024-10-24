@@ -19,9 +19,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'd3v0px0pttie1i.cloudfront.net',
+        hostname: 'salembraassetsdev.blob.core.windows.net',
         port: '',
-        pathname: '/uploads/user/**',
       },
     ],
   }
