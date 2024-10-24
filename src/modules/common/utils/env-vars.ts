@@ -9,7 +9,7 @@ export const envVars = {
   },
 
   get bookingsUrl() {
-    return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'https://fa-bookings-management-dev.azurewebsites.net/api');
+    return checkVariable('NEXT_PUBLIC_BOOKINGS_URL', 'http://localhost:7073/api');
   },
 
   get profileUrl() {
@@ -30,6 +30,10 @@ export const envVars = {
 
   get msalLogoutRedirectURI() {
     return checkVariable('NEXT_PUBLIC_MSAL_POST_LOGOUT_REDIRECT_URI', '/');
+  },
+
+  get saAssetsUrl() {
+    return checkVariable('NEXT_PUBLIC_SA_ASSETS_URL', 'https://salembraassetsdev.blob.core.windows.net/assets');
   },
 };
 

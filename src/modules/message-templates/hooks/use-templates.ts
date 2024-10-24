@@ -32,13 +32,13 @@ export function useTemplates() {
 
     try {
       const result = await getTemplates(agendaId);
-  
+
       if(!result) return;
-  
+
       setTemplatesPreCommit(result);
     } catch (ex) {
       if(ex instanceof AxiosError) {
-        if (ex.status === 404) {
+        if (ex.response?.status === 404) {
           return;
         }
       }

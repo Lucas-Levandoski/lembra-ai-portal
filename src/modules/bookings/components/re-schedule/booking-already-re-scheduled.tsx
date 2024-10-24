@@ -7,7 +7,7 @@ import { BiCalendar, BiCamera, BiUser } from 'react-icons/bi';
 import Image from 'next/image';
 import { TimeDescription } from '../time-description';
 import { Button, CirclyingFourDotsLoading } from 'Common/components';
-import { sumMinutesToTime } from 'Common/utils';
+import { envVars, sumMinutesToTime } from 'Common/utils';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 import { useOnAlreadyReScheduled } from 'Bookings/hooks/use-on-already-re-scheduled';
 
@@ -26,7 +26,7 @@ export function BookingAlreadyReScheduled({ booking, agenda, profile }: props) {
     <div className="flex flex-col gap-8 justify-center text-center rounded-lg p-6 w-full mx-auto">
       {
         profile &&
-        <Image className="rounded-full mx-auto" height={100} width={100} src={profile.profilePictureUrl ?? '/assets/images/user-placeholder.png'} alt="profile" />
+        <Image className="rounded-full mx-auto" height={100} width={100} src={profile.profilePictureUrl ?? `${envVars.saAssetsUrl}/user_placeholder.png`} alt="profile" />
       }
       <h1 className="mx-auto flex items-center gap-6">
         Este Booking já foi reagendado

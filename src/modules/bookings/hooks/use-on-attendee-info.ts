@@ -29,7 +29,6 @@ export function useOnAttendeeInfo(userTag: string, agendaTag: string, date: stri
       const userId = await getProfile();
       if(!userId) return;
 
-
       const agendaId = await getAgenda(userId);
       if(!agendaId) return;
       
@@ -54,7 +53,6 @@ export function useOnAttendeeInfo(userTag: string, agendaTag: string, date: stri
     setAgenda(_agenda);
     return _agenda.id;
   };
-
 
   const onChangeProperty = (propName: keyof IAttendeeDetails) => (
     (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => setAttendee({...attendee, [propName]: event.target.value})

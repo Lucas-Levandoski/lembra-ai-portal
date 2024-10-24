@@ -1,4 +1,4 @@
-import { Link } from 'Common';
+import { envVars, Link } from 'Common';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { CiCalendar, CiClock2 } from 'react-icons/ci';
@@ -11,7 +11,7 @@ export function ProtectedHeaderView() {
       <NextLink href="/portal">
         <Image
           alt="logo"
-          src="/assets/images/lembra-ai-logo.png"
+          src={`${envVars.saAssetsUrl}/logo_lembra_ai.png`}
           width={140}
           height={20} />
       </NextLink>
