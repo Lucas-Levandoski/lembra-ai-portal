@@ -33,16 +33,17 @@ export function ProfileView() {
               {
                 profile.details.profilePictureUrl && (
                   <>
-                    <Image 
-                      className="rounded-full" 
-                      height={120} 
-                      width={120} 
+                    <Image
+                      className="rounded-full"
+                      height={60}
+                      width={60}
                       src={
-                        changedProfile.details?.profilePictureUrl !== undefined 
-                          ? changedProfile.details?.profilePictureUrl 
-                          : (profile.details.profilePictureUrl ?? `${envVars.saAssetsUrl}/user_placeholder.png`)
-                      } 
-                      alt="profile" />
+                        profile.details.profilePictureUrl
+                          ? `${envVars.saProfilesUrl}/${profile.details.profilePictureUrl}`
+                          : `${envVars.saAssetsUrl}/user_placeholder.png`
+                      }
+                      alt="profile" 
+                    />
                     <Button variant="outlined">Atualizar</Button>
                     <Button variant="icon" className="gap-2"><BiTrash /> Remover</Button>
                   </>

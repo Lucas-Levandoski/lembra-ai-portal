@@ -13,7 +13,7 @@ export const envVars = {
   },
 
   get profileUrl() {
-    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'https://fa-profile-management-dev.azurewebsites.net/api');
+    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'http://localhost:7074/api');
   },
 
   get tenantName() {
@@ -34,6 +34,14 @@ export const envVars = {
 
   get saAssetsUrl() {
     return checkVariable('NEXT_PUBLIC_SA_ASSETS_URL', 'https://salembraassetsdev.blob.core.windows.net/assets');
+  },
+
+  get saProfilesUrl() {
+    return checkVariable('NEXT_PUBLIC_SA_PROFILES_URL', 'https://salembraassetsdev.blob.core.windows.net/profile-images');
+  },
+
+  get saCompaniesUrl() {
+    return checkVariable('NEXT_PUBLIC_SA_COMPANIES_URL', 'https://salembraassetsdev.blob.core.windows.net/company-images');
   },
 };
 
