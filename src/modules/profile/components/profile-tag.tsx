@@ -14,6 +14,7 @@ export function ProfileTag({ profile }: props) {
         className="rounded-full"
         height={60}
         width={60}
+        loading="lazy"
         src={
           profile.profilePictureUrl
             ? `${envVars.saProfilesUrl}/${profile.profilePictureUrl}`
@@ -25,6 +26,8 @@ export function ProfileTag({ profile }: props) {
         <Image
           height={30}
           width={200}
+          className="max-h-[100px] object-cover"
+          loading="lazy"
           src={
             profile.companyPictureUrl
               ? `${envVars.saCompaniesUrl}/${profile.companyPictureUrl}`

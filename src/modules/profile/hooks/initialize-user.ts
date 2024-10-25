@@ -2,7 +2,7 @@ import { readMyProfile } from 'Profile';
 import { useStore } from 'Store';
 
 
-export function useInitializeUser() {
+export function useInitializeUser(shouldInitialize = true) {
   const {
     setProfile,
     setIsProfileLoading,
@@ -12,14 +12,26 @@ export function useInitializeUser() {
   }));
 
   const onInitialize = async () => {
-    setIsProfileLoading(true);
+    if(!shouldInitialize) return;
+
+    loadProfileData();
+  };
+
+  const loadProfileData = async (shouldLoad = true) => {
+    if(shouldLoad) setIsProfileLoading(true);
+
 
     await readMyProfile()
       .then(async (profile) => setProfile(profile))
       .finally(() => setIsProfileLoading(false));
   };
 
+  const refresh = async () => {
+    loadProfileData(false);
+  };
+
   return {
     onInitialize,
+    refresh,
   };
 }

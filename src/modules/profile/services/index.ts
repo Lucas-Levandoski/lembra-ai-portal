@@ -42,3 +42,29 @@ export const patchProfile = async (profile: RecursivePartial<IProfile>, errorFn:
       throw err;
     }) as IProfile | undefined;
 };
+
+export const uploadProfile = async (file: File, errorFn: (data: any) => void = () => {}) => {
+  const formDate = new FormData();
+  formDate.append('picture', file);
+
+  return await privateClient.post<undefined>(`${envVars.profileUrl}/upload/profile`, formDate)
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar foto de perfil');
+      throw err;
+    }) as undefined;
+};
+
+export const uploadCompany = async (file: File, errorFn: (data: any) => void = () => {}) => {
+  const formDate = new FormData();
+  formDate.append('picture', file);
+
+  return await privateClient.post<undefined>(`${envVars.profileUrl}/upload/company`, formDate)
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar foto de capa');
+      throw err;
+    }) as undefined;
+};

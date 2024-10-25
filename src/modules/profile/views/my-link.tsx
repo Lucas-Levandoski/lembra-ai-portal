@@ -8,6 +8,7 @@ export function MyLinkView() {
     profile,
     changedProfile, 
     isProfileLoading, 
+    hasChanges,
     onChangeTag, 
     onSubmit, 
     onCancel, 
@@ -40,8 +41,8 @@ export function MyLinkView() {
                 />
               </div>
               <div className="flex justify-between">
-                <Button variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
-                <Button type="submit">Salvar Alterações</Button>
+                <Button disabled={!hasChanges} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
+                <Button disabled={!hasChanges} type="submit">Salvar Alterações</Button>
               </div>
             </form>
           </div>

@@ -22,6 +22,11 @@ const nextConfig = {
         hostname: 'salembraassetsdev.blob.core.windows.net',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'salembraassets.blob.core.windows.net',
+        port: '',
+      },
     ],
   }
 };
