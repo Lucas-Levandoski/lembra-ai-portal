@@ -25,7 +25,7 @@ export function UserInfo() {
             {/* </Button> */}
 
             <DropdownMenu
-              buttonContent={<>Olá, <b>{profile?.details.name}</b></>}
+              buttonContent={<span>Olá, <b>{profile?.details.name}</b></span>}
             >
               <Link route="/portal/profile">Alterar Perfil</Link>
               <Button variant="text" onClick={() => logout()}>Logout</Button>
