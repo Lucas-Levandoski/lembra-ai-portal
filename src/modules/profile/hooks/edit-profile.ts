@@ -94,21 +94,21 @@ export function useEditProfile() {
             setProfile(_profile);
             toast.success('Dados atualizados com sucesso');
           });
-  
+
       if(changedProfilePicture) 
         await uploadProfile(changedProfilePicture)
           .then(() => {
             toast.success('Foto de perfil atualizada com sucesso');
           });
-  
+
       if(changedCompanyPicture) 
         await uploadCompany(changedCompanyPicture)
           .then(() => {
             toast.success('Foto de capa atualizada com sucesso');
           });
-  
+
       await refresh();
-  
+
       setHasChanges(false);
     } finally {
       setIsSubmitLoading(false);

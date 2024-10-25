@@ -1,4 +1,5 @@
 import { readMyProfile } from 'Profile';
+import { useEffect } from 'react';
 import { useStore } from 'Store';
 
 
@@ -11,15 +12,12 @@ export function useInitializeUser(shouldInitialize = true) {
     setIsProfileLoading: state.setIsProfileLoading
   }));
 
-  const onInitialize = async () => {
-    if(!shouldInitialize) return;
-
-    loadProfileData();
-  };
+  useEffect(() => {
+    if(shouldInitialize) loadProfileData();
+  }, []);
 
   const loadProfileData = async (shouldLoad = true) => {
     if(shouldLoad) setIsProfileLoading(true);
-
 
     await readMyProfile()
       .then(async (profile) => setProfile(profile))
@@ -31,7 +29,6 @@ export function useInitializeUser(shouldInitialize = true) {
   };
 
   return {
-    onInitialize,
     refresh,
   };
 }

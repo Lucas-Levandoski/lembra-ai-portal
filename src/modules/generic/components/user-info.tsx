@@ -3,7 +3,6 @@
 import { BouncingThreeDotsLoading, DropdownMenu, useAuth, Link, Button, ErrorMessage } from 'Common';
 import { useInitializeUser } from 'Profile/hooks';
 import { useStore } from 'Store';
-import { useEffect } from 'react';
 
 export function UserInfo() {
   const { profile, isProfileLoading } = useStore(state => ({ 
@@ -12,11 +11,7 @@ export function UserInfo() {
   }));
   const { logout } = useAuth();
 
-  const { onInitialize } = useInitializeUser();
-
-  useEffect(() => {
-    onInitialize();
-  }, []);
+  useInitializeUser();
 
   return (
     <div className="flex flex-row items-center justify-center gap-4">
