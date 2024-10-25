@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common/components';
+import { BouncingThreeDotsLoading, Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common/components';
 import { envVars } from 'Common/utils';
 import { useEditProfile } from 'Profile/hooks';
 import Image from 'next/image';
@@ -10,6 +10,7 @@ export function VisualIdentityView() {
   const { 
     profile,
     isProfileLoading, 
+    isSubmitLoading,
     changedProfilePicture,
     changedCompanyPicture,
     changedProfile,
@@ -116,8 +117,14 @@ export function VisualIdentityView() {
                   value={changedProfile.details?.name !== undefined ? changedProfile.details?.name : profile.details.name}/>
               </div>
               <div className="flex justify-between">
-                <Button disabled={!hasChanges} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
-                <Button disabled={!hasChanges} type="submit">Salvar Alterações</Button>
+                <Button disabled={!hasChanges || isSubmitLoading} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
+                <Button disabled={!hasChanges || isSubmitLoading} type="submit">
+                  {
+                    isSubmitLoading 
+                      ? <BouncingThreeDotsLoading />
+                      : <>Salvar Alterações</>
+                  }
+                </Button>
               </div>
             </form>
           </div>

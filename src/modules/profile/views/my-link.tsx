@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
+import { BouncingThreeDotsLoading, Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
 import { useEditProfile } from 'Profile/hooks';
 
 export function MyLinkView() {
@@ -8,6 +8,7 @@ export function MyLinkView() {
     profile,
     changedProfile, 
     isProfileLoading, 
+    isSubmitLoading,
     hasChanges,
     onChangeTag, 
     onSubmit, 
@@ -41,8 +42,14 @@ export function MyLinkView() {
                 />
               </div>
               <div className="flex justify-between">
-                <Button disabled={!hasChanges} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
-                <Button disabled={!hasChanges} type="submit">Salvar Alterações</Button>
+                <Button disabled={!hasChanges || isSubmitLoading} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
+                <Button disabled={!hasChanges || isSubmitLoading} type="submit">
+                  {
+                    isSubmitLoading 
+                      ? <BouncingThreeDotsLoading />
+                      : <>Salvar Alterações</>
+                  }
+                </Button>
               </div>
             </form>
           </div>

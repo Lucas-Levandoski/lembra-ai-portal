@@ -15,8 +15,8 @@ export function useEditProfile() {
   const [changedProfilePicture, setChangedProfilePicture] = useState<File | undefined>();
   const [changedCompanyPicture, setChangedCompanyPicture] = useState<File | undefined>();
   const [hasChanges, setHasChanges] = useState(false);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
-  
   const { 
     profile, 
     isProfileLoading, 
@@ -26,7 +26,6 @@ export function useEditProfile() {
     isProfileLoading: state.isProfileLoading,
     setProfile: state.setProfile,
   }));
-  
 
   const tryLeave = (event: BeforeUnloadEvent) => {
     if(changedProfile.tag !== profile.tag) return event.preventDefault();
@@ -86,31 +85,35 @@ export function useEditProfile() {
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if(Object.keys(changedProfile).length)
-      await patchProfile(changedProfile)
-        .then(_profile => {
-          setProfile(_profile);
-          setChangedProfile({});
-          toast.success('Dados atualizados com sucesso');
-        });
+    setIsSubmitLoading(true);
 
-    if(changedProfilePicture) 
-      await uploadProfile(changedProfilePicture)
-        .then(() => {
-          setChangedProfilePicture(undefined);
-          toast.success('Foto de perfil atualizada com sucesso');
-        });
-
-    if(changedCompanyPicture) 
-      await uploadCompany(changedCompanyPicture)
-        .then(() => {
-          setChangedCompanyPicture(undefined);
-          toast.success('Foto de capa atualizada com sucesso');
-        });
-
-    await refresh();
-
-    setHasChanges(false);
+    try {
+      if(Object.keys(changedProfile).length)
+        await patchProfile(changedProfile)
+          .then(_profile => {
+            setProfile(_profile);
+            toast.success('Dados atualizados com sucesso');
+          });
+  
+      if(changedProfilePicture) 
+        await uploadProfile(changedProfilePicture)
+          .then(() => {
+            toast.success('Foto de perfil atualizada com sucesso');
+          });
+  
+      if(changedCompanyPicture) 
+        await uploadCompany(changedCompanyPicture)
+          .then(() => {
+            toast.success('Foto de capa atualizada com sucesso');
+          });
+  
+      await refresh();
+  
+      setHasChanges(false);
+    } finally {
+      setIsSubmitLoading(false);
+      setChangedProfile({});
+    }
   };
 
   const onCancel = () => {
@@ -120,6 +123,7 @@ export function useEditProfile() {
 
   return {
     isProfileLoading,
+    isSubmitLoading,
     changedProfile,
     profile,
     changedProfilePicture,

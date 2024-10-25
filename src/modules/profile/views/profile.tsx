@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, ErrorMessage, Select, Option, envVars } from 'Common';
+import { Button, CirclyingFourDotsLoading, ErrorMessage, Select, Option, envVars, BouncingThreeDotsLoading } from 'Common';
 import { PhoneRegionOptions } from 'Profile/models';
 import { useEditProfile } from 'Profile/hooks';
 import { BiEditAlt } from 'react-icons/bi';
@@ -10,7 +10,8 @@ export function ProfileView() {
   const { 
     profile,
     changedProfile, 
-    isProfileLoading, 
+    isProfileLoading,
+    isSubmitLoading,
     changedProfilePicture,
     hasChanges,
     onChangeDetails, 
@@ -94,8 +95,14 @@ export function ProfileView() {
                 </Select>
               </div>
               <div className="flex justify-between">
-                <Button disabled={!hasChanges} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
-                <Button disabled={!hasChanges} type="submit">Salvar Alterações</Button>
+                <Button disabled={!hasChanges || isSubmitLoading} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
+                <Button disabled={!hasChanges || isSubmitLoading} type="submit">
+                  {
+                    isSubmitLoading 
+                      ? <BouncingThreeDotsLoading />
+                      : <>Salvar Alterações</>
+                  }
+                </Button>
               </div>
             </form>
           </div>
