@@ -61,7 +61,12 @@ export function ProfileView() {
                 <div className="flex justify-center items-center absolute left-0 w-full h-full bg-gray-500 top-0 opacity-0 group-hover:opacity-100 group-hover:bg-opacity-70">
                   <BiEditAlt className="margin-auto size-10 text-black"/>
                 </div>
-                <input className="h-full w-full opacity-0 absolute left-0 top-0 cursor-pointer" type="file" onChange={onChangeProfilePicture}/>
+                <input 
+                  className="h-full w-full opacity-0 absolute left-0 top-0 cursor-pointer" 
+                  type="file" 
+                  accept=".jpg,.jpeg,.png" 
+                  onChange={onChangeProfilePicture}
+                />
               </div>
             </div>
             <form className="flex flex-col gap-8" onSubmit={onSubmit}>

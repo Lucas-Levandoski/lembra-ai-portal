@@ -69,6 +69,8 @@ export function useEditProfile() {
 
     if(!file) return;
 
+    if(file.size > 5_000_000) return toast.error('O arquivo pode ter no máximo 5mb');
+
     setChangedProfilePicture(file);
     if (!hasChanges) setHasChanges(true);
   };
@@ -77,6 +79,8 @@ export function useEditProfile() {
     const file = event.target.files?.[0];
 
     if(!file) return;
+
+    if(file.size > 10_000_000) return toast.error('O arquivo pode ter no máximo 10mb');
 
     setChangedCompanyPicture(file);
     if (!hasChanges) setHasChanges(true);
