@@ -13,7 +13,7 @@ export const envVars = {
   },
 
   get profileUrl() {
-    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'http://localhost:7074/api');
+    return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'https://fa-profile-management-dev.azurewebsites.net/api');
   },
 
   get tenantName() {
