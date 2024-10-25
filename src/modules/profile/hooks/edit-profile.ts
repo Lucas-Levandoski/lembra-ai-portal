@@ -69,7 +69,7 @@ export function useEditProfile() {
 
     if(!file) return;
 
-    if(file.size > 5_000_000) return toast.error('O arquivo pode ter no máximo 5mb');
+    if(file.size > 10_000_000) return toast.error('O arquivo pode ter no máximo 10mb');
 
     setChangedProfilePicture(file);
     if (!hasChanges) setHasChanges(true);
@@ -80,7 +80,7 @@ export function useEditProfile() {
 
     if(!file) return;
 
-    if(file.size > 10_000_000) return toast.error('O arquivo pode ter no máximo 10mb');
+    if(file.size > 15_000_000) return toast.error('O arquivo pode ter no máximo 15mb');
 
     setChangedCompanyPicture(file);
     if (!hasChanges) setHasChanges(true);
@@ -117,12 +117,15 @@ export function useEditProfile() {
     } finally {
       setIsSubmitLoading(false);
       setChangedProfile({});
+      setChangedCompanyPicture(undefined);
+      setChangedProfilePicture(undefined);
     }
   };
 
   const onCancel = () => {
     setChangedProfile({});
     setChangedProfilePicture(undefined);
+    setChangedCompanyPicture(undefined);
   };
 
   return {

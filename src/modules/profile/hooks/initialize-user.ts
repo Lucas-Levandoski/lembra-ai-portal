@@ -21,7 +21,9 @@ export function useInitializeUser(shouldInitialize = true) {
 
     await readMyProfile()
       .then(async (profile) => setProfile(profile))
-      .finally(() => setIsProfileLoading(false));
+      .finally(() => {
+        if(shouldLoad) setIsProfileLoading(false);
+      });
   };
 
   const refresh = async () => {
