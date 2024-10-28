@@ -24,7 +24,6 @@ export const BreadcrumbProvider = ({ children }: props) => {
     let currentPath = '';
     const mappedPath: typeof breadcrumbs = [];
 
-    
     for(const path of paths) {
       if(!path) continue;
 

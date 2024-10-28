@@ -62,9 +62,9 @@ export function Select({ id, children, value, className, placeholder = '', onCha
     <div id={id} className={twMerge('relative w-full flex h-12', className)} ref={divRef}>
       <div className={
         twMerge(
-          'transition-all duration-300 absolute flex flex-col w-full max-h-0 overflow-hidden translate-y-14 z-10', 
+          'transition-all duration-300 absolute flex flex-col w-full max-h-0 overflow-auto translate-y-14 z-10', 
           'rounded-lg bg-white shadow-lg',
-          isOpen && 'max-h-80'
+          isOpen && 'max-h-52'
         )
       }>
         <div className="flex flex-col h-full">
