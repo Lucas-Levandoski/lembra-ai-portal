@@ -9,6 +9,7 @@ import { AuthContextProvider } from 'modules/common/context/auth';
 import { EventType, PublicClientApplication, SilentRequest } from '@azure/msal-browser';
 import { msalConfig } from 'Auth';
 import { ToastContainer } from 'react-toastify';
+import { BreadcrumbProvider } from 'Generic/contexts';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,10 +36,12 @@ export default function RootLayout({children}: props) {
     <html lang="en">
       <MsalProvider instance={msalInstance}>
         <AuthContextProvider>
-          <body className={inter.className} suppressHydrationWarning>
-            <ToastContainer position="bottom-center" closeOnClick stacked/>
-            {children}
-          </body>
+          <BreadcrumbProvider>
+            <body className={inter.className} suppressHydrationWarning>
+              <ToastContainer position="bottom-center" closeOnClick stacked/>
+              {children}
+            </body>
+          </BreadcrumbProvider>
         </AuthContextProvider>
       </MsalProvider> 
     </html>

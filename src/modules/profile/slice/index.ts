@@ -2,7 +2,7 @@ import { StateCreator } from 'zustand';
 import { ProfileSlice } from 'Profile';
 
 export const createProfileSlice: StateCreator<ProfileSlice> = (set) => ({
-  isProfileLoading: false,
+  isProfileLoading: true,
   profile: undefined,
   shortPforile: undefined,
 

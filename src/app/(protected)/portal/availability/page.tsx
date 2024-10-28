@@ -1,4 +1,5 @@
 import { AvailabilityView } from 'Availability';
+import { Breadcrumbs } from 'Generic/components';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,5 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function PortalAvailability() {
-  return <AvailabilityView />;
+  return (
+    <>
+      <Breadcrumbs />
+      <AvailabilityView />
+    </>
+  );
 }
