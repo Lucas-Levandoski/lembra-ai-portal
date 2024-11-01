@@ -2,7 +2,7 @@
 
 import { BookingAlreadyReScheduled, BookingCanceled, BookingNotFound, ReSchedulePickATime } from 'Bookings/components';
 import { useOnReSchedule } from 'Bookings/hooks';
-import { CirclyingFourDotsLoading } from 'Common/components';
+import { CirclingFourDotsLoading } from 'Common/components';
 
 type props = {
   bookingId: string;
@@ -46,7 +46,7 @@ export function ReScheduleView({ bookingId }: props) {
       <div className="flex min-w-[600px] gap-4">
         {
           isBookingLoading
-            ? <div className="m-auto"><CirclyingFourDotsLoading /></div>
+            ? <div className="m-auto"><CirclingFourDotsLoading /></div>
             : renderComponent()
         }
       </div>

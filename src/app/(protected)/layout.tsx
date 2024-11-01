@@ -22,7 +22,7 @@ export default function ProtectedLayout({children}: props) {
           ? (
             <>
               <ProtectedHeaderView />
-              <main className="px-[12vw] pt-16">{children}</main>
+              <main className="px-[12vw] pt-10">{children}</main>
             </>
           )
           : <LoadingUserView />

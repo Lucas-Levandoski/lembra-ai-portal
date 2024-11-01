@@ -5,7 +5,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/portal/agenda',
+        destination: '/portal',
         permanent: false,
       },
       {

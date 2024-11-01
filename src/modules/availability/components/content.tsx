@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common';
+import { Button, CirclingFourDotsLoading, DaysOfWeek, ErrorMessage } from 'Common';
 import { AvailabilitiesByDay, DayOfWeek } from '../models';
 import { RowItem, TimeDialog } from '.';
 import { BiRefresh } from 'react-icons/bi';
@@ -26,7 +26,7 @@ export function AvailabilityContent() {
           ? <AvailabilityList availability={availability} />
           : (
             isLoading 
-              ? <div className="m-auto"><CirclyingFourDotsLoading /></div>
+              ? <div className="m-auto"><CirclingFourDotsLoading /></div>
               : <ErrorMessage message="Falha ao carregar suas disponibilidades, por favor tente novamente" />
           )
       }

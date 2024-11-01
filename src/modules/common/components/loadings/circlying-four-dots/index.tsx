@@ -9,7 +9,7 @@ type props = {
   height?: number
 }
 
-export function CirclyingFourDotsLoading({ height=50, width=50 }: props) {
+export function CirclingFourDotsLoading({ height=50, width=50 }: props) {
   return (
     <div className="load" style={{height, width}}>
       <hr/>

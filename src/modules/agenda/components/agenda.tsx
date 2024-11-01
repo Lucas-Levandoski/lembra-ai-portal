@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, ErrorMessage, StatusMessage } from 'Common';
+import { Button, CirclingFourDotsLoading, ErrorMessage, StatusMessage } from 'Common';
 import { useStore } from 'Store';
 import { PiPlusCircle } from 'react-icons/pi';
 import { AgendaRow } from '.';
@@ -32,7 +32,7 @@ export function Agendas() {
 
       { isAgendaLoading && (
         <div className="flex justify-center min-h-40 items-center">
-          <CirclyingFourDotsLoading />
+          <CirclingFourDotsLoading />
         </div>
       )}
 

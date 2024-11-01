@@ -1,4 +1,5 @@
 import { Breadcrumbs } from 'Generic/components';
+import { CalendarView } from 'Calendar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +10,7 @@ export default function PortalCalendar() {
   return (
     <>
       <Breadcrumbs />
-      <div> testing landing inside portal </div>
+      <CalendarView />
     </>
   );
 }

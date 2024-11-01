@@ -10,6 +10,7 @@ import { EventType, PublicClientApplication, SilentRequest } from '@azure/msal-b
 import { msalConfig } from 'Auth';
 import { ToastContainer } from 'react-toastify';
 import { BreadcrumbProvider } from 'Generic/contexts';
+import { useStore } from 'Store';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,6 +33,8 @@ msalInstance.initialize().then(() => {
 });
 
 export default function RootLayout({children}: props) {
+  useStore();
+
   return (
     <html lang="en">
       <MsalProvider instance={msalInstance}>

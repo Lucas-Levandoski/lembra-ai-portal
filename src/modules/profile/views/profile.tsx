@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading, ErrorMessage, Select, Option, envVars, BouncingThreeDotsLoading } from 'Common';
+import { Button, CirclingFourDotsLoading, ErrorMessage, Select, Option, envVars, BouncingThreeDotsLoading } from 'Common';
 import { PhoneRegionOptions } from 'Profile/models';
 import { useEditProfile } from 'Profile/hooks';
 import { BiEditAlt } from 'react-icons/bi';
@@ -24,7 +24,7 @@ export function ProfileView() {
     <div className="min-w-[600px]">
       {
         isProfileLoading && (
-          <CirclyingFourDotsLoading />
+          <CirclingFourDotsLoading />
         )
       }
       {

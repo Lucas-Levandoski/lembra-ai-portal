@@ -1,13 +1,14 @@
 'use client';
 
-import { getBookingsByDay, listBookedDates } from 'Bookings';
-import { ParseDate, TimeGridMeeting, sumTimes } from 'Common';
+import { getBookingsByDay, listBookedDates } from 'Bookings/services';
+import { ParseDate, sumTimes } from 'Common/utils';
+import { TimeGridMeeting } from 'Common/models';
 import { useStore } from 'Store';
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
 
-export function useBookings() {
+export function useDayBookings() {
   const {
     selectedDate,
     bookedDates,
@@ -63,6 +64,9 @@ export function useBookings() {
       try {
         setIsDayBookingsLoading(true);
         const bookings = await getBookingsByDay(selected);
+
+        if(!bookings) return;
+
         setDayBookings(bookings);
       } catch(e) {
         getMyBookedDates();

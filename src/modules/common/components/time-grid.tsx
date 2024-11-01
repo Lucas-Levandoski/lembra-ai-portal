@@ -1,4 +1,4 @@
-import { CirclyingFourDotsLoading, TimeGridMeeting, timeToMinutes } from 'Common';
+import { CirclingFourDotsLoading, TimeGridMeeting, timeToMinutes } from 'Common';
 import { twMerge } from 'tailwind-merge';
 
 type props = {
@@ -93,7 +93,7 @@ export function TimeGrid({
       </div>
       {
         isLoading && <div className="absolute flex left-0 top-0 h-full w-full rounded-lg bg-gray-500 bg-opacity-70 justify-center items-center" >
-          <CirclyingFourDotsLoading />
+          <CirclingFourDotsLoading />
         </div>
       }
     </div>

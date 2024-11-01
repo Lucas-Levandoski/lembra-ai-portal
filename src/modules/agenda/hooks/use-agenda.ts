@@ -1,6 +1,7 @@
 'use client';
 
-import { listMyAgendas, updateMyAgenda } from 'Agenda';
+import { listMyAgendas, updateMyAgenda } from 'Agenda/services';
+import { AgendaElement } from 'Common';
 import { useStore } from 'Store';
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
@@ -48,23 +49,29 @@ export function useAgenda() {
       });
   };
 
-  const getAgendas = async (shouldSetLoading: boolean = false) => {
+  const getAgendas = async (shouldSetLoading: boolean = false): Promise<AgendaElement[] | undefined> => {
     if(!agendas || shouldSetLoading) setIsAgendaLoading(true);
 
-    listMyAgendas()
+    const _agendas = await listMyAgendas()
       .then(agendaResult => {
         setAgendas(agendaResult);
+        return agendaResult;
       }).catch((err) => {
         if(err instanceof AxiosError) {
-          if (err.response?.status === 404)
-            return setAgendas([]);
+          if (err.response?.status === 404) {
+            setAgendas([]);
+            return undefined;
+          }
 
           toast.error('Falha ao listar suas agendas');
         }
+        return undefined;
       })      
       .finally(() => {
         setIsAgendaLoading(false);
       });
+
+    return _agendas;
   };
 
   return {

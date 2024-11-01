@@ -12,3 +12,5 @@ export * from './calendar';
 export * from './time-grid';
 export * from './dropdown-menu';
 export * from './status-message';
+export * from './checkbox';
+export * from './week-time-grid';

@@ -10,7 +10,7 @@ export const listBookedDates = async (errorFn: (data: any) => void = () => {}): 
     });
 };
 
-export const getBookingsByDay = async (date: string, errorFn: (data: any) => void = () => {}): Promise<BookingEntity[]> => {
+export const getBookingsByDay = async (date: string, errorFn: (data: any) => void = () => {}): Promise<BookingEntity[] | undefined> => {
   return await privateClient.get<BookingEntity[]>(`${envVars.bookingsUrl}/my-bookings/by-day`, { params: { date } })
     .then(res => res.data)
     .catch(err => {
@@ -19,4 +19,12 @@ export const getBookingsByDay = async (date: string, errorFn: (data: any) => voi
     });
 };
 
+export const getBookingsByMonth = async (year: string, month: string, errorFn: (data: any) => void = () => {}): Promise<BookingEntity[] | undefined> => {
+  return await privateClient.get<BookingEntity[]>(`${envVars.bookingsUrl}/my-bookings/by-month`, { params: { year, month } })
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      throw err;
+    });
+};
 

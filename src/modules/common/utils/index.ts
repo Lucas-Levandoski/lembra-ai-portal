@@ -9,3 +9,5 @@ export * from './parse-date';
 export * from './recursive-partial';
 export * from './time-and-date-to-long';
 export * from './times-handlers';
+export * from './get-date';
+export * from './get-week-days';

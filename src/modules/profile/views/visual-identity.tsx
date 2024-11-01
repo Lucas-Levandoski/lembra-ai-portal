@@ -1,6 +1,6 @@
 'use client';
 
-import { BouncingThreeDotsLoading, Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common/components';
+import { BouncingThreeDotsLoading, Button, CirclingFourDotsLoading, ErrorMessage } from 'Common/components';
 import { envVars } from 'Common/utils';
 import { useEditProfile } from 'Profile/hooks';
 import Image from 'next/image';
@@ -26,7 +26,7 @@ export function VisualIdentityView() {
     <div className="min-w-[600px]">
       {
         isProfileLoading && (
-          <CirclyingFourDotsLoading />
+          <CirclingFourDotsLoading />
         )
       }
       {

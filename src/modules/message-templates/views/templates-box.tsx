@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, CirclyingFourDotsLoading } from 'Common';
+import { Button, CirclingFourDotsLoading } from 'Common';
 import { CgAddR } from 'react-icons/cg';
 import { useTemplates } from '../hooks/use-templates';
 import { TemplateModal, TemplateRow } from '../components';
@@ -46,7 +46,7 @@ export function MessageTemplatesBoxView({ agendaId }: props) {
       </div>
       { 
         isTemplatesLoading
-          ? <div className="flex justify-center mt-6 w-full"><CirclyingFourDotsLoading /></div>
+          ? <div className="flex justify-center mt-6 w-full"><CirclingFourDotsLoading /></div>
           : (
             <div className="flex flex-col gap-2 mt-4">
               {

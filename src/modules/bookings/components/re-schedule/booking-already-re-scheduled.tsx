@@ -6,7 +6,7 @@ import { IShortProfile } from 'Profile/models';
 import { BiCalendar, BiCamera, BiUser } from 'react-icons/bi';
 import Image from 'next/image';
 import { TimeDescription } from '../time-description';
-import { Button, CirclyingFourDotsLoading } from 'Common/components';
+import { Button, CirclingFourDotsLoading } from 'Common/components';
 import { envVars, sumMinutesToTime } from 'Common/utils';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 import { useOnAlreadyReScheduled } from 'Bookings/hooks/use-on-already-re-scheduled';
@@ -61,7 +61,7 @@ export function BookingAlreadyReScheduled({ booking, agenda, profile }: props) {
             <h2>Evento Atualizado</h2>
             {
               isNewBookingLoading 
-                ? <CirclyingFourDotsLoading />
+                ? <CirclingFourDotsLoading />
                 : (
                   <>
                     <span className="flex items-center gap-4 text-gray-700 text-lg">

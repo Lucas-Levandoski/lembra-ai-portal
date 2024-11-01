@@ -1,6 +1,6 @@
 'use client';
 
-import { BouncingThreeDotsLoading, Button, CirclyingFourDotsLoading, ErrorMessage } from 'Common';
+import { BouncingThreeDotsLoading, Button, CirclingFourDotsLoading, ErrorMessage } from 'Common';
 import { useEditProfile } from 'Profile/hooks';
 
 export function MyLinkView() {
@@ -21,7 +21,7 @@ export function MyLinkView() {
     <div className="max-w-[500px]">
       {
         isProfileLoading && (
-          <CirclyingFourDotsLoading />
+          <CirclingFourDotsLoading />
         )
       }
       {

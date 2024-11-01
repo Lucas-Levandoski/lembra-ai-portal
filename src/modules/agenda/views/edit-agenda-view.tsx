@@ -2,7 +2,7 @@
 
 import { EditAgendaCard } from '../components';
 import { BookingAgendaVisualization } from 'Bookings';
-import { CirclyingFourDotsLoading, ErrorMessage } from 'Common';
+import { CirclingFourDotsLoading, ErrorMessage } from 'Common';
 import { useEditAgenda } from '../hooks';
 import { useStore } from 'Store';
 
@@ -19,7 +19,7 @@ export function EditAgendaView({ agendaId }: props) {
       {
         isLoading && 
         <div className="h-[600px] w-full flex my-auto items-center justify-center">
-          <CirclyingFourDotsLoading height={100} width={100} />
+          <CirclingFourDotsLoading height={100} width={100} />
         </div>
       }
       {

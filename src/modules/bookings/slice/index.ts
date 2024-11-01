@@ -6,11 +6,15 @@ export const createBookingsSlice: StateCreator<BookingsSlice> = (set) => ({
   selectedDate: undefined,
   isBookedDatesLoading: false,
   dayBookings: undefined,
+  monthBookings: undefined,
   isDayBookingsLoading: false,
+  isMonthBookingsLoading: false,
 
   setBookedDates: (bookedDates) => set(() => ({ bookedDates })),
   setIsBookedDatesLoading: (isBookedDatesLoading) => set(() => ({ isBookedDatesLoading })),
   setSelectedDate: (selectedDate) => set(() => ({ selectedDate })),
   setDayBookings: (dayBookings: BookingEntity[]) => set(() => ({ dayBookings })),
+  setMonthBookings: (monthBookings: BookingEntity[]) => set(() => ({ monthBookings })),
   setIsDayBookingsLoading: (isDayBookingsLoading) => set(() => ({ isDayBookingsLoading })),
+  setIsMonthBookingsLoading: (isMonthBookingsLoading) => set(() => ({ isMonthBookingsLoading })),
 });
