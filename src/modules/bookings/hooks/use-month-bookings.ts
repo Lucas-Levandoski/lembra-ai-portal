@@ -1,6 +1,8 @@
 'use client';
 
+import { AxiosError } from 'axios';
 import { getBookingsByMonth } from 'Bookings/services';
+import { toast } from 'react-toastify';
 import { useStore } from 'Store';
 
 
@@ -23,11 +25,22 @@ export function useMonthBookings() {
     try {
       const _bookings = await getBookingsByMonth(year, month);
 
-      if(!_bookings) return;
+      if(!_bookings) return [];
 
-      setMonthBookings(_bookings);
+      const mergedBookings = [...monthBookings ?? [], ..._bookings];
 
-      return _bookings;
+      setMonthBookings(mergedBookings);
+
+      return mergedBookings;
+    } catch (e) {
+      if(e instanceof AxiosError) {
+        if(e.response?.status === 404)
+          return [];
+
+        toast.error(e.response?.data);
+      }
+
+      throw e;
     } finally {
       setIsMonthBookingsLoading(false);
     }
