@@ -1,4 +1,4 @@
-import { BookingEntity } from 'Bookings/models';
+import { BookingDetails, BookingEntity } from 'Bookings/models';
 import { TimeDescription } from 'Bookings/components';
 import { AgendaElement, Button, CirclingFourDotsLoading, Dialog, ErrorMessage, sumTimes, TimeCard, timeToMinutes } from 'Common';
 import { CiCalendar } from 'react-icons/ci';
@@ -6,6 +6,8 @@ import { BiUser } from 'react-icons/bi';
 import { BsWhatsapp } from 'react-icons/bs';
 import { MdOutlineStickyNote2 } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5';
+import { FaAngleDoubleUp } from 'react-icons/fa';
+
 
 
 type props = {
@@ -14,9 +16,10 @@ type props = {
   booking?: BookingEntity;
   agenda?: AgendaElement;
   isLoading?: boolean;
+  reschedules?: BookingDetails[];
 }
 
-export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true, onClose = () => {} }: props) {
+export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true, reschedules = [], onClose = () => {} }: props) {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className="relative">
@@ -56,6 +59,21 @@ export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true
                         }
                       </span>
                     </div>
+                    {
+                      reschedules.length > 0 && (
+                        <div className="flex flex-col">
+                          <h3>Este booking já foi reagendado <span className="text-orange-500">{reschedules.length > 1 ? `${reschedules.length} vezes`: '1 vez'}</span></h3>
+                          {reschedules.map((reschedule, i) => (
+                            <div className="flex flex-col gap-1 mt-1" key={reschedule.sourceBookingId}>
+                              {i > 0 && <span className="flex w-full justify-center"><FaAngleDoubleUp className="text-orange-500 size-4" /></span>}
+                              <div className="bg-orange-200 rounded-md px-2">
+                                <TimeDescription date={reschedule.date} startTime={reschedule.time} endTime={sumTimes(reschedule.time, reschedule.duration)} />
+                              </div>
+                            </div>
+                          ))}
+                        </div> 
+                      )
+                    }
                     <div className="flex justify-between">
                       <Button route={`/re-schedule/${booking.id}`} variant="secondary" >Cancelar Evento</Button>
                       <Button routeTarget="_blank" route={`/re-schedule/${booking.id}`} variant="primary">Reagendar</Button>

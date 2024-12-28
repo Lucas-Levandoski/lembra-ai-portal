@@ -13,11 +13,12 @@ export function CalendarView() {
     selectedBooking,
     selectedDate, 
     isBookingOpen, 
+    selectedAgenda,
+    selectedBookingReschedules,
     onCloseBooking,
     onSelectBooking,
     toggleShowAgenda, 
     onSelectDate, 
-    selectedAgenda,
   } = useCalendar();
 
   return (
@@ -34,7 +35,14 @@ export function CalendarView() {
       <div className="col-span-5">
         <WeekView eventsByAgenda={bookingsFormatted} selectedDate={selectedDate} onSelectBooking={onSelectBooking} />
       </div>
-      <BookingDialog isOpen={isBookingOpen} onClose={onCloseBooking} isLoading={isBookingLoading} booking={selectedBooking} agenda={selectedAgenda} />
+      <BookingDialog 
+        isOpen={isBookingOpen}
+        onClose={onCloseBooking}
+        isLoading={isBookingLoading}
+        booking={selectedBooking}
+        agenda={selectedAgenda}
+        reschedules={selectedBookingReschedules}
+      />
     </div>
   );
 };

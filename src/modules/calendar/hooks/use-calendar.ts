@@ -1,7 +1,8 @@
 'use client';
 
 import { useAgenda } from 'Agenda/hooks';
-import { BookingEntity, readEvent } from 'Bookings';
+import { BookingDetails, BookingEntity } from 'Bookings/models';
+import { readEvent } from 'Bookings/services';
 import { useMonthBookings } from 'Bookings/hooks';
 import { IEventsByAgenda } from 'Calendar/models';
 import { AgendaElement } from 'Common';
@@ -24,6 +25,7 @@ export function useCalendar() {
   const [isBookingLoading, setIsBookingLoading] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState<BookingEntity>();
   const [selectedAgenda, setSelectedAgenda] = useState<AgendaElement>();
+  const [selectedBookingReschedules, setSelectedBookingReschedules] = useState<BookingDetails[]>();
 
 
   useEffect(() => {
@@ -132,6 +134,19 @@ export function useCalendar() {
     setIsBookingOpen(false);
   };
 
+  const populateReschedules = (details: BookingDetails): BookingDetails[] => {    
+
+    if(!details.rescheduledBooking) {
+      return [details];
+    }
+
+    const tempDetails = details.rescheduledBooking;
+
+    delete details.rescheduledBooking;
+
+    return [details, ...populateReschedules(tempDetails)];    
+  };
+
   const onSelectBooking = (id: string) => {
     setIsBookingOpen(true);
     setIsBookingLoading(true);
@@ -140,6 +155,12 @@ export function useCalendar() {
       setSelectedBooking(res);
 
       setSelectedAgenda(findAgenda(res.agendaId));
+
+      if(res.details.rescheduledBooking)
+        setSelectedBookingReschedules(populateReschedules(res.details.rescheduledBooking));
+      else 
+        setSelectedBookingReschedules([]);
+
     }).finally(() => {
       setIsBookingLoading(false);
     });
@@ -154,6 +175,7 @@ export function useCalendar() {
     isBookingLoading,
     selectedBooking,
     selectedAgenda,
+    selectedBookingReschedules,
     onCloseBooking,
     toggleShowAgenda,
     onSelectDate,
