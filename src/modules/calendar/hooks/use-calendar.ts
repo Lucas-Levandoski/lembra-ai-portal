@@ -1,7 +1,7 @@
 'use client';
 
 import { useAgenda } from 'Agenda/hooks';
-import { BookingEntity } from 'Bookings';
+import { BookingEntity, readEvent } from 'Bookings';
 import { useMonthBookings } from 'Bookings/hooks';
 import { IEventsByAgenda } from 'Calendar/models';
 import { AgendaElement } from 'Common';
@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 
 export function useCalendar() {
   const { isMonthBookingsLoading, getBookings } = useMonthBookings();
-  const { isAgendaLoading, getAgendas } = useAgenda();
+  const { isAgendaLoading, getAgendas, findAgenda } = useAgenda();
   
   const today = getDateObject();
 
@@ -20,6 +20,11 @@ export function useCalendar() {
   const [fetchedDate, setFetchedDate] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>(dayjs(new Date()).format('YYYY-MM-DD'));
   const [bookingsFormatted, setBookingsFormatted] = useState<IEventsByAgenda>({});
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [isBookingLoading, setIsBookingLoading] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<BookingEntity>();
+  const [selectedAgenda, setSelectedAgenda] = useState<AgendaElement>();
+
 
   useEffect(() => {
     loadData();
@@ -110,7 +115,8 @@ export function useCalendar() {
           color: agenda.details.colorName,
           startTime: booking.details.time,
           endTime: sumTimes(booking.details.time, booking.details.duration),
-          title: booking.guestDetails.name
+          title: booking.guestDetails.name,
+          id: booking.id
         })),
         color: agenda.details.colorName,
         agendaName: agenda.details.name,
@@ -122,12 +128,35 @@ export function useCalendar() {
     setBookingsFormatted(result);
   };
 
+  const onCloseBooking = () => {
+    setIsBookingOpen(false);
+  };
+
+  const onSelectBooking = (id: string) => {
+    setIsBookingOpen(true);
+    setIsBookingLoading(true);
+
+    readEvent(id).then(res => {
+      setSelectedBooking(res);
+
+      setSelectedAgenda(findAgenda(res.agendaId));
+    }).finally(() => {
+      setIsBookingLoading(false);
+    });
+  };
+
   return {
     bookingsFormatted,
     isMonthBookingsLoading,
     isAgendaLoading,
+    selectedDate,
+    isBookingOpen,
+    isBookingLoading,
+    selectedBooking,
+    selectedAgenda,
+    onCloseBooking,
     toggleShowAgenda,
     onSelectDate,
-    selectedDate
+    onSelectBooking,
   };
 }

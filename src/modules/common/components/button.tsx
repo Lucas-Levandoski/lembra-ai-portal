@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import { ButtonHTMLAttributes, HTMLAttributeAnchorTarget, MouseEventHandler } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 
@@ -10,6 +10,7 @@ type props = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   route?: string | { pathname: string, query: { [name: string]: string }};
+  routeTarget?: HTMLAttributeAnchorTarget;
 };
 
 
@@ -23,12 +24,13 @@ const variants: { [key in Variant]: string } = {
   unset: 'border-none bg-transparent p-0',
 };
 
-export function Button({ variant = 'primary', onClick, children, className, disabled = false, type = 'button', route }: props) {
+export function Button({ variant = 'primary', onClick, children, className, disabled = false, type = 'button', route, routeTarget }: props) {
   const baseClass = 'flex justify-center items-center rounded-lg font-semibold px-4';
 
   return (
     route && !disabled ? (
       <Link
+        target={routeTarget}
         href={route}
         className={twMerge([
           baseClass,

@@ -12,4 +12,5 @@ export type WeekGridMeeting = {
   title: string;
   color: string;
   agendaName: string;
+  id: string;
 }

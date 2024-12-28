@@ -27,4 +27,3 @@ export const getBookingsByMonth = async (year: string, month: string, errorFn: (
       throw err;
     });
 };
-

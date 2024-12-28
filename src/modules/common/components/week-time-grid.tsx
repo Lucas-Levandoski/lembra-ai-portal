@@ -1,5 +1,5 @@
 import { IEventsByAgenda } from 'Calendar/models';
-import { CirclingFourDotsLoading, getDate, getWeekDays, timeToMinutes } from 'Common';
+import { Button, CirclingFourDotsLoading, getDate, getWeekDays, timeToMinutes } from 'Common';
 import { twMerge } from 'tailwind-merge';
 
 type props = {
@@ -10,6 +10,7 @@ type props = {
   events?: IEventsByAgenda;
   currentTime?: number;
   isLoading?: boolean;
+  onSelect?: (id: string) => void; 
 }
 
 export function WeekTimeGrid({ 
@@ -20,6 +21,7 @@ export function WeekTimeGrid({
   currentTime = new Date().getMinutes() / 60 + new Date().getHours(),
   events = {},
   isLoading = false,
+  onSelect = () => {},
 }: props) {
   const range = endHour - startHour;
   const times = (new Array(range + 1).fill(0)).map((_, i) => (`${i+startHour < 10 ?  '0' + (i+startHour): i+startHour}:00`));
@@ -96,16 +98,18 @@ export function WeekTimeGrid({
 
                       return (
                         <div key={event.title + i} className="absolute mx-auto w-full" style={{ top, height }}>
-                          <div className={
-                            twMerge(
-                              'flex flex-col h-full border text-center justify-center col-span-4 rounded-xl bg-opacity-80 mx-auto px-2', 
-                              'relative group',
-                              `bg-${event.color}-100 text-${event.color}-700 border-${event.color}-500`
-                            )
-                          }>
-                            <span className="font-semibold text-sm leading-4">{event.title}</span>
-                            <span className={`font-light text-sm leading-4 ${height < 32 ? 'hidden' : ''}`}>{event.startTime} - {event.endTime}</span>
-                          </div>
+                          <Button variant="unset" onClick={() => onSelect(event.id)} >
+                            <div className={
+                              twMerge(
+                                'flex flex-col h-full border text-center justify-center col-span-4 rounded-xl bg-opacity-80 mx-auto px-2', 
+                                'relative group',
+                                `bg-${event.color}-100 text-${event.color}-700 border-${event.color}-500`
+                              )
+                            }>
+                              <span className="font-semibold text-sm leading-4">{event.title}</span>
+                              <span className={`font-light text-sm leading-4 ${height < 32 ? 'hidden' : ''}`}>{event.startTime} - {event.endTime}</span>
+                            </div>
+                          </Button>
                         </div>
                       );
                     })

@@ -49,6 +49,12 @@ export function useAgenda() {
       });
   };
 
+  const findAgenda = (id: string) => {
+    if(!agendas) return;
+    
+    return agendas.find(agenda => agenda.id === id);
+  };
+
   const getAgendas = async (shouldSetLoading: boolean = false): Promise<AgendaElement[] | undefined> => {
     if(!agendas || shouldSetLoading) setIsAgendaLoading(true);
 
@@ -80,5 +86,6 @@ export function useAgenda() {
     getAgendas,
     onCopy,
     onToggleActive,
+    findAgenda,
   };
 }

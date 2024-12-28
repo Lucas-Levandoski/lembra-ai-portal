@@ -7,6 +7,7 @@ export type BookingDetails = {
   duration: string;
   status: BookingStatus;
   rescheduleBookingId?: string;
+  rescheduledBooking?: BookingDetails;
   sourceBookingId?: string;
 }
 
@@ -14,7 +15,6 @@ export type BookingLocation = {
   location: BookingLocations;
   url?: string;
 }
-
 
 export type BookingEntity = {
   id: string;
