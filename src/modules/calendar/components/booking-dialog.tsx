@@ -22,8 +22,8 @@ type props = {
 export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true, reschedules = [], onClose = () => {} }: props) {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
-      <div className="relative">
-        <Button className="absolute right-0 top-0" variant="icon" onClick={onClose} ><IoClose className="size-6" /></Button>
+      <div className="relative min-h-44 min-w-44 flex flex-col justify-center align-middle">
+        <Button className="absolute -right-4 -top-4" variant="icon" onClick={onClose} ><IoClose className="size-6" /></Button>
         {
           isLoading 
             ? <CirclingFourDotsLoading />

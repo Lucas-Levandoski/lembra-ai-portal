@@ -106,7 +106,7 @@ export function WeekTimeGrid({
                                 `bg-${event.color}-100 text-${event.color}-700 border-${event.color}-500`
                               )
                             }>
-                              <span className="font-semibold text-sm leading-4">{event.title}</span>
+                              <span className="font-semibold text-sm leading-4 text-ellipsis">{event.title}</span>
                               <span className={`font-light text-sm leading-4 ${height < 32 ? 'hidden' : ''}`}>{event.startTime} - {event.endTime}</span>
                             </div>
                           </Button>
