@@ -22,6 +22,8 @@
     "paths": {
       "Generic": ["./modules/generic/index.ts"],
       "Generic/*": ["./modules/generic/*"],
+      "Events": ["./modules/events/index.ts"],
+      "Events/*": ["./modules/events/*"],
       "Calendar": ["./modules/calendar/index.ts"],
       "Calendar/*": ["./modules/calendar/*"],
       "Common": ["./modules/common/index.ts"],

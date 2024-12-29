@@ -1,15 +1,16 @@
+import { EventsView } from 'Events/views';
 import { Breadcrumbs } from 'Generic/components';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Meus Lembretes'
+  title: 'Meus Eventos'
 };
 
-export default function PortalReminders() {
+export default function PortalEvents() {
   return (
     <>
       <Breadcrumbs />
-      <div> testing landing inside portal </div>
+      <EventsView />
     </>
   );
 }

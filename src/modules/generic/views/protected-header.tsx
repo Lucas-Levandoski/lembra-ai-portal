@@ -19,7 +19,7 @@ export function ProtectedHeaderView() {
         <Link route="/portal/agenda"><PiStackSimpleLight strokeWidth={5} className="size-6 font-bold"/> Agendas</Link>
         <Link route="/portal/calendar"><CiCalendar strokeWidth={0.5} className="size-6" /> Calendário</Link>
         <Link route="/portal/availability"><CiClock2 strokeWidth={0.3} className="size-6" />Disponibilidade</Link>
-        <Link route="/portal/reminders"><PiClockCounterClockwiseLight  strokeWidth={5} className="size-6"/> Lembretes</Link>
+        <Link route="/portal/events"><PiClockCounterClockwiseLight  strokeWidth={5} className="size-6"/> Eventos</Link>
       </nav>
       <UserInfo />
     </header>

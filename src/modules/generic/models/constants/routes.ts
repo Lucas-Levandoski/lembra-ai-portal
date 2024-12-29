@@ -5,7 +5,7 @@ export const ROUTES = new Map<Routes, string>([
   ['agenda', 'Agendas'],
   ['calendar', 'Calendário'],
   ['availability', 'Disponibilidade'],
-  ['reminders', 'Lembretes'],
+  ['events', 'Eventos'],
   ['profile', 'Perfil'],
   ['visual-identity', 'Identidade Visual'],
   ['my-link', 'Meu Link'],
