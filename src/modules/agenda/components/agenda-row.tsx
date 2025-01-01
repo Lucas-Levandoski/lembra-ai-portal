@@ -22,13 +22,13 @@ export function AgendaRow({ agenda, onCopy, onToggleActive }: props) {
       <strong>{name}</strong>
       <TimeCard colorName={colorName} timeFrame={timeFrame} className="ml-8"/>
       <div className="flex border-l ml-auto mr-0 items-center gap-6 pl-6">
-        <span className="flex gap-2 items-center w-32">
+        <div className="flex gap-2 items-center w-32">
           <Toggle onClick={() => onToggleActive(agenda.id)} state={isEnable} />
           <div className="relative flex items-center">
             <span className={twMerge('opacity-0 absolute duration-200', isEnable && 'opacity-100')}>Ativo</span>
             <span className={twMerge('opacity-0 absolute duration-200', !isEnable && 'opacity-100')}>Inativo</span>
           </div>
-        </span>
+        </div>
         <Button variant="icon" onClick={() => {}}><BiTrash className="size-6" /></Button>
         <Button variant="icon" className="p-1" route={`/portal/agenda/edit/${agenda.id}`}><HiOutlineAdjustmentsHorizontal className="size-8" /></Button>
         <Button variant="icon" className="text-blue-500 flex items-center gap-2" onClick={() => onCopy(tag)}><IoCopyOutline className="size-8" />Copiar link</Button>

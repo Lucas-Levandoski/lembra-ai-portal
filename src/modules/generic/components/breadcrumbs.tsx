@@ -14,10 +14,10 @@ export function Breadcrumbs() {
       <span className="flex items-center gap-3">
         {
           breadcrumbs.map((breadcrumb, i) => (
-            <>
-              <Link className="text-blue-700" key={breadcrumb.key} href={breadcrumb.url}>{breadcrumb.value}</Link>
+            <span className="flex items-center gap-3" key={breadcrumb.key}>
+              <Link className="text-blue-700" href={breadcrumb.url}>{breadcrumb.value}</Link>
               { i >= 0 && i < breadcrumbs.length -1 && <span><MdArrowForwardIos  /></span>}
-            </>
+            </span>
           ))}
       </span>
     </div>

@@ -14,3 +14,4 @@ export * from './dropdown-menu';
 export * from './status-message';
 export * from './checkbox';
 export * from './week-time-grid';
+export * from './accordion';

@@ -1,5 +1,6 @@
-import { BookingEntity, BookingStatus } from 'Bookings/models';
+import { BookingStatus } from 'Bookings/models';
+import { EventDetails } from './event-details';
 
 export type AllEvents = {
-  [k in BookingStatus]: BookingEntity[];
+  [k in BookingStatus]: EventDetails[];
 }
