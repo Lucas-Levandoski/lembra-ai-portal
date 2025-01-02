@@ -16,8 +16,6 @@ export function useEventDetails(events: EventDetails[]) {
 
     setReschedules(reschedules);
 
-    console.log(reschedules);
-
     setRefresh(!refresh);
   }, []);
 
