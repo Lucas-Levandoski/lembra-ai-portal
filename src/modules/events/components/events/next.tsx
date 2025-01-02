@@ -67,7 +67,7 @@ export function NextEvents({ events }: props) {
                                 <span className="text-orange-500"> {reschedules[i].length > 1 ? `${reschedules[i].length} vezes`: '1 vez'}</span>
                               </h3>
                               {reschedules[i].map((reschedule, j) => (
-                                <div className="flex flex-col gap-1 mt-1" key={reschedule.sourceBookingId}>
+                                <div className="flex flex-col gap-1 mt-1" key={'reschedule-element-' + j}>
                                   {j > 0 && <span className="flex w-full justify-center"><FaAngleDoubleUp className="text-orange-500 size-4" /></span>}
                                   <div className="bg-orange-200 rounded-md px-2 text-center">
                                     <TimeDescription date={reschedule.date} startTime={reschedule.time} endTime={sumTimes(reschedule.time, reschedule.duration)} />
