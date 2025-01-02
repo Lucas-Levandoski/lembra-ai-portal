@@ -7,6 +7,8 @@ import { useEvents } from 'Events/hooks';
 export function EventsView() {
   const { isLoading, events, selectedTab, counts, onSelectTab } = useEvents();
 
+  console.log(events);
+
   return (
     <div className="flex flex-col gap-5 p-5 shadow-lg rounded-lg">
       <h1>Lembretes de eventos</h1>

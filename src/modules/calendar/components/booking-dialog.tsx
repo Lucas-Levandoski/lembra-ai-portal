@@ -66,7 +66,7 @@ export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true
                           {reschedules.map((reschedule, i) => (
                             <div className="flex flex-col gap-1 mt-1" key={reschedule.sourceBookingId}>
                               {i > 0 && <span className="flex w-full justify-center"><FaAngleDoubleUp className="text-orange-500 size-4" /></span>}
-                              <div className="bg-orange-200 rounded-md px-2">
+                              <div className="bg-orange-200 rounded-md px-2 text-center">
                                 <TimeDescription date={reschedule.date} startTime={reschedule.time} endTime={sumTimes(reschedule.time, reschedule.duration)} />
                               </div>
                             </div>

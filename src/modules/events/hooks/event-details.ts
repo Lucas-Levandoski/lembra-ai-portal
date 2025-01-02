@@ -28,7 +28,7 @@ export function useEventDetails(events: EventDetails[]) {
 
   return {
     isOpen,
-    onToggle,
     reschedules,
+    onToggle,
   };
 }

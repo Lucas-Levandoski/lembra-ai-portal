@@ -22,11 +22,9 @@ export function NextEvents({ events }: props) {
       {
         !events.length 
           ? <StatusMessage message="Parece que não foi encontrado nenhum evento" />
-          : events.map((event, i) => {
-            const { agendaEntity: agenda, bookingEntity: booking } = event;
-
-            return (
-              <li key={event.bookingEntity.id}>
+          : events.map(({bookingEntity: booking, agendaEntity: agenda}, i) =>
+            (
+              <li key={booking.id}>
                 <Accordion isOpen={isOpen[i]} onChange={(status) => onToggle(i, status)}>
                   <RowTitle 
                     agendaTitle={agenda.name}
@@ -71,7 +69,7 @@ export function NextEvents({ events }: props) {
                               {reschedules[i].map((reschedule, j) => (
                                 <div className="flex flex-col gap-1 mt-1" key={reschedule.sourceBookingId}>
                                   {j > 0 && <span className="flex w-full justify-center"><FaAngleDoubleUp className="text-orange-500 size-4" /></span>}
-                                  <div className="bg-orange-200 rounded-md px-2">
+                                  <div className="bg-orange-200 rounded-md px-2 text-center">
                                     <TimeDescription date={reschedule.date} startTime={reschedule.time} endTime={sumTimes(reschedule.time, reschedule.duration)} />
                                   </div>
                                 </div>
@@ -95,9 +93,8 @@ export function NextEvents({ events }: props) {
                   </div>
                 </Accordion>
               </li>
-            );
-          })
-      
+            )
+          )
       }
     </ul>
   );

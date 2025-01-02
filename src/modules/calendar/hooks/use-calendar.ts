@@ -144,10 +144,7 @@ export function useCalendar() {
 
       setSelectedAgenda(findAgenda(res.agendaId));
 
-      if(res.details.rescheduledBooking)
-        setSelectedBookingReschedules(FlattenReschedules(res.details.rescheduledBooking));
-      else 
-        setSelectedBookingReschedules([]);
+      setSelectedBookingReschedules(FlattenReschedules(res.details.rescheduledBooking));
 
     }).finally(() => {
       setIsBookingLoading(false);
