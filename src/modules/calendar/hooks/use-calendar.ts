@@ -9,6 +9,7 @@ import { AgendaElement } from 'Common';
 import { getDate, getDateObject, sumTimes } from 'Common/utils';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import { FlattenReschedules } from 'Calendar/utils';
 
 export function useCalendar() {
   const { isMonthBookingsLoading, getBookings } = useMonthBookings();
@@ -134,19 +135,6 @@ export function useCalendar() {
     setIsBookingOpen(false);
   };
 
-  const populateReschedules = (details: BookingDetails): BookingDetails[] => {    
-
-    if(!details.rescheduledBooking) {
-      return [details];
-    }
-
-    const tempDetails = details.rescheduledBooking;
-
-    delete details.rescheduledBooking;
-
-    return [details, ...populateReschedules(tempDetails)];    
-  };
-
   const onSelectBooking = (id: string) => {
     setIsBookingOpen(true);
     setIsBookingLoading(true);
@@ -157,7 +145,7 @@ export function useCalendar() {
       setSelectedAgenda(findAgenda(res.agendaId));
 
       if(res.details.rescheduledBooking)
-        setSelectedBookingReschedules(populateReschedules(res.details.rescheduledBooking));
+        setSelectedBookingReschedules(FlattenReschedules(res.details.rescheduledBooking));
       else 
         setSelectedBookingReschedules([]);
 
