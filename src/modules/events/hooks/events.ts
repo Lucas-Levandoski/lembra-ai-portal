@@ -24,7 +24,7 @@ export function useEvents() {
     try {
       await getCountByStatus().then(setCounts);
 
-      await getBookingsByStatus(['no-show', 'booked', 'canceled', 'rescheduled', 'show', 'unanswered']).then(res => setEvents({...events, ...res}));
+      await getBookingsByStatus(['no-show', 'booked', 'canceled', 'show', 'unanswered']).then(res => setEvents({...events, ...res}));
     } finally {
       setIsLoading(false);
     }

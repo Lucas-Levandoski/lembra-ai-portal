@@ -25,15 +25,6 @@ export function EventsView() {
                   content: <NextEvents events={events.booked} />
                 },
                 {
-                  id: 'rescheduled',
-                  label: `Reagendados (${counts.rescheduled})`,
-                  content: (
-                    <div>
-                      booked 
-                    </div>
-                  )
-                },
-                {
                   id: 'canceled',
                   label: `Cancelados (${counts.canceled})`,
                   content: (
