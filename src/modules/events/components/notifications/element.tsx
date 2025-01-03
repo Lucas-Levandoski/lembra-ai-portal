@@ -1,5 +1,5 @@
 import { BookingNotification, NotificationStatuses } from 'Bookings/models';
-import { Accordion } from 'Common';
+import { Accordion, StatusMessage } from 'Common';
 import { maskMinutes } from 'Common/utils';
 import { MessageTarget, TargetIcons } from 'Message-Templates/models';
 import { useState } from 'react';
@@ -42,8 +42,12 @@ export function NotificationElement({ details, target }: props) {
           {StatusText(details.status)} por {target}
         </span>
       </div>
-      <div className="relative max-h-[300px] overflow-auto rounded-md border-blue-700 border-2 p-4 mt-4">
-        <div dangerouslySetInnerHTML={{ __html: details.html || details.content || '<h1>test</h1>' }} />
+      <div className="relative max-h-[300px] overflow-auto rounded-md border-blue-700 border-2 p-4">
+        {
+          !details.html && !details.content
+            ? <StatusMessage message="Sua notificação está sendo processada, só é possível visualizar notificações já enviadas" />
+            : <div dangerouslySetInnerHTML={{ __html: details.html || details.content || '' }} />
+        }
       </div>
     </Accordion>
   );

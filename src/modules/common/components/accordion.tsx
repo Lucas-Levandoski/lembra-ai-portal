@@ -18,8 +18,21 @@ export function Accordion({ children, className, isOpen = true, onChange = () =>
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    setHeight(contentRef.current?.scrollHeight || 0);
-  }, [contentRef.current?.scrollHeight]);
+    const updateHeight = () => {
+      setHeight(contentRef.current?.scrollHeight || 0);
+    };
+
+    const observer = new ResizeObserver(updateHeight);
+    if (contentRef.current) {
+      observer.observe(contentRef.current);
+    }
+
+    return () => {
+      if (contentRef.current) {
+        observer.unobserve(contentRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className={twMerge('w-full rounded-md border p-2 bg-slate-100', className)}>
@@ -32,8 +45,8 @@ export function Accordion({ children, className, isOpen = true, onChange = () =>
           <PiCaretDownBold className={twMerge('transition-transform duration-300', isOpen && 'rotate-180')}  />
         </span>
       </Button>
-      <div ref={contentRef} style={{ height: isOpen ? `${height}px` : '0px' }} className="transition-all overflow-hidden">
-        <div className={twMerge('opacity-0 transition-opacity delay-100 duration-500', isOpen && 'opacity-100')}>
+      <div style={{ height: isOpen ? `${height}px` : '0px' }} className="transition-all overflow-hidden">
+        <div ref={contentRef}  className={twMerge('opacity-0 transition-opacity delay-100 duration-500 py-4', isOpen && 'opacity-100')}>
           {children[1]}
         </div>
       </div>

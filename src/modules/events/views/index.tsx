@@ -16,7 +16,7 @@ export function EventsView() {
           ? <CirclingFourDotsLoading />
           : (
             <Tabs
-              selectedId={selectedTab} 
+              selectedId={selectedTab}
               onChangeTab={(id) => onSelectTab(id)}
               items={[
                 {
@@ -35,7 +35,7 @@ export function EventsView() {
                 },
                 {
                   id: 'past',
-                  label: `Passados (${counts.show + counts['no-show']})`,
+                  label: `Passados (${counts.show + counts['no-show'] + counts.unanswered})`,
                   content: (
                     <div>
                       booked 
