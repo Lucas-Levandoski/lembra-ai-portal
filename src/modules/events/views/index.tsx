@@ -1,7 +1,7 @@
 'use client';
 
 import { CirclingFourDotsLoading, Tabs } from 'Common';
-import { NextEvents } from 'Events/components';
+import { CanceledEvents, NextEvents, PastEvents } from 'Events/components';
 import { useEvents } from 'Events/hooks';
 
 export function EventsView() {
@@ -28,18 +28,14 @@ export function EventsView() {
                   id: 'canceled',
                   label: `Cancelados (${counts.canceled})`,
                   content: (
-                    <div>
-                      booked 
-                    </div>
+                    <CanceledEvents events={events.canceled} />
                   )
                 },
                 {
                   id: 'past',
                   label: `Passados (${counts.show + counts['no-show'] + counts.unanswered})`,
                   content: (
-                    <div>
-                      booked 
-                    </div>
+                    <PastEvents events={[...events['no-show'], ...events.show, ...events.unanswered]} />
                   )
                 }
               ]} />
