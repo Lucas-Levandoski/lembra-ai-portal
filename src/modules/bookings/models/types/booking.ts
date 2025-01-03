@@ -18,7 +18,7 @@ export type BookingLocation = {
 
 export type BookingNotification = {
   id: string;
-  notificationId?: string;
+  templateId?: string;
   content?: string;
   html?: string;
   minutesToMeeting: number;
