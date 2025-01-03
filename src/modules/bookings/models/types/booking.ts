@@ -26,7 +26,7 @@ export type BookingNotification = {
   errorMessage?: string;
 }
 
-export type NotificationStatuses = 'in-progress' | 'success' | 'fail';
+export type NotificationStatuses = 'in-progress' | 'success' | 'fail' | 'canceled';
 
 export type BookingNotifications = {
   [key in keyof typeof MessageTargets ]?: BookingNotification[];
