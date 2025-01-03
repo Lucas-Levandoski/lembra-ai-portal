@@ -8,6 +8,7 @@ import { CiCalendar, CiStickyNote, CiUser } from 'react-icons/ci';
 import { BsWhatsapp } from 'react-icons/bs';
 import { TimeDescription } from 'Bookings/components';
 import { FaAngleDoubleUp } from 'react-icons/fa';
+import { NotificationsContainer } from '../notifications';
 
 
 type props = {
@@ -86,8 +87,12 @@ export function NextEvents({ events }: props) {
                     <span className="w-[1px] border mx-4" />
                     <div className="flex flex-col w-3/5">
                       <div className="flex flex-col mx-auto w-fit">
-                        <h2 className="font-bold">Lembretes</h2>
-
+                        <h2 className="font-bold mb-6">Lembretes</h2>
+                        {
+                          !booking.notifications 
+                            ? <StatusMessage message="Parece que não foi enviado nenhuma notificação para este agendamento" />
+                            : <NotificationsContainer notifications={booking.notifications} />
+                        }
                       </div>
                     </div>
                   </div>

@@ -16,6 +16,22 @@ export type BookingLocation = {
   url?: string;
 }
 
+export type BookingNotification = {
+  id: string;
+  notificationId?: string;
+  content?: string;
+  html?: string;
+  minutesToMeeting: number;
+  status: NotificationStatuses;
+  errorMessage?: string;
+}
+
+export type NotificationStatuses = 'in-progress' | 'success' | 'fail';
+
+export type BookingNotifications = {
+  [key in keyof typeof MessageTargets ]?: BookingNotification[];
+}
+
 export type BookingEntity = {
   id: string;
   agendaId: string;
@@ -29,7 +45,5 @@ export type BookingEntity = {
 
   guestDetails: IAttendeeDetails;
 
-  notifications: {
-    [key in keyof typeof MessageTargets ]: any; //TODO: find a proper type for the notifications
-  };
+  notifications: BookingNotifications;
 }
