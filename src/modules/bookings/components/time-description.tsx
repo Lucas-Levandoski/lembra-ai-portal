@@ -3,9 +3,10 @@ type props = {
   startTime: string;
   endTime: string;
   date: string;
+  className?: string;
 };
 
-export function TimeDescription({ endTime, startTime, date }: props) {  
+export function TimeDescription({ className, endTime, startTime, date }: props) {  
   const translatedDate = new Date(date).toLocaleDateString('pt-BR', {
     weekday: 'long',
     month: 'long',
@@ -19,7 +20,7 @@ export function TimeDescription({ endTime, startTime, date }: props) {
   ;
 
   return (
-    <span>
+    <span className={className}>
       {startTime} - {endTime}, {translatedDate}
     </span>
   );

@@ -13,7 +13,7 @@ export function AgendasView() {
 
   return (
     <div className="grid grid-cols-12 gap-6">
-      <div className="flex flex-col col-span-9 gap-8">
+      <div className="flex flex-col col-span-9 gap-8"> 
         <UserInfo /> 
         <Agendas />
       </div>

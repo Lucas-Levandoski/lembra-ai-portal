@@ -1,15 +1,17 @@
 import { envVars } from 'Common';
 import { IShortProfile } from 'Profile';
 import Image from 'next/image';
+import { twMerge } from 'tailwind-merge';
 
 
 type props = {
   profile: IShortProfile;
+  className?: string;
 }
 
-export function ProfileTag({ profile }: props) {
+export function ProfileTag({ profile, className }: props) {
   return (
-    <div className="flex w-full h-24 p-4 gap-6 items-center">
+    <div className={twMerge('flex w-full h-24 p-4 gap-6 items-center', className)}>
       <Image
         className="rounded-full"
         height={60}

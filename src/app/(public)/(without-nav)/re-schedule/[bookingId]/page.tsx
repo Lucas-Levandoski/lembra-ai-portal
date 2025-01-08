@@ -9,6 +9,6 @@ type Params = {
   bookingId: string;
 }
 
-export default function ReScheduleMissingId({ params }: { params: Params}) {
+export default function ReSchedule({ params }: { params: Params}) {
   return <ReScheduleView bookingId={params.bookingId} />;
 }

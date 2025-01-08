@@ -98,7 +98,7 @@ export function ReSchedulePickATime({
             </div>
           </div>
           <div className="flex justify-end gap-6">
-            <Button onClick={() => console.log('evento cancelado')} variant="danger">Canelar evento</Button>
+            <Button route={`/cancel/${booking.id}`} variant="danger">Canelar evento</Button>
             <Button onClick={() => onSubmit()} disabled={selected.timeIndex < 0 || isSubmitLoading}>
               {
                 isSubmitLoading 

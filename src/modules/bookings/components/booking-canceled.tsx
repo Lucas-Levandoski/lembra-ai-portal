@@ -3,7 +3,7 @@ import { BookingEntity } from 'Bookings/models';
 import { IShortProfile } from 'Profile/models';
 import Image from 'next/image';
 import { BiCalendar, BiCamera, BiUser } from 'react-icons/bi';
-import { TimeDescription } from '../time-description';
+import { TimeDescription } from './time-description';
 import { envVars, sumMinutesToTime } from 'Common';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 
