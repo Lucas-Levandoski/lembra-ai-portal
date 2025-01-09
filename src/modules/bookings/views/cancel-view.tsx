@@ -2,7 +2,7 @@
 
 import { BookingAlreadyReScheduled, BookingCanceled, BookingNotFound } from 'Bookings/components';
 import { CancelLanding } from 'Bookings/components';
-import { useOnCancel } from 'Bookings/hooks';
+import { useOnGuestCancel } from 'Bookings/hooks';
 import { CirclingFourDotsLoading } from 'Common/components';
 
 type props = {
@@ -20,7 +20,7 @@ export function CancelView({ bookingId }: props) {
     isSubmitSuccess,
     handleSubmit,
     handleChangeReason,
-  } = useOnCancel(bookingId);
+  } = useOnGuestCancel(bookingId);
 
   const renderComponent = () => {
     switch (booking?.details.status) {

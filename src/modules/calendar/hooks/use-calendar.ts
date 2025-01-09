@@ -14,7 +14,7 @@ import { FlattenReschedules } from 'Calendar/utils';
 export function useCalendar() {
   const { isMonthBookingsLoading, getBookings } = useMonthBookings();
   const { isAgendaLoading, getAgendas, findAgenda } = useAgenda();
-  
+
   const today = getDateObject();
 
   const [month, setMonth] = useState<string>(today.month);
@@ -32,6 +32,13 @@ export function useCalendar() {
   useEffect(() => {
     loadData();
   }, []);
+
+  const handleReloadAll = () => {
+    setIsBookingOpen(false);
+    setBookingsFormatted({});
+    setFetchedDate([]);
+    loadData();
+  };
 
   const loadData = async({ year: _year, month: _month }: {year?: string, month?: string} = {}) => {
     const date = new Date(`${_year ?? year}-${_month ?? month}-03`);
@@ -165,5 +172,6 @@ export function useCalendar() {
     toggleShowAgenda,
     onSelectDate,
     onSelectBooking,
+    handleReloadAll,
   };
 }

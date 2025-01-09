@@ -1,5 +1,6 @@
 'use client';
 
+import { useOnOwnerCancel } from 'Bookings';
 import { BookingDialog, LeftMenu } from '../components';
 import { WeekView } from '../components/week-view';
 import { useCalendar } from 'Calendar/hooks';
@@ -18,8 +19,17 @@ export function CalendarView() {
     onCloseBooking,
     onSelectBooking,
     toggleShowAgenda, 
-    onSelectDate, 
+    onSelectDate,
+    handleReloadAll,
   } = useCalendar();
+
+  const {
+    isLoading,
+    handleCancelCancellation,
+    handleCancellation,
+    handleConfirmCancellation,
+    isOpen,
+  } = useOnOwnerCancel(handleReloadAll);
 
   return (
     <div className="grid grid-cols-7 gap-5 p-5 shadow-lg rounded-lg">
@@ -42,6 +52,11 @@ export function CalendarView() {
         booking={selectedBooking}
         agenda={selectedAgenda}
         reschedules={selectedBookingReschedules}
+        isCancellationOpen={isOpen}
+        onCancellation={handleCancellation}
+        onCancellationCancel={handleCancelCancellation}
+        onCancellationConfirm={handleConfirmCancellation}
+        isCancellationLoading={isLoading}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import { BookingDetails, BookingEntity } from 'Bookings/models';
 import { TimeDescription } from 'Bookings/components';
-import { AgendaElement, Button, CirclingFourDotsLoading, Dialog, ErrorMessage, sumTimes, TimeCard, timeToMinutes } from 'Common';
+import { AgendaElement, Button, CirclingFourDotsLoading, ConfirmationDialog, Dialog, ErrorMessage, sumTimes, TimeCard, timeToMinutes } from 'Common';
 import { CiCalendar } from 'react-icons/ci';
 import { BiUser } from 'react-icons/bi';
 import { BsWhatsapp } from 'react-icons/bs';
@@ -12,14 +12,32 @@ import { FaAngleDoubleUp } from 'react-icons/fa';
 
 type props = {
   isOpen?: boolean;
-  onClose?: () => void;
+  isCancellationOpen?: boolean;
+  isCancellationLoading?: boolean;
   booking?: BookingEntity;
   agenda?: AgendaElement;
   isLoading?: boolean;
   reschedules?: BookingDetails[];
+  onClose?: () => void;
+  onCancellationCancel?: () => void;
+  onCancellationConfirm?: (bookingId: string) => void;
+  onCancellation?: () => void;
 }
 
-export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true, reschedules = [], onClose = () => {} }: props) {
+export function BookingDialog({ 
+  booking,
+  agenda,
+  isLoading = true,
+  isOpen = true,
+  reschedules = [],
+  onClose = () => {},
+  isCancellationOpen,
+  isCancellationLoading,
+  onCancellationCancel = () => {},
+  onCancellationConfirm = () => {},
+  onCancellation = () => {},
+}: props) {
+
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className="relative min-h-44 min-w-44 flex flex-col justify-center align-middle">
@@ -75,7 +93,7 @@ export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true
                       )
                     }
                     <div className="flex justify-between">
-                      <Button route={`/re-schedule/${booking.id}`} variant="secondary" >Cancelar Evento</Button>
+                      <Button onClick={() => onCancellation() } variant="secondary" >Cancelar Evento</Button>
                       <Button routeTarget="_blank" route={`/re-schedule/${booking.id}`} variant="primary">Reagendar</Button>
                     </div>
                   </div>
@@ -83,6 +101,12 @@ export function BookingDialog({ booking, agenda, isLoading = true, isOpen = true
             )
         }
       </div>
+      <ConfirmationDialog
+        isOpen={isCancellationOpen}
+        content="Tem certeza de que deseja cancelar este evento?"
+        onCancel={onCancellationCancel}
+        onConfirm={() => onCancellationConfirm(booking!.id)} 
+        isLoading={isCancellationLoading} />
     </Dialog>
   );
 }

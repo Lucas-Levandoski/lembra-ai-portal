@@ -5,7 +5,7 @@ import { CanceledEvents, NextEvents, PastEvents } from 'Events/components';
 import { useEvents } from 'Events/hooks';
 
 export function EventsView() {
-  const { isLoading, events, selectedTab, counts, onSelectTab } = useEvents();
+  const { isLoading, events, selectedTab, counts, onSelectTab, handleReloadAll } = useEvents();
 
   return (
     <div className="flex flex-col gap-5 p-5 shadow-lg rounded-lg">
@@ -22,7 +22,7 @@ export function EventsView() {
                 {
                   id: 'booked',
                   label: `Próximos (${counts.booked})`,
-                  content: <NextEvents events={events.booked} />
+                  content: <NextEvents events={events.booked} onReloadAll={handleReloadAll} />
                 },
                 {
                   id: 'canceled',

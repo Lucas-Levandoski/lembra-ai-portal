@@ -7,7 +7,7 @@ import { readProfileById } from 'Profile/services';
 import { ChangeEvent, useEffect, useState } from 'react';
 
 
-export function useOnCancel(bookingId: string) {
+export function useOnGuestCancel(bookingId: string) {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
@@ -40,7 +40,6 @@ export function useOnCancel(bookingId: string) {
 
     return _booking;
   };
-
 
   const getAgenda = async (userId: string, agendaId: string) => {
     const _agenda = await getAgendaById(userId, agendaId);

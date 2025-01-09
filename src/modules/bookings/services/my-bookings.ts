@@ -21,7 +21,7 @@ export const getBookingsByDay = async (date: string, errorFn: (data: any) => voi
 };
 
 export const getBookingsByMonth = async (year: string, month: string, errorFn: (data: any) => void = () => {}): Promise<BookingEntity[] | undefined> => {
-  return await privateClient.get<BookingEntity[]>(`${envVars.bookingsUrl}/my-bookings/by-month`, { params: { year, month } })
+  return await privateClient.get<BookingEntity[]>(`${envVars.bookingsUrl}/my-bookings/by-month`, { params: { year, month: month.padStart(2, '0') } })
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
@@ -37,7 +37,6 @@ export const getCountByStatus = async (errorFn: (data: any) => void = () => {}):
       throw err;
     });
 };
-
 
 export const getBookingsByStatus = async (statuses: BookingStatus[], start?: number, size?: number, errorFn: (data: any) => void = () => {}): Promise<AllEvents> => {
   return await privateClient.get<AllEvents>(`${envVars.bookingsUrl}/my-bookings/by-status`, { params: { statuses: statuses.join(','), start, size }})

@@ -30,11 +30,16 @@ export function useEvents() {
     }
   };
 
+  const handleReloadAll = () => {
+    loadEvents();
+  };
+
   return {
     isLoading,
     selectedTab,
     events,
     counts,
     onSelectTab,
+    handleReloadAll,
   };
 }

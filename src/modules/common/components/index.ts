@@ -15,3 +15,4 @@ export * from './status-message';
 export * from './checkbox';
 export * from './week-time-grid';
 export * from './accordion';
+export * from './confirmation-dialog';

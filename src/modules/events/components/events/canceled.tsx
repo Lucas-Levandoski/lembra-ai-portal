@@ -1,6 +1,6 @@
 'use client';
 
-import { Accordion, Button, StatusMessage, timeToMinutes } from 'Common';
+import { Accordion, StatusMessage, timeToMinutes } from 'Common';
 import { useEventDetails } from 'Events/hooks';
 import { RowTitle } from '../row-title';
 import { BookingDescription } from '../booking-description';
@@ -22,7 +22,7 @@ export function CanceledEvents({ events }: props) {
           : events.map(({bookingEntity: booking, agendaEntity: agenda}, i) =>
             (
               <li key={booking.id}>
-                <Accordion className="border-red-200" isOpen={isOpen[i]} onChange={(status) => onToggle(i, status)}>
+                <Accordion className="border-red-400 bg-red-100" isOpen={isOpen[i]} onChange={(status) => onToggle(i, status)}>
                   <RowTitle 
                     agendaTitle={agenda.name}
                     colorName={agenda.colorName}
@@ -34,12 +34,8 @@ export function CanceledEvents({ events }: props) {
                   <div className="flex h-full p-10">
                     <div className="flex flex-col w-2/5 gap-10">
                       <BookingDescription booking={booking} reschedules={reschedules[i]} />
-                      <div className="flex justify-between mx-4">
-                        <Button className="text-blue-700" route={`/re-schedule/${booking.id}`} variant="secondary" >Cancelar Evento</Button>
-                        <Button routeTarget="_blank" route={`/re-schedule/${booking.id}`} variant="primary">Reagendar</Button>
-                      </div>
                     </div>
-                    <span className="w-[1px] border mx-4" />
+                    <span className="w-[1px] border mx-4 border-red-500" />
                     <div className="flex flex-col w-3/5">
                       <div className="flex flex-col mx-auto w-fit">
                         <h2 className="font-bold mb-6">Lembretes</h2>
