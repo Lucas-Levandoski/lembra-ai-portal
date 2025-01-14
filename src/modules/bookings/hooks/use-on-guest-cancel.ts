@@ -58,7 +58,7 @@ export function useOnGuestCancel(bookingId: string) {
     return _profile;
   };
 
-  const handleChangeReason = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeReason = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = event.target;
     
     setReason(value);
