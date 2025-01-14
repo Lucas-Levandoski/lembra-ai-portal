@@ -9,6 +9,7 @@ export type BookingDetails = {
   rescheduleBookingId?: string;
   rescheduledBooking?: BookingDetails;
   sourceBookingId?: string;
+  reason?: string;
 }
 
 export type BookingLocation = {

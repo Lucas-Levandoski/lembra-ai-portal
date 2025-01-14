@@ -4,7 +4,6 @@ import { Accordion, StatusMessage, timeToMinutes } from 'Common';
 import { useEventDetails } from 'Events/hooks';
 import { RowTitle } from '../row-title';
 import { BookingDescription } from '../booking-description';
-import { NotificationsContainer } from '../notifications';
 import { EventDetails } from 'Events/models';
 
 type props = {
@@ -37,13 +36,10 @@ export function CanceledEvents({ events }: props) {
                     </div>
                     <span className="w-[1px] border mx-4 border-red-500" />
                     <div className="flex flex-col w-3/5">
-                      <div className="flex flex-col mx-auto w-fit">
-                        <h2 className="font-bold mb-6">Lembretes</h2>
-                        {
-                          !booking.notifications 
-                            ? <StatusMessage message="Parece que não foi enviado nenhuma notificação para este agendamento" />
-                            : <NotificationsContainer notifications={booking.notifications} />
-                        }
+                      <div className="flex flex-col ml-3 mr-auto w-fit">
+                        <h2 className="font-bold mb-6">Evento Cancelado</h2>
+                        <strong className="text-red-500">Motivo do cancelamento</strong>
+                        <p className="text-red-500">{booking.details.reason ? booking.details.reason : 'Usuário não disponibilizou nenhum motivo'}</p>
                       </div>
                     </div>
                   </div>

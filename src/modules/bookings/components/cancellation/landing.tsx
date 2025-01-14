@@ -5,7 +5,6 @@ import { CancelConfirmation } from './confirmation';
 import { BouncingThreeDotsLoading, Button, ErrorMessage, TimeCard } from 'Common/components';
 import { ProfileTag } from 'Profile/components';
 import { ChangeEvent } from 'react';
-import { FcGoogle } from 'react-icons/fc';
 import { TimeDescription } from '../time-description';
 import { sumTimes } from 'Common/utils';
 import { twMerge } from 'tailwind-merge';
