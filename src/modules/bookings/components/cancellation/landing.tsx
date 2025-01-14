@@ -28,7 +28,7 @@ type props = {
 export function CancelLanding({ booking, isSubmitLoading, isSubmitSuccess, onSubmit, onChangeReason, agenda, reason, profile }: props) {
 
   return (
-    !isSubmitSuccess 
+    isSubmitSuccess
       ? agenda && booking && profile && <CancelConfirmation agenda={agenda} booking={booking} profile={profile} />
       : (
         <div className="flex flex-col items-center h-fit w-[900px] my-10 mx-5 gap-16">
