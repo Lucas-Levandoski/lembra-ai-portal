@@ -27,8 +27,8 @@ export function ConfirmationDialog({
       <div className="flex flex-col gap-4">
         <h3>{content}</h3>
         <div className="flex justify-around">
-          <Button variant="danger" onClick={() => onCancel() }>{cancelMessage}</Button>
-          <Button onClick={() => onConfirm() }>
+          <Button variant="danger" disabled={isLoading} onClick={() => onCancel() }>{cancelMessage}</Button>
+          <Button disabled={isLoading} onClick={() => onConfirm() }>
             {
               isLoading 
                 ? <BouncingThreeDotsLoading />

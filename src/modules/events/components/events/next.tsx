@@ -6,7 +6,7 @@ import { EventDetails } from 'Events/models';
 import { useEventDetails } from 'Events/hooks';
 import { NotificationsContainer } from '../notifications';
 import { BookingDescription } from '../booking-description';
-import { useOnOwnerCancel } from 'Bookings';
+import { useOnOwnerCancel } from 'Bookings/hooks';
 
 
 type props = {

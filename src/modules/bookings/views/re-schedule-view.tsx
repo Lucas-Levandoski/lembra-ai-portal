@@ -28,6 +28,7 @@ export function ReScheduleView({ bookingId }: props) {
     switch (oldBooking?.details.status) {
       case undefined:
         return <BookingNotFound />;
+      case 'canceled':
       case 'booked':
         return (
           <ReSchedulePickATime availabilities={availabilities} agenda={agenda} booking={oldBooking!} isLoading={isLoading} profile={profile} selected={selected} 
@@ -36,8 +37,6 @@ export function ReScheduleView({ bookingId }: props) {
         );
       case 'rescheduled':
         return <BookingAlreadyReScheduled agenda={agenda} booking={oldBooking} profile={profile} />;
-      case 'canceled':
-        return <BookingCanceled agenda={agenda} booking={oldBooking} profile={profile} />;
     }
   };
 

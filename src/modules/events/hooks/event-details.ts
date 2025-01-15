@@ -1,5 +1,5 @@
-import { BookingDetails } from 'Bookings';
-import { FlattenReschedules } from 'Calendar';
+import { BookingDetails } from 'Bookings/models';
+import { FlattenReschedules } from 'Calendar/utils';
 import { EventDetails } from 'Events/models';
 import { useEffect, useState } from 'react';
 

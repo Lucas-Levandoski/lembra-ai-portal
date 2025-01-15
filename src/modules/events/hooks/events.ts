@@ -1,4 +1,4 @@
-import { CountBookingsByStatus } from 'Bookings';
+import { CountBookingsByStatus } from 'Bookings/models';
 import { getBookingsByStatus, getCountByStatus } from 'Bookings/services';
 import { AllEvents } from 'Events/models';
 import { useEffect, useState } from 'react';
