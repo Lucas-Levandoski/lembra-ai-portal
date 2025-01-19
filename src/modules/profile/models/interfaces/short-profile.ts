@@ -3,6 +3,7 @@ export interface IShortProfile {
   tag: string;
   name: string;
   eMail: string;
+  timezone: string;
   profilePictureUrl?: string;
   companyPictureUrl?: string;
 }

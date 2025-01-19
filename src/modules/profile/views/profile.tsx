@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, CirclingFourDotsLoading, ErrorMessage, Select, Option, envVars, BouncingThreeDotsLoading } from 'Common';
-import { PhoneRegionOptions } from 'Profile/models';
+import { PhoneRegionOptions, TimezoneOptions } from 'Profile/models';
 import { useEditProfile } from 'Profile/hooks';
 import { BiEditAlt } from 'react-icons/bi';
 import Image from 'next/image';
@@ -82,22 +82,41 @@ export function ProfileView() {
                 <label className="text-lg font-bold" htmlFor="welcoming">Mensagem de boas-vindas</label>
                 <textarea className="p-2 border-2 border-gray-200 h-40 rounded-lg" id="welcoming" value="Seja muito bem vindo" onChange={console.info}/>
               </div>
-              <div className="flex w-full flex-col gap-2">
-                <label htmlFor="phone-region" className="text-lg font-bold">Região do Telefone</label>
-                <Select 
-                  className="w-16"
-                  id="phone-region" 
-                  value={changedProfile.details?.phoneRegion !== undefined ? changedProfile.details?.phoneRegion : profile.details.phoneRegion}
-                  onChange={value => onChangeDetails('phoneRegion', value)}
-                >
-                  {
-                    PhoneRegionOptions.map(option => (
-                      <Option key={`phone-region-${option.value}`} value={option.value}>
-                        <div className="mx-auto font-normal">{option.key}</div>
-                      </Option>
-                    ))
-                  }
-                </Select>
+              <div className="flex justify-around">
+                <div className="flex w-1/2 flex-col gap-2">
+                  <label htmlFor="phone-region" className="text-lg font-bold">Região do Telefone</label>
+                  <Select 
+                    className="w-16"
+                    id="phone-region" 
+                    value={changedProfile.details?.phoneRegion !== undefined ? changedProfile.details?.phoneRegion : profile.details.phoneRegion}
+                    onChange={value => onChangeDetails('phoneRegion', value)}
+                  >
+                    {
+                      PhoneRegionOptions.map(option => (
+                        <Option key={`phone-region-${option.value}`} value={option.value}>
+                          <div className="mx-auto font-normal">{option.key}</div>
+                        </Option>
+                      ))
+                    }
+                  </Select>
+                </div>
+                <div className="flex w-1/2 flex-col gap-2">
+                  <label htmlFor="timezone" className="text-lg font-bold">Fuso Horário</label>
+                  <Select 
+                    className="w-64"
+                    id="timezone" 
+                    value={changedProfile.details?.timezone !== undefined ? changedProfile.details?.timezone : profile.details?.timezone}
+                    onChange={value => onChangeDetails('timezone', value)}
+                  >
+                    {
+                      TimezoneOptions.map(option => (
+                        <Option key={`timezone-${option.value}`} value={option.value}>
+                          <div className="mx-auto font-normal">{option.key}</div>
+                        </Option>
+                      ))
+                    }
+                  </Select>
+                </div>
               </div>
               <div className="flex justify-between">
                 <Button disabled={!hasChanges || isSubmitLoading} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>

@@ -10,6 +10,7 @@ export interface IProfileDetails {
   name: string;
   eMail: string;
   phone: string;
+  timezone: string;
   profilePictureUrl: string;
   companyPictureUrl: string;
   phoneRegion: string;
