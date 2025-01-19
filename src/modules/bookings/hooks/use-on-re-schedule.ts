@@ -31,7 +31,7 @@ export function useOnReSchedule(bookingId: string) {
       await getProfile(booking.pKey);
       await getAgenda(booking.pKey, booking.agendaId);
 
-      if(booking.details.status === 'booked') 
+      if(['canceled', 'booked'].includes(booking.details.status)) 
         await getAvailabilities(booking.pKey, booking.agendaId);
 
     } finally {
