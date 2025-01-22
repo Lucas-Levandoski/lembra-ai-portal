@@ -3,8 +3,10 @@
 import { TimePicker } from 'Bookings/components';
 import { useOnPickingTime } from 'Bookings/hooks';
 import { BouncingThreeDotsLoading, Button, Calendar, ErrorMessage, TimeCard } from 'Common/components';
+import { TimezoneDictionary } from 'Profile';
 import { ProfileTag } from 'Profile/components';
 import { FcGoogle } from 'react-icons/fc';
+import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 
 type props = {
   userTag: string;
@@ -43,6 +45,9 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
                         <>
                           <h1>{agenda.name}</h1>
                           <TimeCard colorName={agenda.colorName} timeFrame={agenda.timeFrame} />
+                          <div className="flex gap-3 items-center">
+                            <HiOutlineGlobeAsiaAustralia className="size-8" />Fuso horário: {TimezoneDictionary[profile!.timezone]}
+                          </div>
                           <div className="border rounded-lg mt-8 p-4 flex items-center gap-6">
                             <FcGoogle className="size-8" />Google meet
                           </div>

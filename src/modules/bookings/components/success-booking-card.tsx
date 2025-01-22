@@ -1,5 +1,5 @@
 import { IShortAgendaProps } from 'Agenda/models';
-import { IShortProfile } from 'Profile/models';
+import { IShortProfile, TimezoneDictionary } from 'Profile/models';
 import { BiCalendar, BiCamera, BiSolidBadgeCheck , BiUser } from 'react-icons/bi';
 import { TimeDescription } from './time-description';
 import { envVars, sumMinutesToTime } from 'Common';
@@ -54,8 +54,7 @@ export function SuccessBookingCard({ agenda, profile, time, date }: props) {
           }
         </span>
         <span className="flex items-center gap-4 text-gray-700 text-lg">
-          <HiOutlineGlobeAsiaAustralia className="size-8" />
-          Horário de Brasília
+          <HiOutlineGlobeAsiaAustralia className="size-8" /> {TimezoneDictionary[profile!.timezone]}
         </span>
         <span className="flex items-center gap-4 text-gray-700 text-lg">
           <BiCamera className="size-7"/>

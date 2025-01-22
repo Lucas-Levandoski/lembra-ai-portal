@@ -1,7 +1,8 @@
 export const MessageTags = {
-  name: 'Nome',
-  event: 'Evento',
-  timeUntil: 'Tempo restante',
-  time: 'Horário',
+  guestName: 'Nome do convidado',
+  ownerName: 'Nome do host',
+  event: 'Nome do evento',
+  timeUntil: 'Tempo para o início reunião',
+  time: 'Horário da Reunião',
   link: 'Link meet'
 };

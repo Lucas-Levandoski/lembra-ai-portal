@@ -1,12 +1,13 @@
 import { IShortAgendaProps } from 'Agenda';
 import { BookingEntity, IDateTimes } from 'Bookings/models';
 import { BouncingThreeDotsLoading, Button, Calendar, ErrorMessage, TimeCard } from 'Common/components';
-import { IShortProfile, ProfileTag } from 'Profile';
+import { IShortProfile, ProfileTag, TimezoneDictionary } from 'Profile';
 import { FcGoogle } from 'react-icons/fc';
 import { TimePicker } from '../time-picker';
 import { TimeDescription } from '../time-description';
 import { sumMinutesToTime, sumTimes } from 'Common/utils';
 import { SuccessBookingCard } from '../success-booking-card';
+import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 
 
 type props = {
@@ -62,6 +63,7 @@ export function ReSchedulePickATime({
                           : (
                             <>
                               <h1>{agenda.name}</h1>
+                              <HiOutlineGlobeAsiaAustralia className="size-8" /> {TimezoneDictionary[profile!.timezone]}
                               <TimeCard colorName={agenda.colorName} timeFrame={agenda.timeFrame} />
                               <div className="border rounded-lg mt-8 p-4 flex items-center gap-6">
                                 <FcGoogle className="size-8" />Google meet

@@ -11,3 +11,10 @@ export const TimezoneOptions = [
   {value: 'America/Porto_Velho', key: 'Amazônia (-4:00)'},
   {value: 'America/Rio_Branco', key: 'Acre (-5:00)'},
 ];
+
+export const TimezoneDictionary: any = {
+  ['Brazil/DeNoronha']: 'Fernando de Noronha (-2:00)',
+  ['America/Sao_Paulo']: 'Brasília (-3:00)',
+  ['America/Porto_Velho']: 'Amazônia (-4:00)',
+  ['America/Rio_Branco']: 'Acre (-5:00)',
+};
