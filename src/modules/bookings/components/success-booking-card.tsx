@@ -54,7 +54,7 @@ export function SuccessBookingCard({ agenda, profile, time, date }: props) {
           }
         </span>
         <span className="flex items-center gap-4 text-gray-700 text-lg">
-          <HiOutlineGlobeAsiaAustralia className="size-8" /> {TimezoneDictionary[profile!.timezone]}
+          <HiOutlineGlobeAsiaAustralia className="size-8" />Fuso horário: {TimezoneDictionary[profile!.timezone]}
         </span>
         <span className="flex items-center gap-4 text-gray-700 text-lg">
           <BiCamera className="size-7"/>

@@ -1,18 +1,19 @@
 'use client';
 
-import { Accordion, Button, StatusMessage, timeToMinutes } from 'Common';
+import { Accordion, StatusMessage, timeToMinutes } from 'Common';
 import { useEventDetails } from 'Events/hooks';
 import { RowTitle } from '../row-title';
 import { BookingDescription } from '../booking-description';
 import { NotificationsContainer } from '../notifications';
 import { EventDetails } from 'Events/models';
+import { BookingStatus, bookingStatusTexts } from 'Bookings';
 
 type props = {
   events: EventDetails[];
 }
 
 export function PastEvents({ events }: props) {
-  const { isOpen, reschedules, onToggle } = useEventDetails(events);
+  const { isOpen, reschedules, onToggle, onSetBookingStatus } = useEventDetails(events);
 
   return (
     <ul className="flex flex-col gap-4">
@@ -34,9 +35,20 @@ export function PastEvents({ events }: props) {
                   <div className="flex h-full p-10">
                     <div className="flex flex-col w-2/5 gap-10">
                       <BookingDescription booking={booking} reschedules={reschedules[i]} />
-                      <div className="flex justify-between mx-4">
-                        <Button className="text-blue-700" route={`/re-schedule/${booking.id}`} variant="secondary" >Cancelar Evento</Button>
-                        <Button routeTarget="_blank" route={`/re-schedule/${booking.id}`} variant="primary">Reagendar</Button>
+                      <div className="flex justify-around mx-4">
+                        {
+                          (['no-show', 'show', 'unanswered'] as BookingStatus[]).map(status => (
+                            <span className="flex gap-2 justify-center items-center" key={booking.id + status}>
+                              <input 
+                                type="radio"
+                                id={booking.id + status} 
+                                checked={booking.details.status === status}
+                                onChange={() => onSetBookingStatus(i, booking.id, status)}
+                              />
+                              <label htmlFor={booking.id + status}>{bookingStatusTexts[status]}</label>
+                            </span>
+                          ))
+                        }
                       </div>
                     </div>
                     <span className="w-[1px] border mx-4" />

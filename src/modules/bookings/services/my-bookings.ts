@@ -46,3 +46,16 @@ export const getBookingsByStatus = async (statuses: BookingStatus[], start?: num
       throw err;
     });
 };
+
+export const updateBookingStatus = async (
+  bookingId: string, 
+  status: BookingStatus, 
+  errorFn: (data: any) => void = () => {}
+): Promise<void> => {
+  return await privateClient.patch<void>(`${envVars.bookingsUrl}/booking-status`, { bookingId, status })
+    .then(res => res.data)
+    .catch(err => {
+      errorFn(err.response?.data);
+      throw err;
+    });
+}; 

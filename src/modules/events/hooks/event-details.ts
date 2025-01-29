@@ -1,7 +1,9 @@
-import { BookingDetails } from 'Bookings/models';
+import { BookingDetails, BookingStatus, bookingStatusTexts } from 'Bookings/models';
+import { updateBookingStatus } from 'Bookings/services';
 import { FlattenReschedules } from 'Calendar/utils';
 import { EventDetails } from 'Events/models';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 export function useEventDetails(events: EventDetails[]) {
@@ -19,6 +21,19 @@ export function useEventDetails(events: EventDetails[]) {
     setRefresh(!refresh);
   }, []);
 
+  const onSetBookingStatus = (elementId: number, bookingId: string, status: BookingStatus) => {
+    const event = events[elementId];
+
+    event.bookingEntity.details.status = status;
+
+    const bookingTitle = `${event.agendaEntity.name} (${event.bookingEntity.guestDetails.name})`;
+
+    setRefresh(!refresh);
+    updateBookingStatus(bookingId, status)
+      .then(() => toast.success(`Sucesso ao atualizar o status do booking '${bookingTitle}' para ${bookingStatusTexts[status]}`))
+      .catch();
+  };
+
   const onToggle = (id: number, status: boolean) => {
     isOpen[id] = status;
 
@@ -30,5 +45,6 @@ export function useEventDetails(events: EventDetails[]) {
     isOpen,
     reschedules,
     onToggle,
+    onSetBookingStatus,
   };
 }
