@@ -31,7 +31,7 @@ export function useEventDetails(events: EventDetails[]) {
     setRefresh(!refresh);
     updateBookingStatus(bookingId, status)
       .then(() => toast.success(`Sucesso ao atualizar o status do booking '${bookingTitle}' para ${bookingStatusTexts[status]}`))
-      .catch();
+      .catch(() => toast.error(`Falha ao atualizar o status do booking '${bookingTitle}' para ${bookingStatusTexts[status]}`));
   };
 
   const onToggle = (id: number, status: boolean) => {
