@@ -16,6 +16,10 @@ export const envVars = {
     return checkVariable('NEXT_PUBLIC_PROFILE_URL', 'https://fa-profile-management-dev.azurewebsites.net/api');
   },
 
+  get whatsIntegrationUrl() {
+    return checkVariable('NEXT_PUBLIC_WHATS_INTEGRATION_URL', 'http://localhost:7076/api');
+  },
+
   get tenantName() {
     return checkVariable('NEXT_PUBLIC_B2C_TENANT_NAME', 'lembradev');
   },

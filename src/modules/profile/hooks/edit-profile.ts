@@ -18,7 +18,7 @@ export function useEditProfile() {
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
   const { 
-    profile, 
+    profile,
     isProfileLoading, 
     setProfile 
   } = useStore(state => ({ 
