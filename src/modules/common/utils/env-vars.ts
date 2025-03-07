@@ -17,7 +17,7 @@ export const envVars = {
   },
 
   get whatsIntegrationUrl() {
-    return checkVariable('NEXT_PUBLIC_WHATS_INTEGRATION_URL', 'http://localhost:7076/api');
+    return checkVariable('NEXT_PUBLIC_WHATS_INTEGRATION_URL', 'https://fa-whats-integration-dev.azurewebsites.net/api');
   },
 
   get tenantName() {
