@@ -8,7 +8,7 @@ export default function PublicLayout({
   return (
     <>
       <PublicNoNavHeaderView />
-      <main className="px-[12vw] pt-16">{children}</main>
+      <main className="px-4 md:px[12vw] lg:px-[2vw] xl:px-[8vw] 2xl:px-[12vw] py-16">{children}</main>
     </>
   );
 }

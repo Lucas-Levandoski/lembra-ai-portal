@@ -9,12 +9,12 @@ type props = {
 export function ShortAgendaCard({ agenda }: props) {
   return (
     <div className="flex p-4 justify-between w-full items-center">
-      <div className="flex items-center gap-6">
-        <span className={`rounded-full h-5 w-5 bg-${agenda.colorName}-500`}></span>
-        <h3 className="text-nowrap mt-0">{agenda.name}</h3>
+      <div className="flex items-center justify-between w-full sm:gap-6 md:justify-normal">
+        <span className={`rounded-full h-5 min-w-5 w-5 bg-${agenda.colorName}-500`}></span>
+        <h3 className="mt-0 text-wrap text-center">{agenda.name}</h3>
         <TimeCard colorName={agenda.colorName} timeFrame={agenda.timeFrame}/>
       </div>
-      <PiCaretRightBold  />
+      <PiCaretRightBold className="invisible md:visible"  />
     </div>
   );
 }

@@ -11,7 +11,7 @@ type props = {
 
 export function ProfileTag({ profile, className }: props) {
   return (
-    <div className={twMerge('flex w-full h-24 p-4 gap-6 items-center', className)}>
+    <div className={twMerge('flex w-full min-h-24 p-4 gap-6 items-center', className)}>
       <Image
         className="rounded-full"
         height={60}

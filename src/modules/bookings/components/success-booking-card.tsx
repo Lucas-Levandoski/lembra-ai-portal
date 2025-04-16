@@ -15,11 +15,11 @@ type props = {
 
 export function SuccessBookingCard({ agenda, profile, time, date }: props) {
   return (
-    <div className="flex flex-col gap-8 justify-center text-center border rounded-lg p-6 w-4/6 mx-auto">
+    <div className="flex flex-col gap-8 justify-center text-center border rounded-lg p-6 lg:w-4/6 mx-auto">
       {
         profile &&
         <Image
-          className="rounded-full"
+          className="rounded-full mx-auto"
           height={60}
           width={60}
           src={

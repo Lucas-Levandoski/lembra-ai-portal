@@ -7,4 +7,4 @@ export const metadata: Metadata = {
 
 export default function Landing() {
   return <LandingView />;
-}
+};

@@ -13,7 +13,7 @@ export function ListAgendasForTagView({ userTag }: props) {
   const { isLoading, profile, agendas } = useListAgendas(userTag);
 
   return (
-    <div className="flex flex-col justify-center gap-8 m-auto w-2/3">
+    <div className="flex flex-col justify-center gap-8 m-auto md:w-2/3 ">
       <div className="flex w-full mx-auto bg-white shadow-lg rounded-xl p-8">
         { isLoading && <div className="mx-auto"><BouncingThreeDotsLoading /></div>}
         { !isLoading && profile && <ProfileTag profile={profile} /> }

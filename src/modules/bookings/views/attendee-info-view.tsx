@@ -33,8 +33,8 @@ export function AttendeeInfoView({ userTag, agendaTag, date }: props) {
     showSuccess
       ? <SuccessBookingCard agenda={agenda} profile={profile} time={time} date={date} />
       :(
-        <div className="flex min-w-[600px] shadow-lg p-6 rounded-xl w-fit mx-auto gap-8">
-          <div className="flex gap-3 flex-col w-[500px]">
+        <div className="flex flex-col lg:flex-row lg:min-w-[600px] shadow-lg p-6 rounded-xl w-fit mx-auto gap-8">
+          <div className="flex gap-3 flex-col">
             {
               isLoading
                 ? <div className="m-auto"><BouncingThreeDotsLoading /></div>

@@ -25,9 +25,9 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
   } = useOnPickingTime(userTag, agendaTag);
 
   return (
-    <div className="flex flex-col shadow-lg p-6 rounded-xl w-fit mx-auto gap-8">
-      <div className="flex min-w-[600px] gap-4">
-        <div className="flex gap-3 flex-col w-[500px]">
+    <div className="flex flex-col shadow-lg p-2 sm:p-6 rounded-xl w-fit mx-auto gap-8">
+      <div className="flex gap-4 lg:flex-row flex-col">
+        <div className="flex gap-3 flex-col 2xl:w-[400px]">
           {
             isLoading
               ? <div className="m-auto"><BouncingThreeDotsLoading /></div>
@@ -58,8 +58,8 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
               )
           }
         </div>
-        <div className="border-r w-1"></div>
-        <div className="flex gap-6"> 
+        <div className="md:border-r md:w-1 md:h-auto border-t h-1"></div>
+        <div className="flex gap-6 lg:flex-row flex-col">
           <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={handleDateChange} isLoading={isLoading} />
           <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={handleSelectedTime} />
         </div>

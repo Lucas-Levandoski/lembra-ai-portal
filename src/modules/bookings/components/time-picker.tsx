@@ -12,7 +12,7 @@ export function TimePicker({ times, onSelectTime = () => {}, selectedTime }: pro
   return (
     <div className={twMerge('flex flex-col gap-4 overflow-x-hidden', times && times.length > 0 ? 'max-w-300' : 'max-w-0')}>
       <h2>Selecione o Horário</h2>
-      <div className="grid grid-cols-4 gap-2 px-2 max-h-[300px] overflow-y-auto">
+      <div className="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-2 max-h-[300px] p-1 overflow-y-auto">
         {
           times && 
           times.map((time, i) => <Button 
