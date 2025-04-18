@@ -101,7 +101,7 @@ export function ReSchedulePickATime({
               <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={onSelectedTime} />
             </div>
           </div>
-          <div className="flex justify-end gap-6">
+          <div className="flex justify-around lg:justify-end gap-6">
             <Button route={`/cancel/${booking.id}`} variant="danger">Canelar</Button>
             <Button onClick={() => onSubmit()} disabled={selected.timeIndex < 0 || isSubmitLoading}>
               {
