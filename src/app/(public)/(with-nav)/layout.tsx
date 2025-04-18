@@ -1,3 +1,4 @@
+import { MainContainer } from 'Common';
 import { PublicHeaderView } from 'Generic';
 
 export default function PublicLayout({
@@ -8,7 +9,7 @@ export default function PublicLayout({
   return (
     <>
       <PublicHeaderView />
-      <main className="px-[12vw] pt-16">{children}</main>
+      <MainContainer>{children}</MainContainer>
     </>
   );
 }

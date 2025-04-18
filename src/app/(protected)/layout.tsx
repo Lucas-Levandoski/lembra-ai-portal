@@ -3,7 +3,7 @@
 import { InteractionType } from '@azure/msal-browser';
 import { MsalAuthenticationTemplate } from '@azure/msal-react';
 import { loginRequest } from 'Auth';
-import { useAuth } from 'Common';
+import { MainContainer, useAuth } from 'Common';
 import { LoadingUserView, ProtectedHeaderView } from 'Generic';
 
 type props = Readonly<{children: React.ReactNode}>;
@@ -22,7 +22,7 @@ export default function ProtectedLayout({children}: props) {
           ? (
             <>
               <ProtectedHeaderView />
-              <main className="px-[12vw] pt-10">{children}</main>
+              <MainContainer>{children}</MainContainer>
             </>
           )
           : <LoadingUserView />

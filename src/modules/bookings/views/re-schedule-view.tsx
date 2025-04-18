@@ -41,8 +41,8 @@ export function ReScheduleView({ bookingId }: props) {
   };
 
   return (
-    <div className="flex flex-col shadow-lg p-6 rounded-xl w-fit mx-auto gap-8">
-      <div className="flex min-w-[600px] gap-4">
+    <div className="flex flex-col shadow-lg p-2 sm:p-6 rounded-xl w-fit mx-auto gap-8">
+      <div className="flex gap-4 lg:flex-row flex-col">
         {
           isBookingLoading
             ? <div className="m-auto"><CirclingFourDotsLoading /></div>

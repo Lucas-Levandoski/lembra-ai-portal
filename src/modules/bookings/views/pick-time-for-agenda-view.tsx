@@ -26,8 +26,8 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
 
   return (
     <div className="flex flex-col shadow-lg p-2 sm:p-6 rounded-xl w-fit mx-auto gap-8">
-      <div className="flex gap-4 lg:flex-row flex-col">
-        <div className="flex gap-3 flex-col 2xl:w-[400px]">
+      <div className="flex gap-4 lg:flex-row flex-col lg:max-h-[400px]">
+        <div className="flex gap-3 flex-col lg:max-h-[400px] 2xl:w-[400px]">
           {
             isLoading
               ? <div className="m-auto"><BouncingThreeDotsLoading /></div>

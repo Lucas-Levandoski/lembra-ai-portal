@@ -16,3 +16,4 @@ export * from './checkbox';
 export * from './week-time-grid';
 export * from './accordion';
 export * from './confirmation-dialog';
+export * from './main';
