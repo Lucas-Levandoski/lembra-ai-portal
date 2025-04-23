@@ -95,7 +95,7 @@ export function ReSchedulePickATime({
                   )
               }
             </div>
-            <div className="md:border-r md:w-1 md:h-auto border-t h-1"></div>
+            <div className="lg:border-r lg:border-t-0 lg:w-1 lg:h-auto border-t h-1"></div>
             <div className="flex gap-6 lg:flex-row flex-col"> 
               <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={onDateChange} isLoading={isLoading} />
               <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={onSelectedTime} />

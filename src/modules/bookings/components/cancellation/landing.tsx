@@ -30,10 +30,10 @@ export function CancelLanding({ booking, isSubmitLoading, isSubmitSuccess, onSub
     isSubmitSuccess
       ? agenda && booking && profile && <CancelConfirmation agenda={agenda} booking={booking} profile={profile} />
       : (
-        <div className="flex flex-col items-center h-fit w-[900px] my-10 mx-5 gap-16">
+        <div className="flex flex-col gap-8">
           <h1 className="mx-auto">Deseja cancelar o evento?</h1>
-          <div className="grid grid-cols-9 gap-1 w-full">
-            <div className="flex flex-col gap-6 col-span-4">
+          <div className="flex gap-6 lg:flex-row flex-col justify-evenly">
+            <div className="flex flex-col gap-6 2xl:w-[400px]">
               {
                 profile === undefined
                   ? <ErrorMessage message="Falha ao carregar dados do usuário" />
@@ -43,13 +43,13 @@ export function CancelLanding({ booking, isSubmitLoading, isSubmitSuccess, onSub
                 agenda === undefined 
                   ? <ErrorMessage message="Falha ao carregar informações da agenda" />
                   : (
-                    <>
+                    <div className="flex flex-col gap-2 lg:items-start items-center">
                       <div className="flex items-center">
                         <span className={twMerge('h-4 w-4 rounded-full mr-4', `bg-${agenda.colorName}-500`)} />
                         <strong>{agenda.name}</strong>
                       </div>
                       <TimeCard colorName={agenda.colorName} timeFrame={agenda.timeFrame} />
-                      <div className="flex items-center">
+                      <div className="flex items-center gap-3">
                         <BiCalendar className="size-6" />
                         <TimeDescription 
                           className="mx-auto text-sm my-3"
@@ -58,14 +58,12 @@ export function CancelLanding({ booking, isSubmitLoading, isSubmitSuccess, onSub
                           endTime={sumTimes(booking.details.time, booking.details.duration)} 
                         />
                       </div>
-                    </>
+                    </div>
                   )
               }
             </div>
-            <div className="flex justify-center h-full col-span-1">
-              <span className="border w-[1px] h-full" />
-            </div>
-            <div className="flex flex-col justify-around col-span-4">
+            <div className="lg:border-r lg:border-t-0 lg:w-1 lg:h-auto border-t h-1"></div>
+            <div className="flex flex-col gap-4 justify-around lg:min-w-96">
               <label htmlFor="reason">Informe o motivo do cancelamento</label>
               <textarea id="reason" value={reason} className="h-24 text-base resize-none rounded-lg p-2 border w-full" onChange={onChangeReason} />
               <Button disabled={isSubmitLoading} onClick={onSubmit} variant="danger" >

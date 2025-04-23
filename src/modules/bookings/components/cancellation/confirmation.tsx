@@ -18,14 +18,14 @@ type props = {
 
 export function CancelConfirmation ({ agenda, booking, profile }: props) {
   return (
-    <div className="flex flex-col items-center h-fit w-[900px] my-10 mx-5 gap-16">
+    <div className="flex flex-col items-center h-fit my-10 mx-5 gap-16">
       <div className="flex flex-col gap-3 justify-center">
         <IoCheckmarkCircle className="size-7 text-green-500 mx-auto"/>
         <h1 className="mx-auto">Cancelamento confirmado</h1>
         <p>A confirmação do cancelamento foi enviada para o seu e-mail</p>
       </div> 
-      <div className="grid grid-cols-9 gap-1 w-full">
-        <div className="flex flex-col gap-6 col-span-4"> 
+      <div className="flex gap-4 lg:flex-row lg:max-h-[600px] flex-col">
+        <div className="flex flex-col gap-6"> 
           <ProfileTag className="mx-auto w-fit" profile={profile} />
           <div className="flex items-center">
             <span className={twMerge('h-4 w-4 rounded-full mr-4', `bg-${agenda.colorName}-500`)} />
@@ -35,10 +35,8 @@ export function CancelConfirmation ({ agenda, booking, profile }: props) {
           <div className="flex items-center">
           </div>
         </div>
-        <div className="flex justify-center h-full col-span-1">
-          <span className="border w-[1px] h-full" />
-        </div>
-        <div className="flex flex-col justify-center gap-6 col-span-4">
+        <div className="lg:border-r lg:w-1 lg:h-auto border-t h-1"></div>
+        <div className="flex flex-col justify-center gap-6">
           <div className="flex items-center gap-3">
             <BiUser className="size-6" />
             <p>{booking.guestDetails.name}</p>

@@ -58,7 +58,7 @@ export function PickTimeForAgendaView({ userTag, agendaTag }: props) {
               )
           }
         </div>
-        <div className="md:border-r md:w-1 md:h-auto border-t h-1"></div>
+        <div className="md:border-r md:w-1 md:h-auto md:border-t-0 border-t h-1"></div>
         <div className="flex gap-6 lg:flex-row flex-col">
           <Calendar currentDay={selected.date} highlightedDays={availabilities.dates} onSelectedDay={handleDateChange} isLoading={isLoading} />
           <TimePicker times={availabilities.times[selected.date]} selectedTime={selected.timeIndex} onSelectTime={handleSelectedTime} />
