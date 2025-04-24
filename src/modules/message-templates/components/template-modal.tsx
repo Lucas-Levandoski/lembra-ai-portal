@@ -16,11 +16,11 @@ type props = {
   isOpen: boolean;
 }
 
-export function TemplateModal({ 
-  onComplete = () => {}, 
+export function TemplateModal({
+  onComplete = () => {},
   onCancel = () => {},
-  cancelText = 'Cancelar', 
-  confirmText = 'Adicionar lembrete', 
+  cancelText = 'Cancelar',
+  confirmText = 'Adicionar lembrete',
   title = 'Criar lembrete',
   template,
   isOpen,
@@ -44,7 +44,7 @@ export function TemplateModal({
           </div>
           <div className="flex flex-col w-full gap-2">
             <label htmlFor="timeUntil">Tempo</label>
-            
+
             <Select id="timeUntil" value={template.timeUntil} onChange={(value) => onChangeProperty('timeUntil', value)}>
               {
                 Object.entries(TimesUntil).map(([value, text]) => (
@@ -57,7 +57,6 @@ export function TemplateModal({
 
         <div className="border-2 rounded-lg p-6">
           <div className="flex justify-end">
-            
             <Select className="w-1/2" id="target" fixedValue={'Adicionar Variável'} onChange={(value) => onChangeProperty('content', template.content + value)}>
               {
                 Object.entries(MessageTags).map(([key, text]) => <Option key={key} value={`{{${key}}}`}>{text}</Option>)
