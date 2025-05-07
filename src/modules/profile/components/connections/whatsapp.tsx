@@ -8,7 +8,6 @@ import { useStore } from 'Store';
 
 
 export function WhatsappConnection() {
-
   const { qr, onLogin, onLogout } = useWhatsLogin();
   const { profile, isProfileLoading } = useStore(state => ({
     profile: state.profile,
@@ -21,8 +20,8 @@ export function WhatsappConnection() {
   }, [profile]);
 
   return (
-    <>
-      <h1>Whatsapp</h1>
+    <div className="flex flex-col gap-4">
+      <h2>Whatsapp</h2>
 
       {
         isProfileLoading && <CirclingFourDotsLoading />
@@ -34,10 +33,10 @@ export function WhatsappConnection() {
           : (
             profile.connections.whatsapp.isConnected 
               ? (
-                <div className="flex flex-col gap-3 justify-center">
-                  <StatusMessage message={profile.connections.whatsapp.phoneNumber + ' conectado'} />
+                <>
+                  <StatusMessage message={profile.connections.whatsapp.phoneNumber!} />
                   <Button variant="danger" onClick={onLogout} >Desconectar</Button>
-                </div>
+                </>
               )
               : (
                 <>
@@ -51,6 +50,6 @@ export function WhatsappConnection() {
               )
           )
       }
-    </>
+    </div>
   );
 }

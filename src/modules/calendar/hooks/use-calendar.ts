@@ -3,7 +3,7 @@
 import { useAgenda } from 'Agenda/hooks';
 import { BookingDetails, BookingEntity } from 'Bookings/models';
 import { readEvent } from 'Bookings/services';
-import { useMonthBookings } from 'Bookings/hooks';
+import { useDayBookings, useMonthBookings } from 'Bookings/hooks';
 import { IEventsByAgenda } from 'Calendar/models';
 import { AgendaElement } from 'Common';
 import { getDate, getDateObject, sumTimes } from 'Common/utils';
@@ -14,6 +14,13 @@ import { FlattenReschedules } from 'Calendar/utils';
 export function useCalendar() {
   const { isMonthBookingsLoading, getBookings } = useMonthBookings();
   const { isAgendaLoading, getAgendas, findAgenda } = useAgenda();
+
+  const { 
+    bookedDates, 
+    isBookedDatesLoading, 
+    getMyBookedDates, 
+    onSelectingDate: onSelectingBookedDatesDate, 
+  } = useDayBookings();
 
   const today = getDateObject();
 
@@ -75,6 +82,7 @@ export function useCalendar() {
     if(!_agendas) return;
 
     getMonthBookingsFormatted(_bookings, _agendas);
+    getMyBookedDates();
   };
 
   const toggleShowAgenda = (agendaId: string) => {
@@ -102,6 +110,9 @@ export function useCalendar() {
     if(!fetchedDate.includes(_date)) {
       loadData({month: _month, year: _year});
     }
+
+    // this method is for the list of booked dates loading system
+    onSelectingBookedDatesDate(date);
 
     setSelectedDate(date);
   };
@@ -159,9 +170,11 @@ export function useCalendar() {
   };
 
   return {
+    bookedDates,
     bookingsFormatted,
     isMonthBookingsLoading,
     isAgendaLoading,
+    isBookedDatesLoading,
     selectedDate,
     isBookingOpen,
     isBookingLoading,

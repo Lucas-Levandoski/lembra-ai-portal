@@ -11,7 +11,7 @@ type props = {
 }
 
 export function EditAgendaView({ agendaId }: props) {
-  const { agenda, onChangeProperty, onSubmit, isLoading } = useEditAgenda(agendaId);
+  const { agenda, onChangeProperty, onSubmit, isLoading, isSubmitLoading } = useEditAgenda(agendaId);
   const { shortProfile } = useStore(state => ({ shortProfile: state.shortProfile }));
 
   return (
@@ -31,6 +31,7 @@ export function EditAgendaView({ agendaId }: props) {
                 details={agenda} 
                 onChange={onChangeProperty} 
                 onSubmit={onSubmit}
+                isSubmitLoading={isSubmitLoading}
               />
             </div>
             <div className="col-span-6">

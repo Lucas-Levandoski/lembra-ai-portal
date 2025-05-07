@@ -18,14 +18,19 @@ export function useNewAgenda() {
     e.preventDefault();
     setIsLoading(true);
 
-    const _agenda = await newMyAgenda(agenda).then((data) => {
-      toast.success(`Agenda ${agenda.name} criada com sucesso`);
-      return data;
-    });
+    try {
+      const _agenda = await newMyAgenda(agenda).then((data) => {
+        toast.success(`Agenda ${agenda.name} criada com sucesso`);
+        return data;
+      });
+  
+      if(_agenda) await onCommitTemplates(_agenda.id);
 
-    if(_agenda) await onCommitTemplates(_agenda.id);
+      await setTimeout(() => push('/portal/agenda'), 500);
+    } finally {
+      setIsLoading(false);
+    }
 
-    await setTimeout(() => push('/portal/agenda'), 500);
   };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {

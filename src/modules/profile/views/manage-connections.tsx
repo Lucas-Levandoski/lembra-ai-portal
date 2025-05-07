@@ -9,18 +9,18 @@ export function ManageConnectionsView() {
   const { onChangeTab, selectedId } = useConnectionsNavigation();
 
   return (
-    <div className="flex flex-col gap-8">
-      <Tabs 
+    <div className="flex w-full max-w-[500px] mx-auto">
+      <Tabs
         onChangeTab={onChangeTab}
         selectedId={selectedId}
         items={[
           {
-            content: <WhatsappConnection/>,
+            content: <WhatsappConnection key="whats"/>,
             id: 'whats',
             label: 'Whatsapp'
           },
           {
-            content: <GoogleAccount/>,
+            content: <GoogleAccount key="google"/>,
             id: 'google',
             label: 'Conta Google'
           }

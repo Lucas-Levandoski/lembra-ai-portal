@@ -21,6 +21,8 @@ export function CalendarView() {
     toggleShowAgenda, 
     onSelectDate,
     handleReloadAll,
+    bookedDates,
+    isBookedDatesLoading
   } = useCalendar();
 
   const {
@@ -39,7 +41,9 @@ export function CalendarView() {
           selectedDate={selectedDate} 
           eventsByAgenda={bookingsFormatted} 
           isLoading={isMonthBookingsLoading || isAgendaLoading} 
-          onToggle={toggleShowAgenda} 
+          onToggle={toggleShowAgenda}
+          highlightedDays={bookedDates?.dates}
+          isHighlightedDaysLoading={isBookedDatesLoading}
         />
       </div>
       <div className="col-span-5">

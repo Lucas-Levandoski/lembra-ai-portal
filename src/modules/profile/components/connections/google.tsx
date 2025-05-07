@@ -19,8 +19,13 @@ export function GoogleAccount() {
         !profile 
           ? <ErrorMessage message="Falha ao carregar dados de usuário" />
           : (
-            <div>
-              <Button route={`${envVars.googleConsentUrl}`} routeTarget="_blank">Atualizar permissões do Google Account</Button>
+            <div className="flex flex-col gap-4">
+              <h2>Google Account</h2>
+              <div className="flex items-center gap-3">
+                <span>Conta Conectada:</span>
+                <span className="border py-2 px-3 rounded-xl bg-blue-100">{profile.details.eMail}</span>
+              </div>
+              <Button route={`${envVars.googleConsentUrl}`} routeTarget="_blank">Atualizar permissões</Button>
             </div>
           )
       }

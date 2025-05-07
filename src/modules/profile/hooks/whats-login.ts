@@ -9,10 +9,10 @@ import { useStore } from 'Store';
 export function useWhatsLogin() {
   const [qr, setQr] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-  const { refresh } = useInitializeUser();
+  const { refresh } = useInitializeUser(false);
   const { profile } = useStore((store) => ({ profile: store.profile }));
 
-  const onLogin = async () => {
+  const onLogin = async () => {    
     const response = await whatsLogin();
 
     if(!response) return;

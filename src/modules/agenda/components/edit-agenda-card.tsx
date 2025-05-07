@@ -1,7 +1,7 @@
 'use client';
 
 import { AvailableColors, TimeFrameOptions } from 'Agenda';
-import { AgendaDetails, Button, Select, maskMinutes, Option } from 'Common';
+import { AgendaDetails, Button, Select, maskMinutes, Option, BouncingThreeDotsLoading } from 'Common';
 import { MessageTemplatesBoxView } from 'Message-Templates';
 import { useRouter } from 'next/navigation';
 import { FormEventHandler } from 'react';
@@ -12,9 +12,10 @@ type props = {
   agendaId?: string;
   onChange: (propName: keyof AgendaDetails, value: any) => void;
   onSubmit: FormEventHandler<HTMLFormElement>;
+  isSubmitLoading: boolean;
 }
 
-export function EditAgendaCard({ onChange, details, agendaId, onSubmit }: props) {
+export function EditAgendaCard({ onChange, details, agendaId, onSubmit, isSubmitLoading }: props) {
   const { push } = useRouter();
   const { colorName, name, timeFrame } = details;
 
@@ -68,8 +69,12 @@ export function EditAgendaCard({ onChange, details, agendaId, onSubmit }: props)
         </div>
         <MessageTemplatesBoxView agendaId={agendaId} />
         <div className="flex justify-end gap-3">
-          <Button variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
-          <Button variant="primary" type="submit">{agendaId ? 'Confirmar' : 'Criar Agenda'}</Button>
+          <Button disabled={isSubmitLoading} variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
+          <Button disabled={isSubmitLoading} variant="primary" type="submit">{
+            isSubmitLoading 
+              ? <BouncingThreeDotsLoading variant="secondary" />
+              : (agendaId ? 'Confirmar' : 'Criar Agenda')
+          }</Button>
         </div>
       </form>
     </div>

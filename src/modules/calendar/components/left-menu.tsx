@@ -7,9 +7,11 @@ type props = {
   isLoading: boolean;
   onSelectingDate: (date: string) => void;
   selectedDate: string;
+  highlightedDays?: string[];
+  isHighlightedDaysLoading?: boolean;
 }
 
-export function LeftMenu({ eventsByAgenda, isLoading, onToggle, onSelectingDate, selectedDate }: props) {
+export function LeftMenu({ eventsByAgenda, isLoading, onToggle, onSelectingDate, selectedDate, highlightedDays = [], isHighlightedDaysLoading}: props) {
   const agendas: {
     id: string,
     isChecked: boolean,
@@ -28,10 +30,14 @@ export function LeftMenu({ eventsByAgenda, isLoading, onToggle, onSelectingDate,
     }
   }
 
-
   return (
     <div className="flex flex-col border-2 p-6 rounded-lg gap-9">
-      <Calendar onSelectedDay={onSelectingDate} currentDay={selectedDate} />
+      <Calendar 
+        onSelectedDay={onSelectingDate}
+        currentDay={selectedDate}
+        highlightedDays={highlightedDays}
+        isLoading={isHighlightedDaysLoading}
+      />
       <div className="flex flex-col gap-3">
         <h3><b>Minhas agendas</b></h3>
         {

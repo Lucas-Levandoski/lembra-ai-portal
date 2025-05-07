@@ -13,6 +13,7 @@ export function useEditAgenda(agendaId: string) {
 
   const [agenda, setAgenda] = useState<AgendaDetails>();
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
   useEffect(() => {
     if(!agenda) setIsLoading(true);
@@ -28,13 +29,19 @@ export function useEditAgenda(agendaId: string) {
     e.preventDefault();
     if(!agenda) return;
 
-    await updateMyAgenda(agendaId, agenda).then(() => {
-      toast.success(`Agenda ${agenda.name} editada com sucesso`);
-    });
+    setIsSubmitLoading(true);
 
-    await onCommitTemplates(agendaId);
+    try {
+      await updateMyAgenda(agendaId, agenda).then(() => {
+        toast.success(`Agenda ${agenda.name} editada com sucesso`);
+      });
 
-    setTimeout(() => push('/portal/agenda'), 500);
+      await onCommitTemplates(agendaId);
+
+      setTimeout(() => push('/portal/agenda'), 500);
+    } finally {
+      setIsSubmitLoading(false);
+    }
   };
 
   const onChangeProperty = (propName: keyof AgendaDetails, value: any) => {
@@ -58,6 +65,7 @@ export function useEditAgenda(agendaId: string) {
 
   return {
     isLoading,
+    isSubmitLoading,
     agenda,
     onChangeProperty,
     onSubmit,
