@@ -4,6 +4,14 @@ export const envVars = {
     return checkVariable('NEXT_PUBLIC_AGENDA_URL', 'https://fa-agenda-management-dev.azurewebsites.net/api');
   },
 
+  get userManagementUrl() {
+    return checkVariable('NEXT_PUBLIC_USER_MANAGEMENT_URL', 'https://fa-user-management-dev.azurewebsites.net/api');
+  },
+
+  get googleIntegrationUrl() {
+    return checkVariable('NEXT_PUBLIC_GOOGLE_INTEGRATION_URL', 'https://fa-google-integration-dev.azurewebsites.net/api');
+  },
+
   get messageSenderUrl() {
     return checkVariable('NEXT_PUBLIC_MESSAGE_SENDER_URL', 'https://fa-message-sender-dev.azurewebsites.net/api');
   },
@@ -46,6 +54,10 @@ export const envVars = {
 
   get saCompaniesUrl() {
     return checkVariable('NEXT_PUBLIC_SA_COMPANIES_URL', 'https://salembraassetsdev.blob.core.windows.net/company-images');
+  },
+
+  get googleConsentUrl() {
+    return checkVariable('NEXT_PUBLIC_GOOGLE_CONSENT_URL', 'https://fa-user-management-dev.azurewebsites.net/api/google/auth/consent');
   },
 };
 

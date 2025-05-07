@@ -2,7 +2,7 @@
 
 import { InteractionType } from '@azure/msal-browser';
 import { MsalAuthenticationTemplate } from '@azure/msal-react';
-import { loginRequest } from 'Auth';
+import { ConsentComponent, loginRequest } from 'Auth';
 import { MainContainer, useAuth } from 'Common';
 import { LoadingUserView, ProtectedHeaderView } from 'Generic';
 
@@ -20,10 +20,10 @@ export default function ProtectedLayout({children}: props) {
       {
         isAuthenticated
           ? (
-            <>
+            <ConsentComponent>
               <ProtectedHeaderView />
               <MainContainer>{children}</MainContainer>
-            </>
+            </ConsentComponent>
           )
           : <LoadingUserView />
       }
