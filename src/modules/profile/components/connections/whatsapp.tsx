@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, CirclingFourDotsLoading, ErrorMessage, StatusMessage } from 'Common';
 import { useWhatsLogin } from 'Profile/hooks';
 import { useEffect } from 'react';

@@ -1,3 +1,5 @@
+'use client';
+
 import { IShortAgendaProps } from 'Agenda/models';
 import { getAgendaByTag } from 'Agenda/services';
 import { IAttendeeDetails } from 'Bookings/models/interfaces';

@@ -1,3 +1,5 @@
+'use client';
+
 import { cancelEvent } from 'Bookings/services';
 import { useState } from 'react';
 

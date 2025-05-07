@@ -1,3 +1,5 @@
+'use client';
+
 import { getAgendaById, IShortAgendaProps } from 'Agenda';
 import { BookingEntity, IDateTimes } from 'Bookings/models';
 import { listAvailableDatesAndTimes, readEvent, reScheduleEvent } from 'Bookings/services';

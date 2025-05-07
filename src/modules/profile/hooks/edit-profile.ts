@@ -1,3 +1,5 @@
+'use client';
+
 import { RecursivePartial } from 'Common';
 import { patchProfile, uploadCompany, uploadProfile } from 'Profile/services';
 import { IProfile, IProfileDetails } from 'Profile/models';

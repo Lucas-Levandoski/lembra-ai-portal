@@ -1,3 +1,5 @@
+'use client';
+
 import { useStore } from 'Store';
 import { MessageTemplate } from '../models';
 import { defaultTemplate, getTemplates, replaceTemplates, sortTemplates } from 'Message-Templates';

@@ -1,3 +1,5 @@
+'use client';
+
 import { IShortAgendaProps } from 'Agenda/models';
 import { getAgendaById } from 'Agenda/services';
 import { BookingEntity } from 'Bookings/models';

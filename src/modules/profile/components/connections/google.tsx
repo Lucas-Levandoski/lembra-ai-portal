@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, CirclingFourDotsLoading, envVars, ErrorMessage } from 'Common';
 import { useStore } from 'Store';
 

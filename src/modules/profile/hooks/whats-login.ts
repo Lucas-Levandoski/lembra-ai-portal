@@ -1,3 +1,5 @@
+'use client';
+
 import { disconnectMyWhatsapp, whatsLogin } from 'Profile/services';
 import { useState } from 'react';
 import readStream from 'ndjson-readablestream';

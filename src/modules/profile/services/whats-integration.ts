@@ -1,7 +1,6 @@
 import { envVars } from 'Common/utils';
 import { privateClient } from 'Common/services';
 import { IWhatsLoginResponse } from '../models';
-import { toast } from 'react-toastify';
 
 export const whatsLogin = async (errorFn: (data: any) => void = () => {}): Promise<ReadableStream<IWhatsLoginResponse> | undefined> => {
   const bearer = privateClient.defaults.headers['Authorization']?.toString();

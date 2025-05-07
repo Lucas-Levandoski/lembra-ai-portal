@@ -1,6 +1,6 @@
 'use client';
 
-import { BookingAlreadyReScheduled, BookingCanceled, BookingNotFound, ReSchedulePickATime } from 'Bookings/components';
+import { BookingAlreadyReScheduled, BookingNotFound, ReSchedulePickATime } from 'Bookings/components';
 import { useOnReSchedule } from 'Bookings/hooks';
 import { CirclingFourDotsLoading } from 'Common/components';
 
