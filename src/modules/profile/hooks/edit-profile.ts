@@ -1,5 +1,5 @@
 import { RecursivePartial } from 'Common';
-import { patchProfile, uploadCompany, uploadProfile } from 'Profile';
+import { patchProfile, uploadCompany, uploadProfile } from 'Profile/services';
 import { IProfile, IProfileDetails } from 'Profile/models';
 import { useStore } from 'Store';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';

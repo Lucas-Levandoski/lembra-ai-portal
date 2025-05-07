@@ -1,4 +1,4 @@
-import { ManageConnectionsView } from 'Profile';
+import { ManageConnectionsView } from 'Profile/views';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import { envVars } from 'Common';
-import { IShortProfile } from 'Profile';
+import { IShortProfile } from 'Profile/models';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 

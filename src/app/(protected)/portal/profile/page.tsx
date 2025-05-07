@@ -1,4 +1,4 @@
-import { ProfileView } from 'Profile';
+import { ProfileView } from 'Profile/views';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

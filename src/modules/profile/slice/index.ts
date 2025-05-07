@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand';
-import { ProfileSlice } from 'Profile';
+import { ProfileSlice } from 'Profile/models';
 
 export const createProfileSlice: StateCreator<ProfileSlice> = (set) => ({
   isProfileLoading: true,

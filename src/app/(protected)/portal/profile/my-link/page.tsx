@@ -1,4 +1,4 @@
-import { MyLinkView } from 'Profile';
+import { MyLinkView } from 'Profile/views';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { VisualIdentityView } from 'Profile';
+import { VisualIdentityView } from 'Profile/views';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

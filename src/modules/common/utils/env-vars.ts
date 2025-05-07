@@ -57,7 +57,7 @@ export const envVars = {
   },
 
   get googleConsentUrl() {
-    return checkVariable('NEXT_PUBLIC_GOOGLE_CONSENT_URL', 'https://fa-user-management-dev.azurewebsites.net/api/google/auth/consent');
+    return checkVariable('NEXT_PUBLIC_GOOGLE_CONSENT_URL', 'https://fa-google-integration-dev.azurewebsites.net/api/auth/consent');
   },
 };
 

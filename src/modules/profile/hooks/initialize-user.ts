@@ -1,4 +1,4 @@
-import { readMyProfile } from 'Profile';
+import { readMyProfile } from 'Profile/services';
 import { useEffect } from 'react';
 import { useStore } from 'Store';
 

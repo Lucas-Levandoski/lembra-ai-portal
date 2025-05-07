@@ -16,8 +16,7 @@ type Item = {
   shouldHide?: boolean
 }
 
-// eslint-disable-next-line no-console
-export function Tabs({ items = [], selectedId = '', onChangeTab = console.log as any }: props) {
+export function Tabs({ items = [], selectedId = '', onChangeTab = console.info as any }: props) {
   return (
     <div>
       <div className="flex flex-row w-full">

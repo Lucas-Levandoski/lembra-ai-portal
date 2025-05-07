@@ -1,5 +1,6 @@
 import { Button, Calendar, TimeCard } from 'Common';
-import { IShortProfile, ProfileTag } from 'Profile';
+import { IShortProfile} from 'Profile/models';
+import { ProfileTag } from 'Profile/components';
 import { FcGoogle  } from 'react-icons/fc';
 import { TimePicker } from './time-picker';
 

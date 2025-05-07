@@ -1,7 +1,8 @@
 import { IShortAgendaProps } from 'Agenda';
 import { BookingEntity, IDateTimes } from 'Bookings/models';
 import { BouncingThreeDotsLoading, Button, Calendar, ErrorMessage, TimeCard } from 'Common/components';
-import { IShortProfile, ProfileTag, TimezoneDictionary } from 'Profile';
+import { IShortProfile, TimezoneDictionary } from 'Profile/models';
+import { ProfileTag } from 'Profile/components';
 import { FcGoogle } from 'react-icons/fc';
 import { TimePicker } from '../time-picker';
 import { TimeDescription } from '../time-description';

@@ -3,7 +3,7 @@
 import { TimePicker } from 'Bookings/components';
 import { useOnPickingTime } from 'Bookings/hooks';
 import { BouncingThreeDotsLoading, Button, Calendar, ErrorMessage, TimeCard } from 'Common/components';
-import { TimezoneDictionary } from 'Profile';
+import { TimezoneDictionary } from 'Profile/models';
 import { ProfileTag } from 'Profile/components';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';

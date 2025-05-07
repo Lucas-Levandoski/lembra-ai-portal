@@ -4,3 +4,4 @@ export * from './components';
 export * from './slice';
 export * from './views';
 export * from './utils';
+export * from './hooks';

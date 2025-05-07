@@ -4,7 +4,8 @@ import { IShortAgendaProps } from 'Agenda/models';
 import { getAgendaByTag } from 'Agenda/services';
 import { IDateTimes } from 'Bookings';
 import { listAvailableDatesAndTimes } from 'Bookings/services';
-import { readProfileByTag, IShortProfile } from 'Profile';
+import { IShortProfile } from 'Profile/models';
+import { readProfileByTag} from 'Profile/services';
 import { useEffect, useState } from 'react';
 
 

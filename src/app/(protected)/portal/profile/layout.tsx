@@ -1,5 +1,5 @@
 import { Breadcrumbs } from 'Generic/components';
-import { ProfileLeftMenuView } from 'Profile';
+import { ProfileLeftMenuView } from 'Profile/views';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
