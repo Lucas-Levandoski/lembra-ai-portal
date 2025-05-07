@@ -16,8 +16,7 @@ export function useCalendar() {
   const { isAgendaLoading, getAgendas, findAgenda } = useAgenda();
 
   const { 
-    bookedDates, 
-    isBookedDatesLoading, 
+    bookedDates,  
     getMyBookedDates, 
     onSelectingDate: onSelectingBookedDatesDate, 
   } = useDayBookings();
@@ -174,7 +173,6 @@ export function useCalendar() {
     bookingsFormatted,
     isMonthBookingsLoading,
     isAgendaLoading,
-    isBookedDatesLoading,
     selectedDate,
     isBookingOpen,
     isBookingLoading,

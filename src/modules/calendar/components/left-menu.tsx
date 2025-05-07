@@ -8,10 +8,9 @@ type props = {
   onSelectingDate: (date: string) => void;
   selectedDate: string;
   highlightedDays?: string[];
-  isHighlightedDaysLoading?: boolean;
 }
 
-export function LeftMenu({ eventsByAgenda, isLoading, onToggle, onSelectingDate, selectedDate, highlightedDays = [], isHighlightedDaysLoading}: props) {
+export function LeftMenu({ eventsByAgenda, isLoading, onToggle, onSelectingDate, selectedDate, highlightedDays = []}: props) {
   const agendas: {
     id: string,
     isChecked: boolean,
@@ -36,7 +35,7 @@ export function LeftMenu({ eventsByAgenda, isLoading, onToggle, onSelectingDate,
         onSelectedDay={onSelectingDate}
         currentDay={selectedDate}
         highlightedDays={highlightedDays}
-        isLoading={isHighlightedDaysLoading}
+        isLoading={isLoading}
       />
       <div className="flex flex-col gap-3">
         <h3><b>Minhas agendas</b></h3>
