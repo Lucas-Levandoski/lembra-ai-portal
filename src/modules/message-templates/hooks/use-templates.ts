@@ -3,7 +3,7 @@
 import { useStore } from 'Store';
 import { MessageTemplate } from '../models';
 import { defaultTemplate, getTemplates, replaceTemplates, sortTemplates } from 'Message-Templates';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 
@@ -24,6 +24,10 @@ export function useTemplates() {
   const [template, setTemplate] = useState<MessageTemplate>(defaultTemplate);
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState<number | undefined>();
+
+  useEffect(() => {
+    onClearTemplates();
+  },[]);
 
   const onClearTemplates = () => {
     setTemplatesPreCommit([]);

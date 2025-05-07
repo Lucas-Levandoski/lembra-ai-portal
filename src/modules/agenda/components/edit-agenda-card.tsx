@@ -67,7 +67,7 @@ export function EditAgendaCard({ onChange, details, agendaId, onSubmit, isSubmit
             </Select>
           </div>
         </div>
-        <MessageTemplatesBoxView agendaId={agendaId} />
+        <MessageTemplatesBoxView key={agendaId} agendaId={agendaId} />
         <div className="flex justify-end gap-3">
           <Button disabled={isSubmitLoading} variant="secondary" onClick={() => push('/portal/agenda')}>Cancelar</Button>
           <Button disabled={isSubmitLoading} variant="primary" type="submit">{
