@@ -6,18 +6,17 @@ import { BsWhatsapp } from 'react-icons/bs';
 export const TargetIcons: { [key in MessageTarget]: ReactNode } = {
   email: <MdOutlineMail />,
   whatsapp: <BsWhatsapp />,
-  sms: <MdOutlineTextsms />,
+  // sms: <MdOutlineTextsms />,
 };
 
 export const TargetTexts: { [key in MessageTarget]: ReactNode } = {
   email: 'E-mail',
   whatsapp: 'Whatsapp',
-  sms: 'SMS',
+  // sms: 'SMS',
 };
 
 export const MessageTargets: { [key in MessageTarget]: ReactNode } = {
   email: <>{TargetIcons['email']} {TargetTexts['email']}</>,
   whatsapp: <>{TargetIcons['whatsapp']} {TargetTexts['whatsapp']}</>,
-  sms: <>{TargetIcons['sms']} {TargetTexts['sms']}</>,
+  // sms: <>{TargetIcons['sms']} {TargetTexts['sms']}</>,
 };
-

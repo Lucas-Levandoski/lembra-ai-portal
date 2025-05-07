@@ -44,7 +44,7 @@ export function MessageTemplatesBoxView({ agendaId }: props) {
         <Button variant="icon" className="flex gap-2 items-center text-blue-700" onClick={() => onModal()}><CgAddR /> Criar Lembrete</Button>
 
       </div>
-      { 
+      {
         isTemplatesLoading
           ? <div className="flex justify-center mt-6 w-full"><CirclingFourDotsLoading /></div>
           : (

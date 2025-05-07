@@ -1,1 +1,1 @@
-export type MessageTarget = 'whatsapp' | 'email' | 'sms';
+export type MessageTarget = 'whatsapp' | 'email'; // | 'sms';
