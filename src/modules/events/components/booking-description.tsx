@@ -1,9 +1,10 @@
 import { TimeDescription } from 'Bookings/components';
 import { BookingEntity, BookingDetails } from 'Bookings/models';
-import { sumTimes } from 'Common';
+import { Button, sumTimes } from 'Common';
 import { BsWhatsapp } from 'react-icons/bs';
 import { CiCalendar, CiStickyNote, CiUser } from 'react-icons/ci';
 import { FaAngleDoubleUp } from 'react-icons/fa';
+import { SiGooglemeet } from 'react-icons/si';
 
 
 type props = {
@@ -18,6 +19,15 @@ export function BookingDescription({booking, reschedules }: props) {
         <CiCalendar className="size-8" />
         <TimeDescription date={booking.details.date} startTime={booking.details.time} endTime={sumTimes(booking.details.time, booking.details.duration)} />
       </span>
+      {
+        booking.meetingLocation.url &&
+        (
+          <span className="flex justify-start items-center gap-4 text-balance">
+            <SiGooglemeet  className="ml-1 size-6 text-slate-600" />
+            <Button route={booking.meetingLocation.url} routeTarget="_blank" variant="text" className="text-blue-600 underline" >{booking.meetingLocation.url}</Button>
+          </span>
+        )
+      }
       <span className="flex justify-start items-center gap-4 text-balance">
         <CiUser className="size-8" />
         <span>{booking.guestDetails.name} | {booking.guestDetails.email}</span>
