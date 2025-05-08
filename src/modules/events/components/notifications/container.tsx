@@ -14,9 +14,9 @@ export function NotificationsContainer({ notifications }: props) {
       {
         notifications.whatsapp && notifications.whatsapp.map(whatsapp => <NotificationElement key={whatsapp.id} target="whatsapp" details={whatsapp} />)
       }
-      {
+      {/* {
         notifications.sms && notifications.sms.map(sms => <NotificationElement key={sms.id} target="sms" details={sms} />)
-      }
+      } */}
     </div>
   );
 }
