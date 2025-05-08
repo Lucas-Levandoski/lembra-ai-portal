@@ -23,7 +23,7 @@ export function GoogleAccount() {
               <h2>Google Account</h2>
               <div className="flex items-center gap-3">
                 <span>Conta Conectada:</span>
-                <span className="border py-2 px-3 rounded-xl bg-blue-100">{profile.details.eMail}</span>
+                <span className="border py-2 px-3 rounded-xl bg-blue-100">{profile.details.email}</span>
               </div>
               <Button route={`${envVars.googleConsentUrl}`} routeTarget="_blank">Atualizar permissões</Button>
             </div>

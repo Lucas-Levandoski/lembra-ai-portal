@@ -11,7 +11,7 @@ export interface IProfile {
 
 export interface IProfileDetails {
   name: string;
-  eMail: string;
+  email: string;
   phone: string;
   timezone: string;
   profilePictureUrl: string;
