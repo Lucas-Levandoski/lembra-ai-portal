@@ -7,6 +7,7 @@ import { BsWhatsapp } from 'react-icons/bs';
 import { MdOutlineStickyNote2 } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5';
 import { FaAngleDoubleUp } from 'react-icons/fa';
+import { SiGooglemeet } from 'react-icons/si';
 
 
 
@@ -60,6 +61,20 @@ export function BookingDialog({
                         <CiCalendar className="size-8" />
                         <TimeDescription date={booking.details.date} startTime={booking.details.time} endTime={sumTimes(booking.details.time, booking.details.duration)} />
                       </span>
+                      {
+                        booking.meetingLocation.url &&
+                        (
+                          <span className="flex justify-start items-center gap-4 text-balance">
+                            <SiGooglemeet  className="ml-1 size-6 text-slate-600" />
+                            <Button
+                              route={booking.meetingLocation.url}
+                              routeTarget="_blank"
+                              variant="text"
+                              className="text-blue-600 underline"
+                            >{booking.meetingLocation.url}</Button>
+                          </span>
+                        )
+                      }
                       <span className="flex justify-start items-center gap-4">
                         <BiUser className="size-8" />
                         <span>{booking.guestDetails.name} | {booking.guestDetails.email}</span>
