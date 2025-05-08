@@ -5,6 +5,7 @@ import { TimezoneOptions } from 'Profile/models';
 import { useEditProfile } from 'Profile/hooks';
 import InputMask from 'react-input-mask';
 import { ProfilePictureEditable } from 'Profile/components';
+import { preferFirst } from 'Profile/utils';
 
 export function ProfileView() {
   const { 
@@ -12,12 +13,14 @@ export function ProfileView() {
     changedProfile, 
     isProfileLoading,
     isSubmitLoading,
+    isCepLoading,
     changedProfilePicture,
     hasChanges,
     onChangeDetails, 
     onSubmit, 
     onCancel, 
     onChangeProfilePicture,
+    onChangeCep,
   } = useEditProfile();
 
   return (
@@ -41,7 +44,7 @@ export function ProfileView() {
                   className="p-2 border-2 border-gray-200 h-12 rounded-lg"
                   id="name"
                   onChange={(event) => onChangeDetails('name', event.target.value)}
-                  value={changedProfile.details?.name || profile.details.name}/>
+                  value={preferFirst(changedProfile.details?.name, profile.details.name)}/>
               </div>
               <div className="flex w-full flex-col gap-2">
                 <label className="text-lg font-bold" htmlFor="welcoming">Mensagem de boas-vindas</label>
@@ -72,7 +75,7 @@ export function ProfileView() {
                     type="tel"
                     className="p-2 border-2 border-gray-200 h-12 rounded-lg"
                     id="phone"
-                    value={changedProfile.details?.phone || profile.details?.phone}
+                    value={preferFirst(changedProfile.details?.phone, profile.details?.phone)}
                     onChange={event => onChangeDetails('phone', event.target.value)} />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -80,7 +83,7 @@ export function ProfileView() {
                   <Select
                     className="w-64"
                     id="timezone" 
-                    value={changedProfile.details?.timezone || profile.details?.timezone}
+                    value={preferFirst(changedProfile.details?.timezone, profile.details?.timezone)}
                     onChange={value => onChangeDetails('timezone', value)}
                   >
                     {
@@ -110,7 +113,7 @@ export function ProfileView() {
                     type="tel"
                     className="p-2 border-2 border-gray-200 h-12 rounded-lg"
                     id="cpfCnpj"
-                    value={changedProfile.details?.cpfCnpj || profile.details?.cpfCnpj}
+                    value={preferFirst(changedProfile.details?.cpfCnpj, profile.details?.cpfCnpj)}
                     onChange={event => onChangeDetails('cpfCnpj', event.target.value)} />
                 </div>
               </div>
@@ -118,52 +121,55 @@ export function ProfileView() {
                 <div className="flex flex-col gap-2">
                   <label className="text-lg font-bold" htmlFor="postalCode">CEP</label>
                   <InputMask
-                    mask="99999-99"
+                    mask="99999-999"
                     type="tel"
                     className="p-2 w-28 border-2 border-gray-200 h-12 rounded-lg"
                     id="postalCode"
-                    value={changedProfile.details?.postalCode || profile.details?.postalCode}
-                    onChange={event => onChangeDetails('postalCode', event.target.value)} />
+                    value={preferFirst(changedProfile.details?.postalCode, profile.details?.postalCode)}
+                    onChange={event => onChangeCep(event.target.value)} />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col relative gap-2">
+                  { isCepLoading && <BouncingThreeDotsLoading className="top-auto bottom-1" shouldFloatMiddle /> }
                   <label className="text-lg font-bold" htmlFor="state">Estado</label>
                   <input
-                    className="p-2 w-12 border-2 border-gray-200 h-12 rounded-lg"
+                    className="p-2 w-16 border-2 border-gray-200 h-12 rounded-lg"
                     id="state"
                     disabled
-                    value={changedProfile.details?.state || profile.details?.state}/>
+                    value={preferFirst(changedProfile.details?.state, profile.details?.state)}/>
                 </div>
-                <div className="flex flex-col gap-2 w-auto">
+                <div className="flex flex-col gap-2 relative w-auto">
+                  { isCepLoading && <BouncingThreeDotsLoading className="top-auto bottom-1" shouldFloatMiddle /> }
                   <label className="text-lg font-bold" htmlFor="city">Cidade</label>
                   <input
                     className="w-80 p-2 border-2 border-gray-200 h-12 rounded-lg"
                     id="city"
                     disabled
-                    value={changedProfile.details?.city || profile.details?.city}/>
+                    value={preferFirst(changedProfile.details?.city, profile.details?.city)}/>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 relative">
+                  { isCepLoading && <BouncingThreeDotsLoading className="top-auto bottom-1" shouldFloatMiddle /> }
                   <label className="text-lg font-bold" htmlFor="neighborhood">Bairro</label>
                   <input
                     className="p-2 border-2 border-gray-200 h-12 rounded-lg overflow-auto"
                     id="neighborhood"
                     disabled
-                    value={changedProfile.details?.neighborhood || profile.details?.neighborhood}/>
+                    value={preferFirst(changedProfile.details?.neighborhood, profile.details?.neighborhood)}/>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 relative">
+                  { isCepLoading && <BouncingThreeDotsLoading className="top-auto bottom-1" shouldFloatMiddle /> }
                   <label className="text-lg font-bold" htmlFor="address">Endereço</label>
                   <input
                     className="w-96 p-2 min-w-40 border-2 border-gray-200 h-12 rounded-lg overflow-auto"
                     id="address"
                     disabled
-                    value={changedProfile.details?.address || profile.details?.address}/>
+                    value={preferFirst(changedProfile.details?.address, profile.details?.address)}/>
                 </div>
                 <div className="flex flex-col gap-2 w-auto">
                   <label className="text-lg font-bold" htmlFor="complement">Complemento</label>
                   <input
                     className="w-40 p-2 border-2 border-gray-200 h-12 rounded-lg"
                     id="complement"
-                    disabled
-                    value={changedProfile.details?.complement || profile.details?.complement}
+                    value={preferFirst(changedProfile.details?.complement, profile.details?.complement)}
                     onChange={event => onChangeDetails('complement', event.target.value)}/>
                 </div>
               </div>
@@ -171,7 +177,7 @@ export function ProfileView() {
                 <Button disabled={!hasChanges || isSubmitLoading} variant="secondary" onClick={() => onCancel()}>Cancelar</Button>
                 <Button disabled={!hasChanges || isSubmitLoading} type="submit">
                   {
-                    isSubmitLoading 
+                    isSubmitLoading
                       ? <BouncingThreeDotsLoading />
                       : <>Salvar Alterações</>
                   }

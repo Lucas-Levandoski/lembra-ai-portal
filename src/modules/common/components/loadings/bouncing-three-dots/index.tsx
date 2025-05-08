@@ -9,6 +9,8 @@ type Variant = 'primary' | 'secondary';
 
 type props = {
   variant?: Variant,
+  shouldFloatMiddle?: boolean,
+  className?: string,
 }
 
 
@@ -18,9 +20,9 @@ const variants: { [key in Variant]: string } = {
 };
 
 
-export function BouncingThreeDotsLoading({ variant = 'primary' }: props) {
+export function BouncingThreeDotsLoading({ variant = 'primary', shouldFloatMiddle, className }: props) {
   return (
-    <div className="flex items-center w-14 h-7">
+    <div className={ twMerge('flex items-center w-14 h-7', shouldFloatMiddle && 'absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2', className)}>
       <div className="loader">
         <div className={twMerge('dot', variants[variant])}></div>
         <div className={twMerge('dot', variants[variant])}></div>

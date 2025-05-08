@@ -1,7 +1,7 @@
 'use client';
 
 import { RecursivePartial } from 'Common';
-import { patchProfile, uploadCompany, uploadProfile } from 'Profile/services';
+import { getDataFromCEP, patchProfile, uploadCompany, uploadProfile } from 'Profile/services';
 import { IProfile, IProfileDetails } from 'Profile/models';
 import { useStore } from 'Store';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
@@ -18,8 +18,11 @@ export function useEditProfile() {
   const [changedCompanyPicture, setChangedCompanyPicture] = useState<File | undefined>();
   const [hasChanges, setHasChanges] = useState(false);
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+  const [cep, setCep] = useState('');
+  const [debouncedCep, setDebouncedCep] = useState<string>();
+  const [isCepLoading, setIsCepLoading] = useState(false);
 
-  const { 
+  const {
     profile,
     isProfileLoading, 
     setProfile 
@@ -29,24 +32,71 @@ export function useEditProfile() {
     setProfile: state.setProfile,
   }));
 
-  const tryLeave = (event: BeforeUnloadEvent) => {
-    if(changedProfile.tag !== profile.tag) return event.preventDefault();
+  // Debounce effect
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedCep(cep.replaceAll(/_|-/g, '')), 2000); // 2 seconds delay
 
-    if(changedProfile.details) {
-      for(const key in changedProfile.details) {
-        if(profile.details[key as keyof IProfileDetails] !== changedProfile.details[key as keyof IProfileDetails]) 
-          return event.preventDefault(); 
-      }
-    }
+    return () => clearTimeout(timer); // Clear timeout on input change
+  }, [cep]);
+
+  // Trigger API call when debounced query changes
+  useEffect(() => {
+    onReadCep();
+  }, [debouncedCep]);
+
+  const onChangeCep = (_cep: string) => {
+    setCep(_cep);
+
+    if(_cep.replaceAll(/_|-/g, '').length === 8) setIsCepLoading(true);
+
+    changedProfile.details = {
+      ...changedProfile.details,
+      postalCode: _cep
+    };
+
+    setChangedProfile({ ...changedProfile, details: { ...changedProfile.details } });
   };
 
-  useEffect(() => {
-    // window.addEventListener('beforeunload', tryLeave);
+  const onReadCep = async () => {
+    if(!debouncedCep) return;
 
-    // return () => {
-    //   window.removeEventListener('beforeunload', tryLeave);
-    // };
-  },[]);
+    if(debouncedCep.length === 0) {
+      changedProfile.details = {
+        ... changedProfile.details,
+        address: '',
+        city: '',
+        neighborhood: '',
+        state: '',
+      };
+
+      setChangedProfile({ ...changedProfile, details: { ...changedProfile.details } });
+      if (!hasChanges) setHasChanges(true);
+    }
+
+    if(debouncedCep.length !== 8) return;
+
+    try {
+      const data = await getDataFromCEP(debouncedCep);
+
+      if(!data) return;
+
+      changedProfile.details = {
+        ... changedProfile.details,
+        address: data.logradouro,
+        city: data.localidade,
+        neighborhood: data.bairro,
+        state: data.uf,
+      };
+
+      if(!profile.details.phoneRegion) changedProfile.details.phoneRegion = data.uf;
+
+      setChangedProfile({ ...changedProfile, details: { ...changedProfile.details } });
+      if (!hasChanges) setHasChanges(true);
+    } finally {
+      setIsCepLoading(false);
+    }
+    setIsCepLoading(false);
+  };
 
   const onChangeDetails = (propertyName: keyof IProfileDetails, value: string) => {
     changedProfile.details = {
@@ -94,12 +144,15 @@ export function useEditProfile() {
     setIsSubmitLoading(true);
 
     try {
-      if(Object.keys(changedProfile).length)
+      if(Object.keys(changedProfile).length) {
+        if(changedProfile.details?.phone) changedProfile.details.phone = '+55'+changedProfile.details.phone;
+
         await patchProfile(changedProfile)
           .then(_profile => {
             setProfile(_profile);
             toast.success('Dados atualizados com sucesso');
           });
+      }
 
       if(changedProfilePicture) 
         await uploadProfile(changedProfilePicture)
@@ -132,6 +185,7 @@ export function useEditProfile() {
 
   return {
     isProfileLoading,
+    isCepLoading,
     isSubmitLoading,
     changedProfile,
     profile,
@@ -139,6 +193,7 @@ export function useEditProfile() {
     changedCompanyPicture,
     hasChanges,
     onChangeDetails,
+    onChangeCep,
     onChangeTag,
     onSubmit,
     onCancel,
