@@ -5,6 +5,7 @@ import { TimeDescription } from './time-description';
 import { envVars, sumMinutesToTime } from 'Common';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 import Image from 'next/image';
+import { ProfilePicture } from 'Profile';
 
 type props = {
   agenda?: IShortAgendaProps,
@@ -17,18 +18,7 @@ export function SuccessBookingCard({ agenda, profile, time, date }: props) {
   return (
     <div className="flex flex-col gap-8 justify-center text-center border rounded-lg p-6 lg:w-4/6 mx-auto">
       {
-        profile &&
-        <Image
-          className="rounded-full mx-auto"
-          height={60}
-          width={60}
-          src={
-            profile.profilePictureUrl
-              ? `${envVars.saProfilesUrl}/${profile.profilePictureUrl}`
-              : `${envVars.saAssetsUrl}/user_placeholder.png`
-          }
-          alt="profile" 
-        />
+        profile && <ProfilePicture profile={profile} />
       }
       <h1 className="mx-auto flex items-center gap-6">
         <BiSolidBadgeCheck  className="size-12 text-green-700" />

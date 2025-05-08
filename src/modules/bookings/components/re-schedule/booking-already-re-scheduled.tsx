@@ -10,6 +10,7 @@ import { Button, CirclingFourDotsLoading } from 'Common/components';
 import { envVars, sumMinutesToTime } from 'Common/utils';
 import { HiOutlineGlobeAsiaAustralia } from 'react-icons/hi2';
 import { useOnAlreadyReScheduled } from 'Bookings/hooks/use-on-already-re-scheduled';
+import { ProfilePicture } from 'Profile';
 
 
 
@@ -25,18 +26,7 @@ export function BookingAlreadyReScheduled({ booking, agenda, profile }: props) {
   return (
     <div className="flex flex-col gap-8 justify-center text-center rounded-lg p-6 w-full mx-auto">
       {
-        profile &&
-        <Image
-          className="rounded-full"
-          height={60}
-          width={60}
-          src={
-            profile.profilePictureUrl
-              ? `${envVars.saProfilesUrl}/${profile.profilePictureUrl}`
-              : `${envVars.saAssetsUrl}/user_placeholder.png`
-          }
-          alt="profile" 
-        />
+        profile && <ProfilePicture profile={profile} />
       }
       <h1 className="mx-auto flex items-center gap-6">
         Este Booking já foi reagendado

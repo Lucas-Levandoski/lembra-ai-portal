@@ -13,8 +13,16 @@ export interface IProfileDetails {
   name: string;
   email: string;
   phone: string;
-  timezone: string;
   profilePictureUrl: string;
   companyPictureUrl: string;
   phoneRegion: string;
+  timezone: string;
+  cpfCnpj: string;
+  postalCode: string;
+  address: string;
+  addressNumber: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
 }

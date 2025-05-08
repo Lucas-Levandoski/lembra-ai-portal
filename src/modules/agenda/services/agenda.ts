@@ -16,7 +16,7 @@ export const readMyAgenda = async (agendaId: string, errorFn: (data: any) => voi
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao listar agendas');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao listar agendas');
       throw err;
     }) as AgendaElement | undefined;
 };
@@ -26,7 +26,7 @@ export const updateMyAgenda = async (agendaId: string, details: AgendaDetails, e
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar agenda');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao atualizar agenda');
       throw err;
     }) as AgendaElement | undefined;
 };
@@ -36,7 +36,7 @@ export const newMyAgenda = async (agenda: AgendaDetails, errorFn: (data: any) =>
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao criar agenda');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao criar agenda');
       throw err;
     }) as AgendaElement | undefined;
 };
@@ -46,7 +46,7 @@ export const getAgendasByUser = async (userId: string, errorFn: (data: any) => v
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao carregar lista de agendas');
       throw err;
     }) as IShortAgendaProps[] | undefined;
 };
@@ -56,7 +56,7 @@ export const getAgendaByTag = async (userId: string, tag: string, errorFn: (data
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao carregar lista de agendas');
       throw err;
     }) as IShortAgendaProps | undefined;
 };
@@ -66,7 +66,7 @@ export const getAgendaById = async (userId: string, agendaId: string, errorFn: (
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao carregar lista de agendas');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao carregar lista de agendas');
       throw err;
     }) as IShortAgendaProps | undefined;
 };

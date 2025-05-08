@@ -8,7 +8,7 @@ export const readProfileByTag = async (tag: string, errorFn: (data: any) => void
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao encontrar usuário pela tag');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao encontrar usuário pela tag');
       throw err;
     }) as IShortProfile | undefined;
 };
@@ -18,7 +18,7 @@ export const readProfileById = async (userId: string, errorFn: (data: any) => vo
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao encontrar usuário pelo id');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao encontrar usuário pelo id');
       throw err;
     }) as IShortProfile | undefined;
 };
@@ -28,7 +28,7 @@ export const readMyProfile = async (errorFn: (data: any) => void = () => {}) => 
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao encontrar dados do usuário');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao encontrar dados do usuário');
       throw err;
     }) as IProfile | undefined;
 };
@@ -38,7 +38,7 @@ export const patchProfile = async (profile: RecursivePartial<IProfile>, errorFn:
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar dados do usuário');
+      toast.error(err.response?.data?.messages.join('\n') ?? 'Falha ao atualizar dados do usuário');
       throw err;
     }) as IProfile | undefined;
 };
@@ -51,7 +51,7 @@ export const uploadProfile = async (file: File, errorFn: (data: any) => void = (
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar foto de perfil');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao atualizar foto de perfil');
       throw err;
     }) as undefined;
 };
@@ -64,7 +64,7 @@ export const uploadCompany = async (file: File, errorFn: (data: any) => void = (
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao atualizar foto de capa');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao atualizar foto de capa');
       throw err;
     }) as undefined;
 };
@@ -74,7 +74,7 @@ export const disconnectMyWhatsapp = async (userId: string, errorFn: (data: any) 
     .then(res => res.data)
     .catch(err => {
       errorFn(err.response?.data);
-      toast.error(err.response?.data?.messages ?? 'Falha ao remover conexão de whatsapp do usuário');
+      toast.error(err.response?.data?.messages.join('\n')  ?? 'Falha ao remover conexão de whatsapp do usuário');
       throw err;
     });
 };

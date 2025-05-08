@@ -7,7 +7,7 @@ import { UserInfo } from '../components';
 
 export function ProtectedHeaderView() {
   return (
-    <header className="border-b h-20 px-[12vw] mx-0 my-auto flex items-center justify-between bg-white">
+    <header className="border-b h-20 px-[12vw] fixed z-50 w-full flex items-center justify-between bg-white">
       <NextLink href="/portal">
         <Image
           alt="logo"

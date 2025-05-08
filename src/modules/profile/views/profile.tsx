@@ -1,10 +1,10 @@
 'use client';
 
-import { Button, CirclingFourDotsLoading, ErrorMessage, Select, Option, envVars, BouncingThreeDotsLoading } from 'Common';
-import { PhoneRegionOptions, TimezoneOptions } from 'Profile/models';
+import { Button, CirclingFourDotsLoading, ErrorMessage, Select, Option, BouncingThreeDotsLoading } from 'Common';
+import { TimezoneOptions } from 'Profile/models';
 import { useEditProfile } from 'Profile/hooks';
-import { BiEditAlt } from 'react-icons/bi';
-import Image from 'next/image';
+import InputMask from 'react-input-mask';
+import { ProfilePictureEditable } from 'Profile/components';
 
 export function ProfileView() {
   const { 
@@ -21,7 +21,7 @@ export function ProfileView() {
   } = useEditProfile();
 
   return (
-    <div className="min-w-[600px]">
+    <div className="w-[740px] px-5 overflow-y-auto">
       {
         isProfileLoading && (
           <CirclingFourDotsLoading />
@@ -33,62 +33,27 @@ export function ProfileView() {
       {
         !isProfileLoading && profile && profile.details && (
           <div className="flex flex-col gap-8">
-            <div className="flex items-center justify-center gap-4">    
-              <div className="rounded-full overflow-hidden h-fit w-fit relative group">
-                {
-                  changedProfilePicture 
-                    ? (
-                      <Image
-                        height={60}
-                        width={60}
-                        src={URL.createObjectURL(changedProfilePicture)}
-                        alt="profile" 
-                      />
-                    )
-                    : (
-                      <Image
-                        height={60}
-                        width={60}
-                        src={
-                          profile.details.profilePictureUrl
-                            ? `${envVars.saProfilesUrl}/${profile.details.profilePictureUrl}`
-                            : `${envVars.saAssetsUrl}/user_placeholder.png`
-                        }
-                        alt="profile" 
-                      />
-                    )
-                }
-                <div className="flex justify-center items-center absolute left-0 w-full h-full bg-gray-500 top-0 opacity-0 group-hover:opacity-100 group-hover:bg-opacity-70">
-                  <BiEditAlt className="margin-auto size-10 text-black"/>
-                </div>
-                <input 
-                  className="h-full w-full opacity-0 absolute left-0 top-0 cursor-pointer" 
-                  type="file" 
-                  accept=".jpg,.jpeg,.png" 
-                  onChange={onChangeProfilePicture}
-                />
-              </div>
-            </div>
+            <ProfilePictureEditable onChangeProfilePicture={onChangeProfilePicture} profile={profile} changedProfilePicture={changedProfilePicture} />
             <form className="flex flex-col gap-8" onSubmit={onSubmit}>
               <div className="flex w-full flex-col gap-2">
                 <label className="text-lg font-bold" htmlFor="name">Nome</label>
-                <input 
+                <input
                   className="p-2 border-2 border-gray-200 h-12 rounded-lg"
                   id="name"
-                  onChange={(event) => onChangeDetails('name', event.target.value)} 
-                  value={changedProfile.details?.name !== undefined ? changedProfile.details?.name : profile.details.name}/>
+                  onChange={(event) => onChangeDetails('name', event.target.value)}
+                  value={changedProfile.details?.name || profile.details.name}/>
               </div>
               <div className="flex w-full flex-col gap-2">
                 <label className="text-lg font-bold" htmlFor="welcoming">Mensagem de boas-vindas</label>
                 <textarea className="p-2 border-2 border-gray-200 h-40 rounded-lg" id="welcoming" value="Seja muito bem vindo" onChange={console.info}/>
               </div>
-              <div className="flex justify-around">
-                <div className="flex w-1/2 flex-col gap-2">
+              <div className="flex justify-between">
+                {/* <div className="flex w-1/2 flex-col gap-2">
                   <label htmlFor="phone-region" className="text-lg font-bold">Região do Telefone</label>
-                  <Select 
+                  <Select
                     className="w-16"
                     id="phone-region" 
-                    value={changedProfile.details?.phoneRegion !== undefined ? changedProfile.details?.phoneRegion : profile.details.phoneRegion}
+                    value={changedProfile.details?.phoneRegion || profile.details.phoneRegion}
                     onChange={value => onChangeDetails('phoneRegion', value)}
                   >
                     {
@@ -99,13 +64,23 @@ export function ProfileView() {
                       ))
                     }
                   </Select>
+                </div> */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="phone">Celular</label>
+                  <InputMask
+                    mask="(99) 99999-9999"
+                    type="tel"
+                    className="p-2 border-2 border-gray-200 h-12 rounded-lg"
+                    id="phone"
+                    value={changedProfile.details?.phone || profile.details?.phone}
+                    onChange={event => onChangeDetails('phone', event.target.value)} />
                 </div>
-                <div className="flex w-1/2 flex-col gap-2">
+                <div className="flex flex-col gap-2">
                   <label htmlFor="timezone" className="text-lg font-bold">Fuso Horário</label>
-                  <Select 
+                  <Select
                     className="w-64"
                     id="timezone" 
-                    value={changedProfile.details?.timezone !== undefined ? changedProfile.details?.timezone : profile.details?.timezone}
+                    value={changedProfile.details?.timezone || profile.details?.timezone}
                     onChange={value => onChangeDetails('timezone', value)}
                   >
                     {
@@ -116,6 +91,80 @@ export function ProfileView() {
                       ))
                     }
                   </Select>
+                </div>
+              </div>
+              <hr />
+              <div className="flex flex-wrap justify-between">
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="email">E-mail</label>
+                  <input
+                    className="p-2 border-2 border-gray-200 h-12 rounded-lg"
+                    id="email"
+                    disabled
+                    value={profile.details.email}/>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="cpfCnpj">CPF/CNPJ</label>
+                  <InputMask
+                    mask="999.999.999-99"
+                    type="tel"
+                    className="p-2 border-2 border-gray-200 h-12 rounded-lg"
+                    id="cpfCnpj"
+                    value={changedProfile.details?.cpfCnpj || profile.details?.cpfCnpj}
+                    onChange={event => onChangeDetails('cpfCnpj', event.target.value)} />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 justify-between">
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="postalCode">CEP</label>
+                  <InputMask
+                    mask="99999-99"
+                    type="tel"
+                    className="p-2 w-28 border-2 border-gray-200 h-12 rounded-lg"
+                    id="postalCode"
+                    value={changedProfile.details?.postalCode || profile.details?.postalCode}
+                    onChange={event => onChangeDetails('postalCode', event.target.value)} />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="state">Estado</label>
+                  <input
+                    className="p-2 w-12 border-2 border-gray-200 h-12 rounded-lg"
+                    id="state"
+                    disabled
+                    value={changedProfile.details?.state || profile.details?.state}/>
+                </div>
+                <div className="flex flex-col gap-2 w-auto">
+                  <label className="text-lg font-bold" htmlFor="city">Cidade</label>
+                  <input
+                    className="w-80 p-2 border-2 border-gray-200 h-12 rounded-lg"
+                    id="city"
+                    disabled
+                    value={changedProfile.details?.city || profile.details?.city}/>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="neighborhood">Bairro</label>
+                  <input
+                    className="p-2 border-2 border-gray-200 h-12 rounded-lg overflow-auto"
+                    id="neighborhood"
+                    disabled
+                    value={changedProfile.details?.neighborhood || profile.details?.neighborhood}/>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-lg font-bold" htmlFor="address">Endereço</label>
+                  <input
+                    className="w-96 p-2 min-w-40 border-2 border-gray-200 h-12 rounded-lg overflow-auto"
+                    id="address"
+                    disabled
+                    value={changedProfile.details?.address || profile.details?.address}/>
+                </div>
+                <div className="flex flex-col gap-2 w-auto">
+                  <label className="text-lg font-bold" htmlFor="complement">Complemento</label>
+                  <input
+                    className="w-40 p-2 border-2 border-gray-200 h-12 rounded-lg"
+                    id="complement"
+                    disabled
+                    value={changedProfile.details?.complement || profile.details?.complement}
+                    onChange={event => onChangeDetails('complement', event.target.value)}/>
                 </div>
               </div>
               <div className="flex justify-between">

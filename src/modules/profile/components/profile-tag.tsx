@@ -2,6 +2,7 @@ import { envVars } from 'Common';
 import { IShortProfile } from 'Profile/models';
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
+import { ProfilePicture } from './profile-picture';
 
 
 type props = {
@@ -12,17 +13,7 @@ type props = {
 export function ProfileTag({ profile, className }: props) {
   return (
     <div className={twMerge('flex w-full min-h-24 p-4 gap-6 items-center', className)}>
-      <Image
-        className="rounded-full"
-        height={60}
-        width={60}
-        loading="lazy"
-        src={
-          profile.profilePictureUrl
-            ? `${envVars.saProfilesUrl}/${profile.profilePictureUrl}`
-            : `${envVars.saAssetsUrl}/user_placeholder.png`
-        }
-        alt="profile" />
+      <ProfilePicture profile={profile} />
       <div className="h-10 border-r"></div>
       <div className="flex flex-col">
         <Image

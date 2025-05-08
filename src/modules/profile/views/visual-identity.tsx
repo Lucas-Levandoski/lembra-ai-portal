@@ -2,6 +2,7 @@
 
 import { BouncingThreeDotsLoading, Button, CirclingFourDotsLoading, ErrorMessage } from 'Common/components';
 import { envVars } from 'Common/utils';
+import { ProfilePictureEditable } from 'Profile/components';
 import { useEditProfile } from 'Profile/hooks';
 import Image from 'next/image';
 import { BiEditAlt } from 'react-icons/bi';
@@ -40,29 +41,7 @@ export function VisualIdentityView() {
             <div className="rounded-xl shadow-lg p-8">
               <div className="flex w-full h-24 p-4 gap-6 items-center">
                 <div className="rounded-full overflow-hidden h-fit w-fit relative group">
-                  {
-                    changedProfilePicture 
-                      ? (
-                        <Image
-                          height={60}
-                          width={60}
-                          src={URL.createObjectURL(changedProfilePicture)}
-                          alt="profile" 
-                        />
-                      )
-                      : (
-                        <Image
-                          height={60}
-                          width={60}
-                          src={
-                            profile.details.profilePictureUrl
-                              ? `${envVars.saProfilesUrl}/${profile.details.profilePictureUrl}`
-                              : `${envVars.saAssetsUrl}/user_placeholder.png`
-                          }
-                          alt="profile" 
-                        />
-                      )
-                  }
+                  <ProfilePictureEditable onChangeProfilePicture={onChangeProfilePicture} profile={profile} changedProfilePicture={changedProfilePicture} />
                   <div className="flex justify-center items-center absolute left-0 w-full h-full bg-gray-500 top-0 opacity-0 group-hover:opacity-100 group-hover:bg-opacity-70">
                     <BiEditAlt className="margin-auto size-10 text-black"/>
                   </div>
