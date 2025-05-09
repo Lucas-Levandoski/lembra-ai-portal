@@ -18,7 +18,7 @@ export function useEditProfile() {
   const [changedCompanyPicture, setChangedCompanyPicture] = useState<File | undefined>();
   const [hasChanges, setHasChanges] = useState(false);
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
-  const [cep, setCep] = useState('');
+  const [cep, setCep] = useState<string>();
   const [debouncedCep, setDebouncedCep] = useState<string>();
   const [isCepLoading, setIsCepLoading] = useState(false);
 
@@ -34,6 +34,8 @@ export function useEditProfile() {
 
   // Debounce effect
   useEffect(() => {
+    if(cep === undefined) return;
+
     const timer = setTimeout(() => setDebouncedCep(cep.replaceAll(/_|-/g, '')), 2000); // 2 seconds delay
 
     return () => clearTimeout(timer); // Clear timeout on input change
@@ -49,6 +51,16 @@ export function useEditProfile() {
 
     if(_cep.replaceAll(/_|-/g, '').length === 8) setIsCepLoading(true);
 
+    if(_cep.replaceAll(/_|-/g, '').length === 0) 
+      changedProfile.details = {
+        ...changedProfile.details,
+        address: '',
+        city: '',
+        neighborhood: '',
+        state: '',
+      };
+
+
     changedProfile.details = {
       ...changedProfile.details,
       postalCode: _cep
@@ -58,22 +70,7 @@ export function useEditProfile() {
   };
 
   const onReadCep = async () => {
-    if(!debouncedCep) return;
-
-    if(debouncedCep.length === 0) {
-      changedProfile.details = {
-        ... changedProfile.details,
-        address: '',
-        city: '',
-        neighborhood: '',
-        state: '',
-      };
-
-      setChangedProfile({ ...changedProfile, details: { ...changedProfile.details } });
-      if (!hasChanges) setHasChanges(true);
-    }
-
-    if(debouncedCep.length !== 8) return;
+    if(debouncedCep === undefined || debouncedCep.length !== 8) return;
 
     try {
       const data = await getDataFromCEP(debouncedCep);

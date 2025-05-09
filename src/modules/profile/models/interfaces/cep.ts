@@ -1,4 +1,7 @@
 export interface ICepResponse {
+  // those dumb fucks return 200 with an error message
+  erro?: string,
+
   cep: string,
   logradouro: string,
   complemento: string,
