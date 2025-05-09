@@ -60,13 +60,14 @@ export function useEditProfile() {
         state: '',
       };
 
-
     changedProfile.details = {
       ...changedProfile.details,
       postalCode: _cep
     };
 
     setChangedProfile({ ...changedProfile, details: { ...changedProfile.details } });
+
+    if (!hasChanges) setHasChanges(true);
   };
 
   const onReadCep = async () => {
