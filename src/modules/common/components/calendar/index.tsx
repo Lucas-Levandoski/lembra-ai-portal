@@ -41,7 +41,7 @@ export function Calendar({
 }: props) {
 
   return (
-    <div className="shadow-lg rounded-xl pt-6 h-fit">
+    <div translate="no" className="shadow-lg rounded-xl pt-6 h-fit">
       <LocalizationProvider 
         adapterLocale="pt-br"
         dateAdapter={AdapterDayjs}  
