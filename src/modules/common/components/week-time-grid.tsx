@@ -1,5 +1,8 @@
+'use client';
+
 import { IEventsByAgenda } from 'Calendar/models';
 import { Button, CirclingFourDotsLoading, getDate, getWeekDays, timeToMinutes } from 'Common';
+import { useEffect, useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type props = {
@@ -23,6 +26,8 @@ export function WeekTimeGrid({
   isLoading = false,
   onSelect = () => {},
 }: props) {
+
+  const scrollRef = useRef<HTMLDivElement>(null);
   const range = endHour - startHour;
   const times = (new Array(range + 1).fill(0)).map((_, i) => (`${i+startHour < 10 ?  '0' + (i+startHour): i+startHour}:00`));
 
@@ -46,6 +51,13 @@ export function WeekTimeGrid({
     )
   );
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      const scrollTop = ((currentTime - startHour) * rowHeight + rowHeight / 2) - scrollRef.current.clientHeight / 2;
+      scrollRef.current.scrollTop = scrollTop;
+    }
+  }, [currentTime, rowHeight, startHour]);
+
   return (
     <div className="flex flex-col">
       <div className="grid grid-cols-7 ml-[45px] h-[100px]">
@@ -58,7 +70,7 @@ export function WeekTimeGrid({
           ))
         }
       </div>
-      <div className="flex h-[600px] overflow-y-auto relative">
+      <div ref={scrollRef}  className="flex h-[550px] overflow-y-auto relative">
         <div className="w-[45px] mr-2">
           {
             times.map(time => (
