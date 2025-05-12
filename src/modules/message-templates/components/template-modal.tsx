@@ -2,8 +2,9 @@
 
 import { Button, Dialog, Option, Select } from 'Common';
 import { MessageTargets } from 'Message-Templates';
-import { MessageTags, MessageTemplate, TimesUntil } from '../models';
+import { MessageTags, MessageTagsColors, MessageTemplate, TimesUntil } from '../models';
 import { TextareaWithTags } from '.';
+import { MdOutlineDragIndicator } from 'react-icons/md';
 
 type props = {
   onComplete?: () => void;
@@ -29,7 +30,7 @@ export function TemplateModal({
 
   return (
     <Dialog isOpen={isOpen}>
-      <form className="flex flex-col gap-8 min-w-[600px]" onSubmit={() => onComplete()}>
+      <form className="flex flex-col gap-6 w-[700px]" onSubmit={() => onComplete()}>
         <h2 className="font-bold">{title}</h2>
         <div className="flex gap-2">
           <div className="flex flex-col w-full gap-2">
@@ -53,18 +54,28 @@ export function TemplateModal({
           </div>
         </div>
 
-        <div className="border-2 rounded-lg p-6">
-          <div className="flex justify-end">
-            <Select className="w-1/2" id="target" fixedValue={'Adicionar Variável'} onChange={(value) => onChangeProperty('content', template.content + value)}>
-              {
-                Object.entries(MessageTags).map(([key, text]) => <Option key={key} value={`{{${key}}}`}>{text}</Option>)
-              }
-            </Select>
+        <div className="text-center">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {
+              (Object.entries(MessageTags) as [keyof typeof MessageTags, string][]).map(
+                ([key, text]) => (
+                  <span
+                    className={`flex items-center cursor-grab rounded-md pr-3 py-0 bg-${MessageTagsColors[key]}-100 text-${MessageTagsColors[key]}-700 w-fit font-bold`}
+                    key={key}
+                    draggable
+                    onDragStart={(e) => e.dataTransfer.setData('text/plain', key)}
+                  >
+                    <MdOutlineDragIndicator className="text-gray-500" size="16"/>
+                    {text}
+                  </span>
+                )
+              )
+            }
           </div>
+        </div>
 
+        <div className="border-2 rounded-lg p-2">
           <TextareaWithTags content={template.content} onChangeProperty={onChangeProperty} />
-
-          {/* <textarea className="w-full resize-none" value={template.content} onChange={(event) => onChangeProperty('content', event.target.value)}/> */}
         </div>
 
         <div className="flex w-full gap-2">

@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { MessageTags, MessageTemplate } from '../models';
+import { DragEvent, useEffect, useRef } from 'react';
+import { MessageTags, MessageTagsColors, MessageTemplate } from '../models';
 
 type props = {
   content: string;
@@ -11,8 +11,8 @@ export function TextareaWithTags({ content, onChangeProperty = () => {} }: props
 
   useEffect(() => {
     const updatedContent = content.replace(/{{(.*?)}}/g, 
-      (match, tag) => {
-        if (tag in MessageTags) return tagElement(MessageTags[tag as keyof typeof MessageTags]); 
+      (match, tag: keyof typeof MessageTags) => {
+        if (tag in MessageTags) return tagElement(MessageTags[tag], MessageTagsColors[tag] ); 
 
         return match;
       }
@@ -35,8 +35,8 @@ export function TextareaWithTags({ content, onChangeProperty = () => {} }: props
     }
   }, [content]);
 
-  const tagElement = (text: string) => {
-    return `<span contenteditable="false" class="rounded-md px-3 py-0 bg-blue-200 text-blue-700 w-fit font-bold">${text}</span>`;
+  const tagElement = (text: string, color: string) => {
+    return `<span contenteditable="false" class="rounded-md px-3 py-0 bg-${color}-100 text-${color}-700 w-fit font-bold">${text}</span>`;
   };
 
   const handleInput = () => {
@@ -84,15 +84,69 @@ export function TextareaWithTags({ content, onChangeProperty = () => {} }: props
       selection.removeAllRanges();
       selection.addRange(range);
     }
+  };  
+  
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {  e.preventDefault();
+    e.preventDefault();
+
+    const variable = e.dataTransfer.getData('text/plain') as keyof typeof MessageTags;
+
+    const tagHTML = tagElement(MessageTags[variable], MessageTagsColors[variable]);
+
+    if (editableRef.current) {
+      editableRef.current.focus();
+
+      let range: Range | null = null;
+
+      // Modern browsers (Firefox, some Chrome)
+      const pos = (document as any).caretPositionFromPoint?.(e.clientX, e.clientY);
+      if (pos) {
+        range = document.createRange();
+        range.setStart(pos.offsetNode, pos.offset);
+        range.setEnd(pos.offsetNode, pos.offset);
+      }
+  
+      // Deprecated but still works in Chrome
+      if (!range && document.caretRangeFromPoint) {
+        range = document.caretRangeFromPoint(e.clientX, e.clientY);
+      }
+  
+      // Fallback: place at the end
+      if (!range) {
+        range = document.createRange();
+        range.selectNodeContents(editableRef.current);
+        range.collapse(false); // end of content
+      }
+  
+      if (range) {
+        const temp = document.createElement('div');
+        temp.innerHTML = tagHTML;
+        const tagNode = temp.firstChild;
+  
+        if (tagNode) {
+          range.deleteContents();
+          range.insertNode(tagNode);
+          range.setStartAfter(tagNode);
+          range.setEndAfter(tagNode);
+  
+          const sel = window.getSelection();
+          sel?.removeAllRanges();
+          sel?.addRange(range);
+        }
+      }
+
+      handleInput(); // call to update the underlying content state
+    }
   };
 
   return (
     <div 
       ref={editableRef}
       contentEditable
-      className="outline-none w-full whitespace-pre-wrap max-w-[550px]"
+      className="outline-none w-full whitespace-pre-wrap"
       onInput={handleInput}
       onKeyDown={handleKeyDown}
+      onDrop={handleDrop}
     />
   );
 }
