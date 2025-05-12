@@ -36,7 +36,7 @@ export function NotificationElement({ details, target }: props) {
       <div className="relative ml-6 flex items-center justify-start gap-2">
         <span className={twMerge('absolute h-8 w-[2px] rounded-full -translate-x-[34px]', StatusColor(details.status) )}/>
         <span>{TargetIcons[target]}</span>
-        <span>{details.minutesToMeeting ? maskMinutes(details.minutesToMeeting, true) + ' antes' : ''}</span>
+        <span>{details.timeUntil ? maskMinutes(details.timeUntil, true) + ' antes' : 'No ato de agendar'}</span>
         <FaCircle className="size-2" />
         <span className="font-bold">
           {target} - {StatusText(details.status)}

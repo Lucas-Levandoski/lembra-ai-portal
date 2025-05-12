@@ -22,7 +22,7 @@ export type BookingNotification = {
   templateId?: string;
   content?: string;
   html?: string;
-  minutesToMeeting: number;
+  timeUntil: number;
   status: NotificationStatuses;
   errorMessage?: string;
 }

@@ -45,11 +45,9 @@ export function TemplateModal({
           <div className="flex flex-col w-full gap-2">
             <label htmlFor="timeUntil">Tempo</label>
 
-            <Select id="timeUntil" value={template.timeUntil} onChange={(value) => onChangeProperty('timeUntil', value)}>
+            <Select id="timeUntil" value={template.timeUntil.toString()} onChange={(value) => onChangeProperty('timeUntil', value)}>
               {
-                Object.entries(TimesUntil).map(([value, text]) => (
-                  <Option value={+value} key={value}>{text}</Option>
-                ))
+                Object.entries(TimesUntil).map(([value, text]) => <Option value={value} key={value}>{text}</Option>)
               }
             </Select>
           </div>

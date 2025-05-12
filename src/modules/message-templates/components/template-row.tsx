@@ -26,8 +26,12 @@ export function TemplateRow({
       }
       <div className="ml-6 flex items-center gap-2">
         <span>{TargetIcons[template.target]}</span>
-        <span>{maskMinutes(template.timeUntil, true)} antes</span>  
-        {/* <b>•</b><b>Enviar por {TargetTexts[template.target]}</b> */}
+        {
+          // on 0 it shows that it was triggered right on time of scheduling
+          !template.timeUntil
+            ? <span>No ato de agendar</span>  
+            : <span>{maskMinutes(template.timeUntil, true)} antes</span>  
+        }
       </div>
       <div className="flex ml-auto mr-0 items-center">
         <Button variant="icon" onClick={() => onEdit(index)}><HiOutlineAdjustmentsHorizontal className="size-6 text-gray-600" /></Button>
