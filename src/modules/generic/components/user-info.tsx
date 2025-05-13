@@ -3,6 +3,7 @@
 import { BouncingThreeDotsLoading, DropdownMenu, useAuth, Link, Button, ErrorMessage } from 'Common';
 import { useInitializeUser } from 'Profile/hooks';
 import { useStore } from 'Store';
+import { AiFillSetting } from 'react-icons/ai';
 
 export function UserInfo() {
   const { profile, isProfileLoading } = useStore(state => ({ 
@@ -25,10 +26,18 @@ export function UserInfo() {
             {/* </Button> */}
 
             <DropdownMenu
-              buttonContent={<span>Olá, <b>{profile?.details.name}</b></span>}
+              buttonContent={
+                <span className="flex items-center min-w-[210px]">
+                  <AiFillSetting className="mr-3" size="20"/>
+                  Olá,<b className="ml-1">{profile?.details.name}</b>
+                </span>
+              }
             >
-              <Link route="/portal/profile">Alterar Perfil</Link>
-              <Button variant="text" onClick={() => logout()}>Logout</Button>
+              <Link route="/portal/profile/my-profile">Meu Perfil</Link>
+              <Link route="/portal/profile/visual-identity">Identidade Visual</Link>
+              <Link route="/portal/profile/my-link">Meu Link</Link>
+              <Link route="/portal/profile/manage-connections">Gerenciar Conexões</Link>
+              <Button  variant="outlined" onClick={() => logout()}>Logout</Button>
             </DropdownMenu>
           </>
       }

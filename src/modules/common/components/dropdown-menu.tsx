@@ -37,7 +37,7 @@ export function DropdownMenu({ buttonContent, children }: props) {
       </Button>
       {
         isOpen &&
-        <div className="absolute w-full left-0 top-full p-4 bg-white rounded-b-xl shadow-lg">
+        <div className="flex flex-col gap-1 absolute w-full left-0 top-full p-4 bg-white rounded-b-xl shadow-lg">
           {children}
         </div>
       }

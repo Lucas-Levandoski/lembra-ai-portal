@@ -9,6 +9,11 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: '/portal/profile',
+        destination: '/portal/profile/my-profile',
+        permanent: false,
+      },
+      {
         source: '/portal',
         destination: '/portal/agenda',
         permanent: false,

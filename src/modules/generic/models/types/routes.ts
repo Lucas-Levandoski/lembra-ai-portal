@@ -1,1 +1,1 @@
-export type Routes = 'portal' | 'agenda' | 'calendar' | 'availability' | 'events' | 'profile' | 'visual-identity' | 'my-link' | 'manage-connections';
+export type Routes = 'portal' | 'agenda' | 'calendar' | 'availability' | 'events' | 'profile' | 'my-profile' | 'visual-identity' | 'my-link' | 'manage-connections';
