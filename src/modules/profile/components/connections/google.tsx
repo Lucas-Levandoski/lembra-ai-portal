@@ -35,7 +35,7 @@ export function GoogleAccount() {
                   : (
                     <div className="flex mx-auto">
                       <div className="flex flex-col gap-3 text-center">
-                        <h3>Escopos connectados</h3>
+                        <h3>Escopos connectados{connectionStatus.hasMissingScopes && <><br/>Nenhum escopo pendente</>}</h3>
                         <ul className="flex flex-col w-full gap-2">
                           {connectionStatus.connectedScopes.map(scope => (
                             <li key={scope} className="rounded-lg px-2 py-1 mx-auto bg-green-300">{GOOGLE_SCOPES_MASKS[scope]}</li>
@@ -43,18 +43,16 @@ export function GoogleAccount() {
                         </ul>
                       </div>
                       {
-                        connectionStatus.hasMissingScopes
-                          ? (
-                            <div className="flex flex-col gap-3 text-center border-l pl-2 ml-2">
-                              <h3>Escopos com aprovação pendente</h3>
-                              <ul className="flex flex-col w-full gap-2">
-                                {connectionStatus.missingScopes.map(scope => (
-                                  <li key={scope} className="rounded-lg px-2 py-1 mx-auto bg-red-300">{GOOGLE_SCOPES_MASKS[scope]}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          )
-                          : <h3>Nenhum Escopo pendente!</h3>
+                        connectionStatus.hasMissingScopes && (
+                          <div className="flex flex-col gap-3 text-center border-l pl-2 ml-2">
+                            <h3>Escopos com aprovação pendente</h3>
+                            <ul className="flex flex-col w-full gap-2">
+                              {connectionStatus.missingScopes.map(scope => (
+                                <li key={scope} className="rounded-lg px-2 py-1 mx-auto bg-red-300">{GOOGLE_SCOPES_MASKS[scope]}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )
                       }
                     </div>
                   )
