@@ -7,5 +7,5 @@ export const isGoogleAccountConnected = async (errorFn: (data: any) => void = ()
     .catch(err => {
       errorFn(err.response?.data);
       throw err;
-    }) as IGoogleConnected | undefined;
+    }) as IGoogleConnected;
 };

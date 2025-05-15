@@ -1,6 +1,7 @@
 'use client';
 
-import { Button, CirclingFourDotsLoading, envVars, ErrorMessage } from 'Common';
+import { CirclingFourDotsLoading, Button, envVars, ErrorMessage, GOOGLE_SCOPES_MASKS } from 'Common';
+import { useCheckGoogleConnection } from 'Profile/hooks';
 import { useStore } from 'Store';
 
 
@@ -9,6 +10,9 @@ export function GoogleAccount() {
     profile: state.profile,
     isProfileLoading: state.isProfileLoading,
   }));
+
+  const { connectionStatus, isLoading } = useCheckGoogleConnection();
+
   return (
     <>
       {
@@ -25,6 +29,34 @@ export function GoogleAccount() {
                 <span>Conta Conectada:</span>
                 <span className="border py-2 px-3 rounded-xl bg-blue-100">{profile.details.email}</span>
               </div>
+              {
+                isLoading
+                  ? <CirclingFourDotsLoading />
+                  : (
+                    <div className="flex">
+                      <div className="flex flex-col gap-3 text-center">
+                        <h3>Escopos connectados</h3>
+                        <ul className="flex flex-col w-full gap-2">
+                          {connectionStatus.connectedScopes.map(scope => (
+                            <li key={scope} className="rounded-lg px-2 py-1 mx-auto bg-green-300">{GOOGLE_SCOPES_MASKS[scope]}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      {
+                        connectionStatus.hasMissingScopes && (
+                          <div className="flex flex-col gap-3 text-center border-l pl-2 ml-2">
+                            <h3>Escopos com aprovação pendente</h3>
+                            <ul className="flex flex-col w-full gap-2">
+                              {connectionStatus.missingScopes.map(scope => (
+                                <li key={scope} className="rounded-lg px-2 py-1 mx-auto bg-red-300">{GOOGLE_SCOPES_MASKS[scope]}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )
+                      }
+                    </div>
+                  )
+              }
               <Button route={`${envVars.googleConsentUrl}`} routeTarget="_blank">Atualizar permissões</Button>
             </div>
           )
