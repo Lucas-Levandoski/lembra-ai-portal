@@ -107,10 +107,15 @@ export function BookingDialog({
                         </div> 
                       )
                     }
-                    <div className="flex justify-between">
-                      <Button onClick={() => onCancellation() } variant="secondary" >Cancelar Evento</Button>
-                      <Button routeTarget="_blank" route={`/re-schedule/${booking.id}`} variant="primary">Reagendar</Button>
-                    </div>
+                    {
+                      booking.details.status === 'booked' &&
+                      (
+                        <div className="flex justify-between">
+                          <Button onClick={() => onCancellation() } variant="secondary" >Cancelar Evento</Button>
+                          <Button routeTarget="_blank" route={`/re-schedule/${booking.id}`} variant="primary">Reagendar</Button>
+                        </div>
+                      )
+                    }
                   </div>
                 )
             )
